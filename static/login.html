@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="fonts/icomoon/style.css">
+
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+    
+    <!-- Style -->
+    <link rel="stylesheet" href="css/forms.css">
+    <link rel="shortcut icon" href="images/favicon.png" type="">
+    <title>Águia Delivery</title>
+  </head>
+  <body>
+  <div class="d-lg-flex half">
+    <div class="bg order-1 order-md-2 mobile-hidden" style="background-image: url(https://wallpapercrafter.com/desktop/43381-panini-ham-cheese-salad-bread-baske.jpg); "></div>
+    <div class="contents order-2 order-md-2">
+
+      <div class="container">
+        <div class="row align-items-center justify-content-center align-items-center-mobile">
+          <div class="col-md-7">
+            <h3>Bem-Vindos ao <strong>Águia Delivery</strong></h3>
+            <p class="mb-4">É um privilégio ter você como nosso cliente, agradecemos pela confiança.</p>
+            <form >
+              <div class="form-group first">
+                <label for="username">Número de telefone celular ou E-mail</label>
+                <input type="text" class="form-control" id="username" placeholder="Insira seus dados" >
+              </div>
+             <!-- <div class="form-group last mb-3">
+                <label for="password">Senha</label>
+                <input type="password" class="form-control" placeholder="******" id="password">
+                <i class="bi bi-eye-slash" id="togglePassword"></i>
+              </div>  -->
+            <div class="form-group last mb-3">
+              <label for="password">Senha</label>
+              <div class="input-group">
+                  <input type="password" class="form-control" placeholder="******" id="password">
+                  <div class="input-group-append">
+                      <span class="input-group-text toggle-password" onclick="exibeSenha('password')">
+                          <i class="bi bi-eye-slash"></i>
+                      </span>
+                  </div>
+                </div>
+            </div>         
+            
+              <div class="d-flex mb-5 align-items-center">
+                <label class="mb-0"><a href="./registraEstabelecimento.html" class="forgot-pass">Deseja criar uma Conta? Clique Aqui.</a></label>
+                <span class="ml-auto"><a href="./alterarSenha.html" class="forgot-pass">Esqueceu sua Senha?</a></span> 
+              </div>             
+              <input type="submit" id="login" value="ENTRAR" class="btn btn-block" style="background-color: #ffbe33;" onclick="meuLogin()">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>   
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/login.js"></script>
+  </body>
+</html>

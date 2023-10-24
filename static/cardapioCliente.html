@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Águia Delivery</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="Free Website Template" name="keywords">
+        <meta content="Free Website Template" name="description">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <!-- Favicon -->
+        <link href="images/favicon.ico" rel="icon">
+
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Nunito:600,700" rel="stylesheet"> 
+        
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link href="lib/animate/animate.min.css" rel="stylesheet">
+        <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+        <link href="lib/flaticon/font/flaticon.css" rel="stylesheet">
+        <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+        <!-- Template Stylesheet -->
+        <link href="css/styleCardapio.css" rel="stylesheet">
+
+        <!-- Adicione o Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+        <!-- Adicione o Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </head>
+
+    <body onload="carregarProdutos()">
+        <!-- Nav Bar Start -->
+        <div class="navbar navbar-expand-lg bg-light navbar-light">
+            <div class="container-fluid">
+                <a href="index.html" class="navbar-brand" style="font-size: xx-large;">Águia Delivery</a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon">
+                    </span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                    <div class="navbar-nav ml-auto">
+                        <a href="index.html" class="btn  active">Home</a>
+                        <a href="carrinho.html" class="btn ">Carrinho</a> 
+                        <a class="btn " data-toggle="modal" data-target="#modalRegistrarCliente" class="nav-item nav-link">Editar Cadastro</a>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Nav Bar End -->
+
+        <!-- Menu Start -->
+        <div class="menu">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 style="color: #fbaf32;">Delicioso Menu Cardápio</h2>
+                </div>
+                <div class="menu-tab">     
+                   <div class="scrolling-container">
+                        <ul class="nav nav-pills flex-nowrap">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="pill" href="#burgers">Burgers</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="pill" href="#snacks">Snacks</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="pill" href="#beverages">Beverages</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="pill" href="#beverages">Chocolate</a>
+                            </li>
+                        </ul>                               
+                    </div>                    
+                   
+                    <div class="tab-content">
+                        <div id="burgers" class="container tab-pane active">
+                            <div class="row" >
+                                <div class="col-lg-7 col-md-12" id="cardapio">
+
+                                </div>
+                                <!-- <div class="col-lg-5 d-none d-lg-block">
+                                    <img src="images/menu-beverage-img.jpg" alt="Image" onclick="openModal()">
+                                </div> -->
+                            </div>
+                        </div>
+                        <div id="snacks" class="container tab-pane fade">
+                            <div class="row">
+                                <div class="col-lg-7 col-md-12">
+                                    <div class="menu-item">
+                                        <div class="menu-img">
+                                            <img src="images/menu-snack.jpg" alt="Image" onclick="openModal()">
+                                        </div>
+                                        <div class="menu-text">
+                                            <h3><span>Corn Tikki - Spicy fried Aloo</span> <strong>$15.00</strong></h3>
+                                            <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                        </div>
+                                    </div>
+                                    <div class="menu-item">
+                                        <div class="menu-img">
+                                            <img src="images/menu-snack.jpg" alt="Image" onclick="openModal()">
+                                        </div>
+                                        <div class="menu-text">
+                                            <h3><span>Bread besan Toast</span> <strong>$35.00</strong></h3>
+                                            <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                        </div>
+                                    </div>
+                                    <div class="menu-item">
+                                        <div class="menu-img">
+                                            <img src="images/menu-snack.jpg" alt="Image" onclick="openModal()">
+                                        </div>
+                                        <div class="menu-text">
+                                            <h3><span>Healthy soya nugget snacks</span> <strong>$20.00</strong></h3>
+                                            <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                        </div>
+                                    </div>
+                                    <div class="menu-item">
+                                        <div class="menu-img">
+                                            <img src="images/menu-snack.jpg" alt="Image" onclick="openModal()">
+                                        </div>
+                                        <div class="menu-text">
+                                            <h3><span>Tandoori Soya Chunks</span> <strong>$30.00</strong></h3>
+                                            <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                        </div>
+                                    </div>
+                                </div>                               
+                            </div>
+                        </div>
+                        <div id="beverages" class="container tab-pane fade">
+                            <div class="row">
+                                <div class="col-lg-7 col-md-12">
+                                    <div class="menu-item">
+                                        <div class="menu-img">
+                                            <img src="images/menu-beverage.jpg" alt="Image" onclick="openModal()">
+                                        </div>
+                                        <div class="menu-text">
+                                            <h3><span>Single Cup Brew</span> <strong>$7.00</strong></h3>
+                                            <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                        </div>
+                                    </div>
+                                    <div class="menu-item">
+                                        <div class="menu-img">
+                                            <img src="images/menu-beverage.jpg" alt="Image" onclick="openModal()">
+                                        </div>
+                                        <div class="menu-text">
+                                            <h3><span>Caffe Americano</span> <strong>$9.00</strong></h3>
+                                            <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                        </div>
+                                    </div>
+                                    <div class="menu-item">
+                                        <div class="menu-img">
+                                            <img src="images/menu-beverage.jpg" alt="Image" onclick="openModal()">
+                                        </div>
+                                        <div class="menu-text">
+                                            <h3><span>Caramel Macchiato</span> <strong>$15.00</strong></h3>
+                                            <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                        </div>
+                                    </div>
+                                    <div class="menu-item">
+                                        <div class="menu-img">
+                                            <img src="images/menu-beverage.jpg" alt="Image" onclick="openModal()">
+                                        </div>
+                                        <div class="menu-text">
+                                            <h3><span>Standard black coffee</span> <strong>$8.00</strong></h3>
+                                            <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                        </div>
+                                    </div>
+                                    <div class="menu-item">
+                                        <div class="menu-img">
+                                            <img src="images/menu-beverage.jpg" alt="Image" onclick="openModal()">
+                                        </div>
+                                        <div class="menu-text">
+                                            <h3><span>Standard black coffee</span> <strong>$12.00</strong></h3>
+                                            <p>Lorem ipsum dolor sit amet elit. Phasel nec preti facil</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-lg-5 d-none d-lg-block">
+                                    <img src="images/menu-beverage-img.jpg" alt="Image" onclick="openModal()">
+                                </div> -->
+                            </div>
+                        </div>
+
+                       
+                                             
+                    </div>  
+                </div>
+            </div>
+        </div>
+        <!-- Menu End -->    
+        
+        <!--Modal Editar Cadastro-->
+        <div class="modal fade" id="modalRegistrarCliente" tabindex="-1" role="dialog" aria-labelledby="modalRegistrarClienteLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="modalRegistrarClienteLabel">Registrar Cliente</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <form id="AlteraCliente">
+               
+                        <div class="form-group">
+                          <label for="inputAddress">Nome Completo</label>
+                          <input type="text" class="form-control" id="inputNome" placeholder="Insira seu Nome" required> 
+                        </div>
+                        <div class="form-row">                
+                            <div class="form-group last mb-3 col-md-6 " id="divS">
+                              <label for="inputEmail4" id="labelSenha">Senha</label>
+                              <div class="input-group">
+                                  <input type="password" class="form-control" id="password" placeholder="*****" required>
+                                  <div class="input-group-append">
+                                      <span class="input-group-text toggle-password" onclick="exibeSenha('password')">
+                                          <i class="bi bi-eye-slash"></i>
+                                      </span>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="form-group last mb-3 col-md-6 " id="divC">
+                              <label for="inputPassword4" id="labelConfirmar">Confirmar Senha</label>
+                              <div class="input-group">
+                                  <input type="password" class="form-control" id="inputConfirmar" placeholder="*****" required>
+                                  <div class="input-group-append">
+                                      <span class="input-group-text toggle-password" onclick="exibeSenha('inputConfirmar')">
+                                          <i class="bi bi-eye-slash"></i>
+                                      </span>
+                                  </div>
+                              </div>
+                          </div>
+                        </div>   
+                        <div id="senhaDiferenteAlert" class="alert alert-danger" style="display:none;">
+                          As senhas não coincidem. Por favor, tente novamente.
+                       </div>
+                      
+                        <div class="form-row">
+                            <div class="form-group col-md-6">                    
+                              <label for="inputEmail4">Contato</label>
+                              <input type="tel" class="form-control" id="inputContato" placeholder="(00)00000-0000" required maxlength="15" onkeyup="applyPhoneMask(event)">
+                            </div>
+                            <div class="form-group col-md-6">
+                              <label for="inputPassword4">CEP</label>
+                              <input type="text" class="form-control" id="inputCep" name="cep" placeholder="00000-000" required maxlength="9" onkeyup="applyZipCodeMask(event)">
+                            </div>                    
+                        </div>
+                        <div class="form-group">
+                            <label for="inputAddress">Logradouro</label>
+                            <input type="text" class="form-control" id="inputLog" name="endereco" placeholder="Seu Endereço" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">                    
+                              <label for="inputEmail4">Bairro</label>
+                              <input type="text" class="form-control" id="inputBairro" name="bairro" placeholder="Seu Bairro" required>
+                            </div>
+                            <div class="form-group col-md-3">
+                              <label for="inputPassword4">Numero</label>
+                              <input type="number" class="form-control" id="inputNum" placeholder="000" name="numero" required>
+                            </div>
+                            <div class="form-group col-md-5">
+                              <label for="inputZip">Cidade</label>
+                              <input type="text" class="form-control" id="inputCit" placeholder="Sua Cidade" name="cidade" required>
+                          </div>
+                        </div>            
+                        <button type="submit" id="submit" class="btn btn-block" style="background-color: #ffbe33;" onclick="registraCliente()">ALTERAR DADOS DA CONTA</button>
+                      </form>
+                </div>                
+              </div>
+            </div>
+          </div>
+        <!--End Modal Editar Cadastro-->
+
+        <!-- Footer Start -->
+        <div class="footer">
+            <div class="copyright">
+                <div class="container">
+                    <p>Copyright &copy; <a href="#">Águia Sistemas</a>, All Right Reserved.</p>
+                    <p>Designed By <a href="https://htmlcodex.com">HTML Codex</a></p>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End -->
+        <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+        <script src="lib/easing/easing.min.js"></script>
+        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+        <script src="lib/tempusdominus/js/moment.min.js"></script>
+        <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+        <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+        
+        <!-- Contact Javascript File -->
+        <script src="mail/jqBootstrapValidation.min.js"></script>
+        <script src="mail/contact.js"></script>
+
+        <!-- Template Javascript -->
+        <script src="js/cardapio.js "></script>
+    </body>
+</html>
