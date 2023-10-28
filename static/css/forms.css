@@ -1,9 +1,34 @@
 body {
-  font-family: "Roboto", sans-serif;
-  background-color: #efefef; 
-  height: 100vh;
-  margin: 0;
+  background-color: #f8f7f7; 
+  overflow-y: auto;
 }
+.custom-navbar {
+  padding-top: 20px; /* Adicione a quantidade de espaço que deseja aqui */
+  padding-bottom: 40px;
+}
+
+.navbar-brand {
+  font-size: xx-large;
+  margin-left: 250px; 
+}
+
+
+@media (max-width: 767px) {
+  .navbar-brand {
+      margin-left: 0; 
+  }
+}
+
+
+
+/* Estilo para a versão mobile */
+@media (max-width: 768px) {
+  .btn-mobile {
+    margin-bottom: 10px; /* Adiciona a margem para a versão mobile */
+  }
+}
+
+
 
 .toggle-password {
   position: absolute;
@@ -18,7 +43,8 @@ body {
 @media (max-width: 767px) {
   .align-items-center-mobile {
     align-items: flex-start !important;
-  }
+    /*background: linear-gradient(rgba(15, 23, 43, .5), rgba(15, 23, 43, .5)), url(https://wallpapercrafter.com/desktop/43381-panini-ham-cheese-salad-bread-baske.jpg); background-size: cover; background-repeat: no-repeat; background-position: center;
+  */}
 }
 
 @media (max-width: 767px) {
@@ -57,7 +83,7 @@ h2 {
     height: 200px; } }
 
 .half .contents {
-  background: #efefef; ; }
+  background: #f8f7f7; ; }
 
 .half .contents, .half .bg {
   width: 50%; }

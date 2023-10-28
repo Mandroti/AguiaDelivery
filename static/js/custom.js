@@ -72,5 +72,5 @@ $(".client_owl-carousel").owlCarousel({
 function carregaEstabelecimento()
 {   
     document.getElementById('carregarEstabelecimentos').style.display = 'block';
-
 }
+
