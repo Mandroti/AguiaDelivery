@@ -148,7 +148,7 @@
                         <div>
                             <a class="btn table-action" href="#">
                                 <i class="action-icon fas fa-edit"></i>
-                                <i class="action-icon fas fa-trash"></i>
+                                <i class="action-icon fas fa-trash" onclick="excluirProduto()"></i>
                             </a>                         
                           </div>
                     </td>
@@ -161,7 +161,7 @@
                     <td><div>
                         <a class="btn table-action" href="#">
                             <i class="action-icon fas fa-edit"></i>
-                            <i class="action-icon fas fa-trash"></i>
+                            <i class="action-icon fas fa-trash" onclick="excluirProduto()"></i>
                         </a>   
                       </div></td>
                   </tr>
@@ -173,7 +173,7 @@
                     <td><div>
                         <a class="btn table-action" href="#">
                             <i class="action-icon fas fa-edit"></i>
-                            <i class="action-icon fas fa-trash"></i>
+                            <i class="action-icon fas fa-trash" onclick="excluirProduto()"></i>
                         </a>   
                       </div></td>
                   </tr>
@@ -181,9 +181,32 @@
               </table>
           </div>
         </div>
+    </section>
 
-      </section>
+    <section>
+        <div class="modal" id="modalExcluirProduto" style="display:none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Excluir Produto</h5>
+                    <button type="button" class="close" id="fecharModal" style="background-color: transparent; border-color: transparent; font-size: 50px;">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Tem certeza de que deseja excluir este produto?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="fechar">Fechar</button>
+                    <button type="button" class="btn btn-danger" onclick="confirmarExclusao()">Confirmar Exclusão</button>
+                </div>
+            </div>
+        </div>        
+    </section>
 </body>
 <script src="js/dashboard.js"></script>
-
+<script>
+    function excluirProduto() {
+        document.getElementById('modalExcluirProduto').style.display = 'block';
+    }
+    </script>
 </html>
