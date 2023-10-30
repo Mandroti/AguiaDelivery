@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <link rel="shortcut icon" href="images/favicon.png" type="">
+    <!-- CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.11.0/mdb.min.css" rel="stylesheet" />
+  <!-- Bootstrap CSS (se não estiver usando o MDB para Bootstrap) -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+  <title> Águia Delivery </title>
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+  <!--owl slider stylesheet -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+  <!-- nice select  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css" integrity="sha512-CruCP+TD3yXzlvvijET8wV5WxxEh5H8P4cmz0RFbKK6FlZ2sYl3AEsKlLPHbniXKSrDdFewhbmBK5skbdsASbQ==" crossorigin="anonymous" />
+  <!-- font awesome style -->
+  <link href="css/font-awesome.min.css" rel="stylesheet" />
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet" />
+  
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.0.7/css/boxicons.min.css"> 
+  
+</head>
+
+<body style="background: linear-gradient(rgba(15, 23, 43, .5), rgba(15, 23, 43, .5)), url(https://wallpapercrafter.com/desktop/43381-panini-ham-cheese-salad-bread-baske.jpg); background-repeat: no-repeat; background-size: cover; background-position: center; background-attachment: fixed;">
+
+  <div class="hero_area">
+    <!-- <div class="bg-box">
+    </div> -->
+    <!-- header section strats -->
+    <!-- <nav>
+      <div class="navbar navbar-expand-lg bg-light navbar-light">
+        <div class="container-fluid">
+            <a href="index.html" class="navbar-brand" style="font-size: xx-large;">Águia Delivery</a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon">
+                </span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                <div class="navbar-nav ml-auto">
+                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class=""> </span>
+                  </button>
+        
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent" style="font-weight: bold;">
+                    <ul class="navbar-nav  mx -auto ">
+                        
+                    </ul>
+                    <div class="user_option">             
+                      <a href="login.html" class="order_online" style="font-size: large;">
+                        Área do Estabelecimento
+                      </a>
+                    </div>
+                  </div>                      
+                </div>
+            </div>
+        </div>
+    </div>
+    </nav> -->
+    <!-- <header>
+      <div>
+        <nav class="navbar navbar-expand-lg custom_nav-container bg-white">
+          <div class="navbar-brand mx-auto"> 
+            <span style="font-weight: bold; font-size: 35px; ">
+              Águia Delivery
+            </span>
+          </div>
+    
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class=""></span>
+          </button>
+    
+          <div class="collapse navbar-collapse" id="navbarSupportedContent" style="font-weight: bold;">
+            <ul class="navbar-nav mx-auto"> 
+            </ul>
+            <div class="user_option mx-auto"> 
+              <a href="login.html" class="order_online" style="font-size: large;">
+                Área do Estabelecimento
+              </a>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header> -->
+    
+    
+    <!--HEADER-->
+    <div class="navbar navbar-expand-lg bg-light navbar-light" style="height: 80px;">
+      <div class="container-fluid">
+          <a href="index.html" class="navbar-brand" style="position: absolute; top: 50%; transform: translateY(-50%);">
+              <img src="images/logoteste.png" alt="Águia Delivery" style="height: 150px; width: auto;">
+          </a>
+          <button type="button" class="navbar-toggler ml-auto" id="loginButton">
+              <img src="images/shop.png" style="height: 32px;">
+          </button>
+  
+          <div class="collapse navbar-collapse" id="navbarCollapse" style="font-weight: bold;">
+              <ul class="navbar-nav mx-auto"></ul>
+              <div class="user_option mx-auto">
+                  <a href="login.html" class="order_online" style="font-size: large; border-radius: 2px;">
+                      Área do Estabelecimento
+                  </a>
+              </div>
+          </div>
+      </div>
+    </div> 
+  <!--HEADER-->
+    
+    
+    <!-- INPUTS DE BUSCA -->
+    <section class="d-flex justify-content-center align-items-center" style="display: none; min-height: 80vh;" id="pesquisarEstabelecimento">
+      <div class="col-md-7 col-lg-4 mx-auto text-center">
+        <div class="input-group mb-3 d-flex align-items-center">
+          <input type="text" placeholder="Informe sua Cidade..." aria-label="Recipient's username" aria-describedby="basic-addon2" style="flex: 1; max-width: 550px; height: 61px; padding: 20px; border-radius: 2px; border-right: none; color: black; ">
+          <button class="btn btn-outline-secondary" type="button" style="width: 15%; max-width: 50px; height: 60px; border-radius: 2px; background-color: #ffbe33;">
+            <i class='bx bx-down-arrow-alt icon' style="font-size: 24px; color: white; margin-top: 8px"></i>
+          </button>
+        </div>
+        <div class="input-group mb-3 d-flex align-items-center">
+          <input type="text" placeholder="Informe seu Bairro..." aria-label="Recipient's username" aria-describedby="basic-addon2" style="flex: 1; max-width: 550px; height: 61px; padding: 20px; border-radius: 2px; border-right: none; color: black; ">
+          <button class="btn btn-outline-secondary" type="button" style="width: 15%; max-width: 50px; height: 60px; border-radius: 2px; background-color: #ffbe33;">
+            <i class='bx bx-down-arrow-alt icon' style="font-size: 24px; color: white; margin-top: 8px"></i>
+          </button>
+        </div>
+        <button class="btn btn-block" type="button" style="width: 100%; max-width: 600px; height: 61px; border-radius: 2px; background-color: #ffbe33; color: white;" onclick="carregaEstabelecimento()">
+          PROCURAR ESTABELECIMENTOS
+        </button>
+      </div>
+    </section>
+     <!-- INPUTS DE BUSCA -->
+    
+
+     <!--BUSCA ESTABELECIMENTOS-->
+    <section id="carregarEstabelecimentos" style="margin-top: -150px; display: none;">
+      <div id="carouselMultiItemExample" class="carousel slide carousel-dark text-center" data-mdb-ride="carousel">
+          <div class="d-flex justify-content-center mb-4">
+              <button class="carousel-control-prev position-relative" type="button" data-mdb-target="#carouselMultiItemExample" data-mdb-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              </button>
+              <button class="carousel-control-next position-relative" type="button" data-mdb-target="#carouselMultiItemExample" data-mdb-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              </button>
+          </div>
+          <div class="carousel-inner py-4">
+              <div class="carousel-item active">
+                  <div class="container">
+                      <div class="row">
+                          <div class="col-md-6 col-lg-4 mb-4">
+                              <div class="card">
+                                  <img src="https://parqueshoppingbelem.com.br/lojas_files/25179.jpg" class="card-img-top" alt="Waterfall" style="max-width: 100%; height: 200px; object-fit: cover;"/>
+                                  <div class="card-body">
+                                      <h5 class="card-title">McDonald's</h5>
+                                      <p class="card-text">
+                                          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                      </p>
+                                      <a href="#!" class="btn" style="background-color: #ffbe33;">Visitar</a>
+                                  </div>
+                              </div>
+                          </div>
+  
+                          <div class="col-md-6 col-lg-4 mb-4">
+                              <div class="card">
+                                  <img src="https://s2.glbimg.com/V0vLGchlI0S7Xll4emaGMIJZSLU=/940x523/e.glbimg.com/og/ed/f/original/2021/01/07/bk-novo_logo.jpg" class="card-img-top" alt="Sunset Over the Sea" style="max-width: 100%;height: 200px; object-fit: cover;" />
+                                  <div class="card-body">
+                                      <h5 class="card-title">Burger King</h5>
+                                      <p class="card-text">
+                                          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                      </p>
+                                      <a href="#!" class="btn" style="background-color: #ffbe33;">Visitar</a>
+                                  </div>
+                              </div>
+                          </div>
+  
+                          <div class="col-md-6 col-lg-4 mb-4">
+                              <div class="card">
+                                  <img src="https://mma.prnewswire.com/media/491471/SUBWAY_Restaurants_Logo.jpg?p=facebook" class="card-img-top" alt="Sunset over the Sea" style="max-width: 100%;height: 200px; object-fit: cover;" />
+                                  <div class="card-body">
+                                      <h5 class="card-title">SubWay</h5>
+                                      <p class="card-text">
+                                          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                      </p>
+                                      <a href="#!" class="btn" style="background-color: #ffbe33;">Visitar</a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+  
+              <div class="carousel-item">
+                  <div class="container">
+                      <div class="row">
+                          <div class="col-md-6 col-lg-4 mb-4">
+                              <div class="card">
+                                  <img src="https://cloudfront-us-east-1.images.arcpublishing.com/estadao/MHXKBQIBMJFSNPFVZOBXEWJY4I.jpg" class="card-img-top" alt="Fissure in Sandstone" style="max-width: 100%;height: 200px; object-fit: cover;"/>
+                                  <div class="card-body">
+                                      <h5 class="card-title">OutBack</h5>
+                                      <p class="card-text">
+                                          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                      </p>
+                                      <a href="#!" class="btn" style="background-color: #ffbe33;">Visitar</a>
+                                  </div>
+                              </div>
+                          </div>
+  
+                          <div class="col-md-6 col-lg-4 mb-4">
+                              <div class="card">
+                                  <img src="https://www.tailorbrands.com/wp-content/uploads/2020/11/starbucks-logo-2011.jpg" class="card-img-top" alt="Storm Clouds" style="max-width: 100%;height: 200px; object-fit: cover;"/>
+                                  <div class="card-body">
+                                      <h5 class="card-title">Starbucks</h5>
+                                      <p class="card-text">
+                                          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                      </p>
+                                      <a href="#!" class="btn" style="background-color: #ffbe33;">Visitar</a>
+                                  </div>
+                              </div>
+                          </div>
+  
+                          <div class="col-md-6 col-lg-4 mb-4">
+                              <div class="card">
+                                  <img src="https://logowik.com/content/uploads/images/pizza-hut-new6371.jpg" class="card-img-top" alt="Hot Air Balloons" style="max-width: 100%;height: 200px; object-fit: cover;"/>
+                                  <div class="card-body">
+                                      <h5 class="card-title">Pizza Hut</h5>
+                                      <p class="card-text">
+                                          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                      </p>
+                                      <a href="#!" class="btn" style="background-color: #ffbe33;">Visitar</a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+  <!--BUSCA ESTABELECIMENTOS-->
+  
+  </div>
+  <!-- jQery -->
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <!-- popper js -->
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+  </script>
+  <!-- bootstrap js -->
+  <script src="js/bootstrap.js"></script>
+  <!-- owl slider -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
+  </script>
+  <!-- isotope js -->
+  <script src="https://unpkg.com/isotope-layout@3.0.4/dist/isotope.pkgd.min.js"></script>
+  <!-- nice select -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js"></script>
+  <!-- custom js -->
+  <script src="js/custom.js"></script>
+  <!-- Google Map -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
+  </script>
+  <!-- End Google Map -->
+
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.11.0/mdb.min.js"></script>
+
+<!-- Bootstrap JS (se não estiver usando o MDB para Bootstrap) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+  document.getElementById('loginButton').addEventListener('click', function() {
+      window.location.href = 'login.html';
+  });
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/home.css">
+
+
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="manifest" href="/manifest.json">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="shortcut icon" type="imagem/x-icon" href="/images/browse.jpg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.3.1/css/all.min.css" rel="stylesheet">
+    <title>Dashboard - Águia Delivery</title>
+</head>
+
+<body>
+    <nav class="sidebar close">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <img >
+                </span>
+                <div class="text logo-text">                    
+                    <span class="profession">Águia Delivery</span>
+                </div>
+            </div>
+            <i class='bx bx-chevron-right toggle' style="background-color: #ffbe33"></i>
+        </header>
+    
+        <div class="menu-bar">
+            <div class="menu">
+                <ul class="menu-links recuo">
+                    <li class="nav-link">
+                        <a href="dashboard.html">
+                            <i class='bx bx-home-alt icon'></i>
+                            <span class="text nav-text" style="font-size: 15px;">Início</span>
+                        </a>
+                    </li>    
+                    <hr>   
+                    <li class="nav-item">
+                        <i class='bx bx-dots-horizontal icon'></i>
+                        <span style="color: rgb(177, 176, 176);">Realizar Consultas</span>
+                    </li>
+                    <li class="nav-link">
+                        <a href="buscarProduto.html">
+                            <i class='bx bx-shopping-bag icon'></i>
+                            <span class="text nav-text" style="font-size: 15px;">Produtos</span>
+                        </a>
+                    </li>   
+                    <li class="nav-link">
+                        <a href="buscarCategoria.html">
+                            <i class='bx bx-category icon'></i>
+                            <span class="text nav-text" style="font-size: 15px;">Categorias</span>
+                        </a>
+                    </li>   
+                    <li class="nav-link">
+                        <a href="buscarCliente.html">
+                            <i class='bx bx-user icon'></i>
+                            <span class="text nav-text" style="font-size: 15px;">Clientes</span>
+                        </a>
+                    </li>  
+                    <hr>
+                    <li class="nav-item">
+                        <i class='bx bx-dots-horizontal icon'></i>
+                        <span style="color: rgb(177, 176, 176);">Dados Cadastrais</span>
+                    </li>
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bx-store icon'></i>
+                            <span class="text nav-text" style="font-size: 15px;">Editar Perfil</span>
+                        </a>
+                    </li>                                
+                </ul>
+            </div>         
+    
+            <div class="bottom-content">
+                <ul class="menu-links recuo">
+                    <li>
+                        <a href="login.html">
+                            <i class='bx bx-log-out icon'></i>
+                            <span class="text nav-text" style="font-size: 15px;">Sair</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+
+    <section class="home">
+        <div class="main-content">
+          <div class="container-fluid">
+            <div class="mb-5 text-blue saudacao">
+              <h2 id="saudacao"></h2>
+            </div>
+      
+            <div class="header-body">
+                <div class="row">
+                    <div class="col-xl-12 col-lg-9">
+                        <div class="card card-stats mb-4 mb-xl-0 border-0">
+                            <div class="card-body" style="background-color: whitesmoke;">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h5 class="card-title text-uppercase text-muted mb-0">Produtos</h5>
+                                    </div>
+                                    <div class="col-auto">
+                                        <form class="row align-items-center">
+                                            <div class="col">
+                                                <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Buscar" style="font-size: 14px;">
+                                            </div>
+                                            <div class="col-auto">
+                                                <button class="btn btn-lg btn-success" type="submit" style="font-size: 14px;">Adicionar</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>          
+          <br>
+          <div class="card" style="border: 1px solid transparent;">
+            <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Valor</th>
+                    <th scope="col">Teste</th>
+                    <th scope="col">Opções</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>X-salada</td>
+                    <td>19,00</td>
+                    <td>Ativo</td>
+                    <td>
+                        <div>
+                            <a class="btn table-action" href="#">
+                                <i class="action-icon fas fa-edit"></i>
+                                <i class="action-icon fas fa-trash"></i>
+                            </a>                         
+                          </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Batata Recheada</td>
+                    <td>32,90</td>
+                    <td>Ativo</td>
+                    <td><div>
+                        <a class="btn table-action" href="#">
+                            <i class="action-icon fas fa-edit"></i>
+                            <i class="action-icon fas fa-trash"></i>
+                        </a>   
+                      </div></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td>Peixe na Telha</td>
+                    <td>79,00</td>
+                    <td>Desativado</td>
+                    <td><div>
+                        <a class="btn table-action" href="#">
+                            <i class="action-icon fas fa-edit"></i>
+                            <i class="action-icon fas fa-trash"></i>
+                        </a>   
+                      </div></td>
+                  </tr>
+                </tbody>
+              </table>
+          </div>
+        </div>
+
+      </section>
+</body>
+<script src="js/dashboard.js"></script>
+
+</html>
