@@ -22,7 +22,6 @@
     
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
-
     <title>Dashboard - Águia Delivery</title>
 </head>
 
@@ -48,8 +47,8 @@
                             <i class='bx bx-home-alt icon'></i>
                             <span class="text nav-text" style="font-size: 15px;">Início</span>
                         </a>
-                    </li>    
-                    <hr>   
+                    </li>       
+                    <hr>
                     <li class="nav-item">
                         <i class='bx bx-dots-horizontal icon'></i>
                         <span style="color: rgb(177, 176, 176);">Realizar Consultas</span>
@@ -71,13 +70,13 @@
                             <i class='bx bx-user icon'></i>
                             <span class="text nav-text" style="font-size: 15px;">Clientes</span>
                         </a>
-                    </li> 
+                    </li>  
                     <li class="nav-link">
                         <a href="buscarImagem.html">
                             <i class='bx bx-image icon'></i>
                             <span class="text nav-text" style="font-size: 15px;">Imagens</span>
                         </a>
-                      </li>   
+                    </li>  
                     <hr>
                     <li class="nav-item">
                         <i class='bx bx-dots-horizontal icon'></i>
@@ -120,7 +119,7 @@
                             <div class="card-body" style="background-color: whitesmoke;">
                                 <div class="row align-items-center">
                                     <div class="col">
-                                        <h5 class="card-title text-uppercase text-muted mb-0">Produtos</h5>
+                                        <h5 class="card-title text-uppercase text-muted mb-0">Imagens</h5>
                                     </div>
                                     <div class="col-auto">
                                         <form class="row align-items-center">
@@ -128,7 +127,7 @@
                                                 <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Buscar" style="font-size: 14px;">
                                             </div>
                                             <div class="col-auto">
-                                                <button class="btn btn-lg btn-success" type="button" style="font-size: 14px;" onclick="adicionarProduto()">Adicionar</button>
+                                                <button class="btn btn-lg btn-success" type="submit" style="font-size: 14px;" onclick="adicionarImagem()">Adicionar</button>
                                             </div>
                                         </form>
                                     </div>
@@ -137,55 +136,50 @@
                         </div>
                     </div>
                 </div>
-            </div>          
+            </div>
+            
+
           <br>
+
           <div class="card" style="border: 1px solid transparent;">
             <table class="table table-striped">
                 <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Valor</th>
-                    <th scope="col">Teste</th>
+                    <th scope="col">Imagem</th>
                     <th scope="col">Opções</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <th scope="row">1</th>
-                    <td>X-salada</td>
-                    <td>19,00</td>
-                    <td>Ativo</td>
+                    <td>img.png</td>
                     <td>
                         <div>
                             <a class="btn table-action" href="#">
-                                <i class="action-icon fas fa-edit" onclick="editarProduto()"></i>
-                                <i class="action-icon fas fa-trash" onclick="excluirProduto()"></i>
+                                <i class="action-icon fas fa-edit" onclick="editarImagem()"></i>
+                                <i class="action-icon fas fa-trash"  onclick="excluirImagem()"></i>
                             </a>                         
                           </div>
                     </td>
                   </tr>
                   <tr>
                     <th scope="row">2</th>
-                    <td>Batata Recheada</td>
-                    <td>32,90</td>
-                    <td>Ativo</td>
+                    <td>img.png</td>
                     <td><div>
                         <a class="btn table-action" href="#">
-                            <i class="action-icon fas fa-edit" onclick="editarProduto()"></i>
-                            <i class="action-icon fas fa-trash" onclick="excluirProduto()"></i>
+                            <i class="action-icon fas fa-edit" onclick="editarImagem()"></i>
+                            <i class="action-icon fas fa-trash" onclick="excluirImagem()"></i>
                         </a>   
                       </div></td>
                   </tr>
                   <tr>
                     <th scope="row">3</th>
-                    <td>Peixe na Telha</td>
-                    <td>79,00</td>
-                    <td>Desativado</td>
+                    <td>img.png</td>
                     <td><div>
                         <a class="btn table-action" href="#">
-                            <i class="action-icon fas fa-edit" onclick="editarProduto()"></i>
-                            <i class="action-icon fas fa-trash" onclick="excluirProduto()"></i>
+                            <i class="action-icon fas fa-edit" onclick="editarImagem()"></i>
+                            <i class="action-icon fas fa-trash" onclick="excluirImagem()"></i>
                         </a>   
                       </div></td>
                   </tr>
@@ -193,79 +187,43 @@
               </table>
           </div>
         </div>
-    </section>
+      </section>
 
-    <section>
-        <div class="modal" id="modalExcluirProduto" style="display:none;">
+      <section>
+        <div class="modal" id="modalExcluirImagem" style="display:none;">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Excluir Produto</h5>
-                    <button type="button" class="close" id="fecharModalProduto" style="background-color: transparent; border-color: transparent; font-size: 50px;" >
+                    <h5 class="modal-title">Excluir Imagem</h5>
+                    <button type="button" class="close" id="fecharModalImagem" style="background-color: transparent; border-color: transparent; font-size: 50px;" >
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    Tem certeza de que deseja excluir este produto?
+                    Tem certeza de que deseja excluir esta Imagem?
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn " data-dismiss="modal" id="fecharModalProdutoo">Fechar</button>
+                    <button type="button" class="btn " data-dismiss="modal" id="fecharModalImagemm">Fechar</button>
                     <button type="button" class="btn btn-danger" onclick="confirmarExclusao()">Confirmar Exclusão</button>
                 </div>
             </div>
         </div>      
     </section>
     <section>
-        <div class="modal" id="modalAdicionarProduto" style="display:none;">
+        <div class="modal" id="modalAdicionarImagem" style="display:none;">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Cadastrar Produto</h5>
-                    <button type="button" class="close" id="fecharModalAdicionarProduto" style="background-color: transparent; border-color: transparent; font-size: 50px;" onclick="fecharModalProduto()">
+                    <h5 class="modal-title">Cadastrar Categoria</h5>
+                    <button type="button" class="close" id="fecharModalAdicionarImagem" style="background-color: transparent; border-color: transparent; font-size: 50px;" onclick="fecharModalImagem()">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <form class="text-left">               
-                        <div class="form-group">
-                        <label for="inputAddress">Produto</label>
-                        <input type="text" class="form-control" id="inputNome" placeholder="Insira Nome do Produto" required> 
-                        </div>               
-                        <div class="form-row">
-                            <div class="form-group col-md-6">                    
-                            <label for="inputEmail4">Valor</label>                      
-                            <input type="text" class="form-control" id="inputValor" placeholder="0.00" required>  
-                            </div>                    
-                            <div class="form-group col-md-6">
-                            <label for="inputZip">Categoria</label>
-                            <select class="form-control" >
-                                <option>Teste</option>
-                                <option>Teste</option>
-                                <option>Teste</option>
-                            </select>
-                        </div>
-                        </div>         
-                        <div class="form-group">
-                            <label for="labelAddress">Descrição</label>
-                            <input type="text" class="form-control" id="inputDescricao" placeholder="Insira Descrição do Produto">
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">                    
-                            <label for="inputEmail4">Variações</label>                      
-                            <select class="form-control" >
-                                <option>Teste</option>
-                                <option>Teste</option>
-                                <option>Teste</option>
-                            </select>
-                            </div>                    
-                            <div class="form-group col-md-6">
-                            <label for="inputZip">Observação</label>
-                            <input type="text" class="form-control" id="inputObs" placeholder="Alguma Observação">
-                        </div>
-                        </div>    
-                        <label for="inputImagem">Selecione uma imagem:</label>     
+                        <label for="inputImagem">Selecione uma Imagem:</label>     
                         <input type="file" id="inputImagem" accept="image/*">
                         <p></p>
                         <a href="#">
-                            <button type="submit" id="submit" class="btn btn-block" style="background-color: #ffbe33; text-decoration: none;">CADASTRAR PRODUTO</button>
+                            <button type="submit" id="submit" class="btn btn-block" style="background-color: #ffbe33; text-decoration: none;">CADASTRAR IMAGEM</button>
                         </a>        
                         
                     </form>
@@ -274,64 +232,28 @@
         </div>      
     </section>
     <section>
-        <div class="modal" id="modalEditarProduto" style="display:none;">
+        <div class="modal" id="modalEditarImagem" style="display:none;">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Atualizar Cadastro do Produto</h5>
-                    <button type="button" class="close" id="fecharModalEditarProduto" style="background-color: transparent; border-color: transparent; font-size: 50px;" onclick="fecharModalProduto()">
+                    <h5 class="modal-title">Atualizar Cadastro da Imagem</h5>
+                    <button type="button" class="close" id="fecharModalEditarImagem" style="background-color: transparent; border-color: transparent; font-size: 50px;" onclick="fecharModalImagem()">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <form class="text-left">               
-                        <div class="form-group">
-                        <label for="inputAddress">Produto</label>
-                        <input type="text" class="form-control" id="inputNome" placeholder="Insira Nome do Produto" required> 
-                        </div>               
-                        <div class="form-row">
-                            <div class="form-group col-md-6">                    
-                            <label for="inputEmail4">Valor</label>                      
-                            <input type="text" class="form-control" id="inputValor" placeholder="0.00" required>  
-                            </div>                    
-                            <div class="form-group col-md-6">
-                            <label for="inputZip">Categoria</label>
-                            <select class="form-control" >
-                                <option>Teste</option>
-                                <option>Teste</option>
-                                <option>Teste</option>
-                            </select>
-                        </div>
-                        </div>         
-                        <div class="form-group">
-                            <label for="labelAddress">Descrição</label>
-                            <input type="text" class="form-control" id="inputDescricao" placeholder="Insira Descrição do Produto">
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">                    
-                            <label for="inputEmail4">Variações</label>                      
-                            <select class="form-control" >
-                                <option>Teste</option>
-                                <option>Teste</option>
-                                <option>Teste</option>
-                            </select>
-                            </div>                    
-                            <div class="form-group col-md-6">
-                            <label for="inputZip">Observação</label>
-                            <input type="text" class="form-control" id="inputObs" placeholder="Alguma Observação">
-                        </div>
-                        </div>    
-                        <label for="inputImagem">Selecione uma imagem:</label>     
+                        <label for="inputImagem">Selecione uma Imagem:</label>     
                         <input type="file" id="inputImagem" accept="image/*">
                         <p></p>
-                        <a href="cadastraImagem.html">
-                            <button type="submit" id="submit" class="btn btn-block" style="background-color: #ffbe33; text-decoration: none;">ALTERAR PRODUTO</button>
-                        </a>        
-                        
+                        <a href="#">
+                            <button type="submit" id="submit" class="btn btn-block" style="background-color: #ffbe33; text-decoration: none;">CADASTRAR IMAGEM</button>
+                        </a>
                     </form>
                 </div>
             </div>
         </div>      
     </section>
+
 </body>
 <script src="js/dashboard.js"></script>
 

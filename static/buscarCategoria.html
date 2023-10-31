@@ -17,6 +17,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.3.1/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/forms.css">
+
+    
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
     <title>Dashboard - Águia Delivery</title>
 </head>
 
@@ -64,6 +69,12 @@
                         <a href="buscarCliente.html">
                             <i class='bx bx-user icon'></i>
                             <span class="text nav-text" style="font-size: 15px;">Clientes</span>
+                        </a>
+                    </li>  
+                    <li class="nav-link">
+                        <a href="buscarImagem.html">
+                            <i class='bx bx-image icon'></i>
+                            <span class="text nav-text" style="font-size: 15px;">Imagens</span>
                         </a>
                     </li>  
                     <hr>
@@ -116,7 +127,7 @@
                                                 <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Buscar" style="font-size: 14px;">
                                             </div>
                                             <div class="col-auto">
-                                                <button class="btn btn-lg btn-success" type="submit" style="font-size: 14px;">Adicionar</button>
+                                                <button class="btn btn-lg btn-success" type="submit" style="font-size: 14px;" onclick="adicionarCategoria()">Adicionar</button>
                                             </div>
                                         </form>
                                     </div>
@@ -146,8 +157,8 @@
                     <td>
                         <div>
                             <a class="btn table-action" href="#">
-                                <i class="action-icon fas fa-edit"></i>
-                                <i class="action-icon fas fa-trash"></i>
+                                <i class="action-icon fas fa-edit" onclick="editarCategoria()"></i>
+                                <i class="action-icon fas fa-trash"  onclick="excluirCategoria()"></i>
                             </a>                         
                           </div>
                     </td>
@@ -157,8 +168,8 @@
                     <td>Pizzas</td>
                     <td><div>
                         <a class="btn table-action" href="#">
-                            <i class="action-icon fas fa-edit"></i>
-                            <i class="action-icon fas fa-trash"></i>
+                            <i class="action-icon fas fa-edit" onclick="editarCategoria()"></i>
+                            <i class="action-icon fas fa-trash" onclick="excluirCategoria()"></i>
                         </a>   
                       </div></td>
                   </tr>
@@ -167,8 +178,8 @@
                     <td>Esfihas</td>
                     <td><div>
                         <a class="btn table-action" href="#">
-                            <i class="action-icon fas fa-edit"></i>
-                            <i class="action-icon fas fa-trash"></i>
+                            <i class="action-icon fas fa-edit" onclick="editarCategoria()"></i>
+                            <i class="action-icon fas fa-trash" onclick="excluirCategoria()"></i>
                         </a>   
                       </div></td>
                   </tr>
@@ -177,6 +188,83 @@
           </div>
         </div>
       </section>
+
+      <section>
+        <div class="modal" id="modalExcluirCategoria" style="display:none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Excluir Produto</h5>
+                    <button type="button" class="close" id="fecharModalCategoria" style="background-color: transparent; border-color: transparent; font-size: 50px;" >
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Tem certeza de que deseja excluir esta Categoria?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn " data-dismiss="modal" id="fecharModalCategoriaa">Fechar</button>
+                    <button type="button" class="btn btn-danger" onclick="confirmarExclusao()">Confirmar Exclusão</button>
+                </div>
+            </div>
+        </div>      
+    </section>
+    <section>
+        <div class="modal" id="modalAdicionarCategoria" style="display:none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Cadastrar Categoria</h5>
+                    <button type="button" class="close" id="fecharModalAdicionarCategoria" style="background-color: transparent; border-color: transparent; font-size: 50px;" onclick="fecharModalCategoria()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="text-left">               
+                        <div class="form-group">
+                        <label for="inputAddress">Categoria</label>
+                        <input type="text" class="form-control" id="inputNome" placeholder="Insira Nome da Categoria" required> 
+                        </div>               
+                       
+                        <label for="inputImagem">Selecione uma imagem:</label>     
+                        <input type="file" id="inputImagem" accept="image/*">
+                        <p></p>
+                        <a href="#">
+                            <button type="submit" id="submit" class="btn btn-block" style="background-color: #ffbe33; text-decoration: none;">CADASTRAR CATEGORIA</button>
+                        </a>        
+                        
+                    </form>
+                </div>
+            </div>
+        </div>      
+    </section>
+    <section>
+        <div class="modal" id="modalEditarCategoria" style="display:none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Atualizar Cadastro da Categoria</h5>
+                    <button type="button" class="close" id="fecharModalEditarCategoria" style="background-color: transparent; border-color: transparent; font-size: 50px;" onclick="fecharModalProduto()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="text-left">               
+                        <div class="form-group">
+                        <label for="inputAddress">Categoria</label>
+                        <input type="text" class="form-control" id="inputNome" placeholder="Insira Nome da Categoria" required> 
+                        </div>               
+                       
+                        <label for="inputImagem">Selecione uma imagem:</label>     
+                        <input type="file" id="inputImagem" accept="image/*">
+                        <p></p>
+                        <a href="#">
+                            <button type="submit" id="submit" class="btn btn-block" style="background-color: #ffbe33; text-decoration: none;">CADASTRAR CATEGORIA</button>
+                        </a>        
+                        
+                    </form>
+                </div>
+            </div>
+        </div>      
+    </section>
+
 </body>
 <script src="js/dashboard.js"></script>
 

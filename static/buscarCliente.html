@@ -1,6 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/home.css">
+
+
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="manifest" href="/manifest.json">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="shortcut icon" type="imagem/x-icon" href="/images/browse.jpg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.3.1/css/all.min.css" rel="stylesheet"> -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/home.css">
@@ -17,6 +33,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.3.1/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/forms.css">
+
+    
+    <!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
     <title>Dashboard - Águia Delivery</title>
 </head>
 
@@ -64,6 +85,12 @@
                         <a href="buscarCliente.html">
                             <i class='bx bx-user icon'></i>
                             <span class="text nav-text" style="font-size: 15px;">Clientes</span>
+                        </a>
+                    </li>  
+                    <li class="nav-link">
+                        <a href="buscarImagem.html">
+                            <i class='bx bx-image icon'></i>
+                            <span class="text nav-text" style="font-size: 15px;">Imagens</span>
                         </a>
                     </li>  
                     <hr>
@@ -116,7 +143,7 @@
                                                 <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Buscar" style="font-size: 14px;">
                                             </div>
                                             <div class="col-auto">
-                                                <button class="btn btn-lg btn-success" type="submit" style="font-size: 14px;">Adicionar</button>
+                                                <button class="btn btn-lg btn-success" type="submit" style="font-size: 14px;" onclick="adicionarCliente()">Adicionar</button>
                                             </div>
                                         </form>
                                     </div>
@@ -150,8 +177,8 @@
                     <td>
                         <div>
                             <a class="btn table-action" href="#">
-                                <i class="action-icon fas fa-edit"></i>
-                                <i class="action-icon fas fa-trash"></i>
+                                <i class="action-icon fas fa-edit" onclick="editarCliente()"></i>
+                                <i class="action-icon fas fa-trash" onclick="excluirCliente()"></i>
                             </a>                         
                           </div>
                     </td>
@@ -163,8 +190,8 @@
                     <td>Ativo</td>
                     <td><div>
                         <a class="btn table-action" href="#">
-                            <i class="action-icon fas fa-edit"></i>
-                            <i class="action-icon fas fa-trash"></i>
+                            <i class="action-icon fas fa-edit" onclick="editarCliente()"></i>
+                            <i class="action-icon fas fa-trash" onclick="excluirCliente()"></i>
                         </a>   
                       </div></td>
                   </tr>
@@ -175,8 +202,8 @@
                     <td>Desativado</td>
                     <td><div>
                         <a class="btn table-action" href="#">
-                            <i class="action-icon fas fa-edit"></i>
-                            <i class="action-icon fas fa-trash"></i>
+                            <i class="action-icon fas fa-edit" onclick="editarCliente()"></i>
+                            <i class="action-icon fas fa-trash" onclick="excluirCliente()"></i>
                         </a>   
                       </div></td>
                   </tr>
@@ -185,6 +212,143 @@
           </div>
         </div>
       </section>
+
+      <section>
+        <div class="modal" id="modalExcluirCliente" style="display:none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Excluir Cliente</h5>
+                    <button type="button" class="close" id="fecharModalCliente" style="background-color: transparent; border-color: transparent; font-size: 50px;" >
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Tem certeza de que deseja excluir este cliente?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn " data-dismiss="modal" id="fecharModalClientee">Fechar</button>
+                    <button type="button" class="btn btn-danger" onclick="confirmarExclusao()">Confirmar Exclusão</button>
+                </div>
+            </div>
+        </div>      
+    </section>
+    <section>
+        <div class="modal" id="modalAdicionarCliente" style="display:none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Cadastrar Cliente</h5>
+                    <button type="button" class="close" id="fecharModalAdicionarCliente" style="background-color: transparent; border-color: transparent; font-size: 50px;" onclick="fecharModalCliente()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="text-left">
+               
+                        <div class="form-group">
+                          <label for="inputAddress">Nome Completo</label>
+                          <input type="text" class="form-control" id="inputNome" placeholder="Insira seu Nome" required> 
+                        </div>              
+                        <div class="form-group">
+                            <label for="inputEmail4" id="labelSenha">Senha</label>
+                            <div class="input-group">
+                            <input type="password" class="form-control" id="password" placeholder="*****" disabled >
+                                
+                            </div>
+                        </div>                          
+                      
+                        <div class="form-row">
+                            <div class="form-group col-md-6">                    
+                              <label for="inputEmail4">Contato</label>
+                              <input type="tel" class="form-control" id="inputContato" placeholder="(00)00000-0000" required maxlength="15" onkeyup="applyPhoneMask(event)">
+                            </div>
+                            <div class="form-group col-md-6">
+                              <label for="inputPassword4">CEP</label>
+                              <input type="text" class="form-control" id="inputCep" name="cep" placeholder="00000-000" required maxlength="9" onkeyup="applyZipCodeMask(event)">
+                            </div>                    
+                        </div>
+                        <div class="form-group">
+                            <label for="inputAddress">Logradouro</label>
+                            <input type="text" class="form-control" id="inputLog" name="endereco" placeholder="Seu Endereço" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">                    
+                              <label for="inputEmail4">Bairro</label>
+                              <input type="text" class="form-control" id="inputBairro" name="bairro" placeholder="Seu Bairro" required>
+                            </div>
+                            <div class="form-group col-md-3">
+                              <label for="inputPassword4">Numero</label>
+                              <input type="number" class="form-control" id="inputNum" placeholder="000" name="numero" required>
+                            </div>
+                            <div class="form-group col-md-5">
+                              <label for="inputZip">Cidade</label>
+                              <input type="text" class="form-control" id="inputCit" placeholder="Sua Cidade" name="cidade" required>
+                          </div>
+                        </div>            
+                        <button type="submit" id="submit" class="btn btn-block" style="background-color: #ffbe33;" onclick="registraCliente()">ALTERAR DADOS DA CONTA</button>
+                      </form>
+                </div>
+            </div>
+        </div>      
+    </section>
+    <section>
+        <div class="modal" id="modalEditarCliente" style="display:none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Atualizar Cadastro do Cliente</h5>
+                    <button type="button" class="close" id="fecharModalEditarCliente" style="background-color: transparent; border-color: transparent; font-size: 50px;" onclick="fecharModalProduto()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="text-left">
+               
+                        <div class="form-group">
+                          <label for="inputAddress">Nome Completo</label>
+                          <input type="text" class="form-control" id="inputNome" placeholder="Insira seu Nome" required> 
+                        </div>              
+                        <div class="form-group">
+                            <label for="inputEmail4" id="labelSenha">Senha</label>
+                            <div class="input-group">
+                            <input type="password" class="form-control" id="password" placeholder="*****" disabled>
+                                
+                            </div>
+                        </div>                       
+                      
+                        <div class="form-row">
+                            <div class="form-group col-md-6">                    
+                              <label for="inputEmail4">Contato</label>
+                              <input type="tel" class="form-control" id="inputContato" placeholder="(00)00000-0000" required maxlength="15" onkeyup="applyPhoneMask(event)">
+                            </div>
+                            <div class="form-group col-md-6">
+                              <label for="inputPassword4">CEP</label>
+                              <input type="text" class="form-control" id="inputCep" name="cep" placeholder="00000-000" required maxlength="9" onkeyup="applyZipCodeMask(event)">
+                            </div>                    
+                        </div>
+                        <div class="form-group">
+                            <label for="inputAddress">Logradouro</label>
+                            <input type="text" class="form-control" id="inputLog" name="endereco" placeholder="Seu Endereço" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">                    
+                              <label for="inputEmail4">Bairro</label>
+                              <input type="text" class="form-control" id="inputBairro" name="bairro" placeholder="Seu Bairro" required>
+                            </div>
+                            <div class="form-group col-md-3">
+                              <label for="inputPassword4">Numero</label>
+                              <input type="number" class="form-control" id="inputNum" placeholder="000" name="numero" required>
+                            </div>
+                            <div class="form-group col-md-5">
+                              <label for="inputZip">Cidade</label>
+                              <input type="text" class="form-control" id="inputCit" placeholder="Sua Cidade" name="cidade" required>
+                          </div>
+                        </div>            
+                        <button type="submit" id="submit" class="btn btn-block" style="background-color: #ffbe33;" onclick="registraCliente()">ALTERAR DADOS DA CONTA</button>
+                      </form>
+                </div>
+            </div>
+        </div>      
+    </section>
+
 </body>
 <script src="js/dashboard.js"></script>
 

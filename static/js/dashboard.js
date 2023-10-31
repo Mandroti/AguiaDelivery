@@ -251,3 +251,163 @@ function proximaEtapa(){
         modal.style.display = 'none';
     });
 }
+
+function adicionarProduto(){
+    const modal = document.getElementById('modalAdicionarProduto');
+    modal.style.display = 'block';
+    event.preventDefault();
+}
+
+function fecharModalProduto(){
+    const modal = document.getElementById('modalAdicionarProduto');
+    modal.style.display = 'none';
+}
+
+function excluirProduto() {
+    const modal = document.getElementById('modalExcluirProduto');
+    modal.style.display = 'block';
+
+    // Adicionando uma função para fechar o modal
+    const fecharModal = document.getElementById('fecharModalProduto');
+    fecharModal.addEventListener('click', function(){
+        modal.style.display = 'none';
+    });
+
+    const fechar = document.getElementById('fecharModalProdutoo');
+    fechar.addEventListener('click', function(){
+        modal.style.display = 'none';
+    });
+}
+
+function editarProduto(){
+    const modal = document.getElementById('modalEditarProduto');
+    modal.style.display = 'block';
+    event.preventDefault();
+
+    // Adicionando uma função para fechar o modal
+    const fecharModal = document.getElementById('fecharModalEditarProduto');
+    fecharModal.addEventListener('click', function(){
+        modal.style.display = 'none';
+    });
+
+}
+
+function adicionarCategoria(){
+    const modal = document.getElementById('modalAdicionarCategoria');
+    modal.style.display = 'block';
+    event.preventDefault();
+}
+
+function fecharModalCategoria(){
+    const modal = document.getElementById('modalAdicionarCategoria');
+    modal.style.display = 'none';
+}
+
+function excluirCategoria() {
+    const modal = document.getElementById('modalExcluirCategoria');
+    modal.style.display = 'block';
+
+    // Adicionando uma função para fechar o modal
+    const fecharModal = document.getElementById('fecharModalCategoria');
+    fecharModal.addEventListener('click', function(){
+        modal.style.display = 'none';
+    });
+
+    const fechar = document.getElementById('fecharModalCategoriaa');
+    fechar.addEventListener('click', function(){
+        modal.style.display = 'none';
+    });
+}
+
+function editarCategoria(){
+    const modal = document.getElementById('modalEditarCategoria');
+    modal.style.display = 'block';
+    event.preventDefault();
+
+    // Adicionando uma função para fechar o modal
+    const fecharModal = document.getElementById('fecharModalEditarCategoria');
+    fecharModal.addEventListener('click', function(){
+        modal.style.display = 'none';
+    });
+
+}
+
+function adicionarCliente(){
+    const modal = document.getElementById('modalAdicionarCliente');
+    modal.style.display = 'block';
+    event.preventDefault();
+}
+
+function fecharModalCliente(){
+    const modal = document.getElementById('modalAdicionarCliente');
+    modal.style.display = 'none';
+}
+
+function excluirCliente() {
+    const modal = document.getElementById('modalExcluirCliente');
+    modal.style.display = 'block';
+
+    // Adicionando uma função para fechar o modal
+    const fecharModal = document.getElementById('fecharModalCliente');
+    fecharModal.addEventListener('click', function(){
+        modal.style.display = 'none';
+    });
+
+    const fechar = document.getElementById('fecharModalClientee');
+    fechar.addEventListener('click', function(){
+        modal.style.display = 'none';
+    });
+}
+
+function editarCliente(){
+    const modal = document.getElementById('modalEditarCliente');
+    modal.style.display = 'block';
+    event.preventDefault();
+
+    // Adicionando uma função para fechar o modal
+    const fecharModal = document.getElementById('fecharModalEditarCliente');
+    fecharModal.addEventListener('click', function(){
+        modal.style.display = 'none';
+    });
+
+}
+
+function adicionarImagem(){
+    const modal = document.getElementById('modalAdicionarImagem');
+    modal.style.display = 'block';
+    event.preventDefault();
+}
+
+function fecharModalImagem(){
+    const modal = document.getElementById('modalAdicionarImagem');
+    modal.style.display = 'none';
+}
+
+function excluirImagem() {
+    const modal = document.getElementById('modalExcluirImagem');
+    modal.style.display = 'block';
+
+    // Adicionando uma função para fechar o modal
+    const fecharModal = document.getElementById('fecharModalImagem');
+    fecharModal.addEventListener('click', function(){
+        modal.style.display = 'none';
+    });
+
+    const fechar = document.getElementById('fecharModalImagemm');
+    fechar.addEventListener('click', function(){
+        modal.style.display = 'none';
+    });
+}
+
+function editarImagem(){
+    const modal = document.getElementById('modalEditarImagem');
+    modal.style.display = 'block';
+    event.preventDefault();
+
+    // Adicionando uma função para fechar o modal
+    const fecharModal = document.getElementById('fecharModalEditarImagem');
+    fecharModal.addEventListener('click', function(){
+        modal.style.display = 'none';
+    });
+
+}
