@@ -411,3 +411,42 @@ function editarImagem(){
     });
 
 }
+
+
+//FETCH -- PERFIL DO ESTABELECIMENTO
+function carregarDados(){
+    fetch(`http://aguiadelivery.com.br:6060/api/Estabelecimento/${2}`, {             
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }          
+    })
+    .then(response =>  response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error('Erro:', error));
+    event.preventDefault();  
+}
+
+function preencherDados(data){
+    document.getElementById('inputNome').value = data.nome;
+    document.getElementById('inputFantasia').value = data.nomeFantasia;
+    document.getElementById('inputCnpj').value = data.cnpj_Cpf;
+    document.getElementById('inputEmail').value = data.emailPrincipal;
+    document.getElementById('inputTelefone').value = data.telefone;
+    document.getElementById('inputCelular').value = data.celular;
+    document.getElementById('inputImagem').value = data.logo;
+    document.getElementById('inputLog').value = data.logradouro;
+    document.getElementById('inputBairro').value = data.bairro;
+    document.getElementById('inputCep').value = data.cep;
+    document.getElementById('inputNumero').value = data.numero;
+    document.getElementById('inputEstado').value = data.uf;
+    document.getElementById('inputCidade').value = data.cidade_IBGE;
+    //document.getElementById('inputInFunc').value = data.nome;
+    //document.getElementById('inputFiFunc').value = data.nome;
+    document.getElementById('inputDesc').value = data.observacao;
+
+}
+
+function gravarAltercoes(){
+
+}
