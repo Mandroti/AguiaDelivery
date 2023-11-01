@@ -41,7 +41,7 @@
     <title>Dashboard - Águia Delivery</title>
 </head>
 
-<body>
+<body onload="buscarCliente()">
     <nav class="sidebar close">
         <header>
             <div class="image-text">
@@ -157,58 +157,8 @@
 
           <br>
 
-          <div class="card" style="border: 1px solid transparent;">
-            <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Situação</th>
-                    <th scope="col">Opções</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>Ativo</td>
-                    <td>
-                        <div>
-                            <a class="btn table-action" href="#">
-                                <i class="action-icon fas fa-edit" onclick="editarCliente()"></i>
-                                <i class="action-icon fas fa-trash" onclick="excluirCliente()"></i>
-                            </a>                         
-                          </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>Ativo</td>
-                    <td><div>
-                        <a class="btn table-action" href="#">
-                            <i class="action-icon fas fa-edit" onclick="editarCliente()"></i>
-                            <i class="action-icon fas fa-trash" onclick="excluirCliente()"></i>
-                        </a>   
-                      </div></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>Desativado</td>
-                    <td><div>
-                        <a class="btn table-action" href="#">
-                            <i class="action-icon fas fa-edit" onclick="editarCliente()"></i>
-                            <i class="action-icon fas fa-trash" onclick="excluirCliente()"></i>
-                        </a>   
-                      </div></td>
-                  </tr>
-                </tbody>
-              </table>
+          <div class="card" style="border: 1px solid transparent;" id="tabelaClientes">
+            
           </div>
         </div>
       </section>
@@ -309,7 +259,7 @@
                         <div class="form-group">
                             <label for="inputEmail4" id="labelSenha">Senha</label>
                             <div class="input-group">
-                            <input type="password" class="form-control" id="password" placeholder="*****" disabled>
+                            <input type="password" class="form-control" id="inputSenha" placeholder="*****" disabled>
                                 
                             </div>
                         </div>                       
@@ -343,7 +293,7 @@
                           </div>
                         </div>            
                         <button type="submit" id="submit" class="btn btn-block" style="background-color: #ffbe33;" onclick="registraCliente()">ALTERAR DADOS DA CONTA</button>
-                      </form>
+                    </form>
                 </div>
             </div>
         </div>      
@@ -351,5 +301,5 @@
 
 </body>
 <script src="js/dashboard.js"></script>
-
+<script src="js/fetchDashboard.js"></script>
 </html>
