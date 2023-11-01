@@ -7,6 +7,10 @@
 }
 
 
+label
+{
+  margin-bottom: 10px;
+}
 
 .custom-modal .modal-content {
   width: 100%;

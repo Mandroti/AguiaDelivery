@@ -112,52 +112,42 @@ function cadastrarEstabelecimento(){
     event.preventDefault();   
     window.location.href = "aguardandoEmail.html";
 }
-function TestarAPI()
-{    
-    var requestOptions = {
-        method: 'GET',
-        redirect: 'follow'
-      };
-      
-      fetch("http://aguiadelivery.com.br:6060/api/Autoriza", requestOptions)
-        .then(response => response.text())
-        .then(result => console.log(result))
-        .catch(error => console.log('error', error));     
-        
-    event.preventDefault();          
-}
-
-
 
 //LOGINS E RECUPERAÇÃO DE SENHA
 function meuLogin()
 {
-    //UM VAI PARA O CARDAPIO E OUTRO PARA A DASHBOARD
-    const contato = document.getElementById('username').value;
-    const senha = document.getElementById('password').value;
-    
-    const url = `https://localhost:7221/api/Usuario/Login?contato=${contato}&senha=${senha}`;
+    const userName = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
     const dados = {
-        contato: contato,
-        senha: senha
+        userName: userName,
+        password: password
     };
 
-    fetch(url, { 
+    fetch('http://aguiadelivery.com.br:6060/api/Autoriza/Login', { 
         method: 'POST',
         headers:{
             'Content-Type': 'application/json'
         },        
+        body: JSON.stringify(dados)   
+
     })
     .then(response => {
         if (!response.ok) {
-          window.location.href = "registraCliente.html"
+            document.getElementById('errorUsuario').style.display = 'block';
         }
-        else
-            window.location.href = "dashboard.html"
-        return response.json();})
-    .then(data =>{
-     })
-    .catch(error => console.error('Erro:', error));
+        return response.json();
+    })
+    .then(result => {
+        localStorage.setItem("token", result.token);
+        localStorage.setItem("time", result.expiration);
+        alert(localStorage.getItem("token")); 
+
+        if (new Date(localStorage.getItem("time")) > new Date()) { //sem verificar se é estabelecimento ou consumidor
+            window.location.href = "dashboard.html";
+        }
+    })
+    .catch(error => console.error('Erro:', error));     
     event.preventDefault();
 }    
 
@@ -271,60 +261,6 @@ function removerEstabelecimento(id)
 
     event.preventDefault();
 }
-
-function alterarEstabelecimentoId()
-{
-    var nome = document.getElementById("inputNome").value;       
-    var cnpj_Cpf = document.getElementById("inputCnpj").value;
-    var cnpj_Cpf = cnpj_Cpf.replace(/\D/g,'');  
-    var ie_Rg = ""; //nao tem no formulario        
-    var nomeFantasia = ""; //nao tem no formulario       
-    var telefone = document.getElementById("inputTelefone").value;   
-    telefone = telefone.replace(/\D/g,'');
-    var celular = document.getElementById("inputTelefone").value;    
-    celular = celular.replace(/\D/g,'');
-    var emailPrincipal = document.getElementById("inputEmail").value;      
-    var logradouro = "teste";       
-    var bairro = "teste";      
-    var cep = "teste";                  
-    var numero = "";      
-    var cidade_IBGE = "111"; //nao tem no formulario       
-    var uf = "SP";      
-    var senha = document.getElementById("password").value;       
-    var confirmaSenha = document.getElementById("inputConfirmar").value;       
-    var observacao = "teste"; //nao tem no formulario        
-    var logo = ""; //nao tem no formulario       
-    var active = true; //nao tem no formulario
-
-     const dados = {
-         nome: nome, cnpj_Cpf: cnpj_Cpf, ie_Rg: ie_Rg, nomeFantasia: nomeFantasia,
-         telefone: telefone, celular: celular, emailPrincipal: emailPrincipal, logradouro: logradouro,
-         bairro: bairro, cep: cep, numero: numero, cidade_IBGE: cidade_IBGE, uf: uf, senha:senha, 
-         observacao: observacao, logo: logo, active: active
-     };
-
-
-    fetch('http://aguiadelivery.com.br:6060/api/Estabelecimento', {             
-        method: 'PUT',
-        headers:{
-            'Content-Type': 'application/json',               
-        },
-        body: JSON.stringify(dados)           
-    })
-    .then(response => {
-        if (!response.ok) {
-          throw new Error('Erro ao atualizar estabelecimento');
-        }
-        return response.json();
-      })
-      .then(data => {
-        console.log('Estabelecimento atualizado com sucesso:', data);
-      })
-      .catch(error => console.error('Erro:', error));
-      event.preventDefault();     
-}
-
-
 
 
 //FETCH CLIENTE
