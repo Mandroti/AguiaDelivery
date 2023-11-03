@@ -222,6 +222,9 @@ function proximaEtapa(){
     });
 }
 
+
+
+
 //CONSULTAR PRODUTO MODAL
 function adicionarProduto(){
     const modal = document.getElementById('modalAdicionarProduto');

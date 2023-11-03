@@ -84,11 +84,12 @@ function gravarAlteracoes(){
 }
 
 //FETCH -- CLIENTE
+var idCliente = 0;
 var clientes = document.getElementById('tabelaClientes');
 
 function buscarCliente()
 {
-    fetch(`http://aguiadelivery.com.br:6060/api/Consumidor/0/a`, {
+    fetch(`http://aguiadelivery.com.br:6060/api/Consumidor/3`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -150,10 +151,10 @@ function editarCliente(id){
     carregarDadosCliente(id);
     event.preventDefault();
 
-    const fecharModal = document.getElementById('fecharModalEditarCliente');
-    fecharModal.addEventListener('click', function(){
-        modal.style.display = 'none';
-    });
+}
+
+function fecharModalCliente(){
+    document.getElementById('modalEditarCliente').style.display = 'none';
 }
 
 function carregarDadosCliente(id){
@@ -165,21 +166,67 @@ function carregarDadosCliente(id){
     })
     .then(response => response.json())
     .then(data => {
-        document.getElementById('inputNome').value = data.nome;
+        idCliente = data.consumidorId;
+        document.getElementById('inputNome').value = data.nome; 
         document.getElementById('inputContato').value = data.telefone;
         document.getElementById('inputCep').value = data.cep;
         document.getElementById('inputLog').value = data.logradouro;
         document.getElementById('inputBairro').value = data.bairro;
         document.getElementById('inputNum').value = data.numero;
-        document.getElementById('inputCit').value = data.cidade_IBGE;    
+        document.getElementById('inputCit').value = data.cidade_IBGE; 
     })
     .catch(error => console.error('Erro:', error));
+
+    event.preventDefault();
+}
+
+function registraCliente(){
+    var nome = document.getElementById('inputNome').value; 
+    var telefone = document.getElementById('inputContato').value;
+    telefone = telefone.replace(/\D/g,'');       
+    var cep = document.getElementById('inputCep').value;
+    cep = cep.replace(/\D/g,'');       
+    var logradouro = document.getElementById('inputLog').value;      
+    var bairro = document.getElementById('inputBairro').value;      
+    var numero = document.getElementById('inputNum').value;      
+    var cidade_IBGE = document.getElementById('inputCit').value;   
+    var uf = 'SP';     
+
+
+    const dados = {
+        consumidorId: idCliente, nome: nome, telefone: telefone, logradouro: logradouro,
+        bairro: bairro, cep: cep, numero: numero, cidade_IBGE: cidade_IBGE, uf: uf
+    };       
+
+    fetch('http://aguiadelivery.com.br:6060/api/Consumidor/'+idCliente, {             
+        method: 'PUT',
+        headers:{
+            'Content-Type': 'application/json',               
+        },
+        body: JSON.stringify(dados)           
+    })
+    .then(response => {
+        if (!response.ok) {
+          throw new Error('Erro ao atualizar usuário');
+        }
+        else{
+            window.location.href = "buscarCliente.html"
+        }
+        return response.text();
+      })
+      .then(data => {
+        console.log('Usuário atualizado com sucesso:', data);
+      })
+      .catch(error => console.error('Erro:', error));
+      event.preventDefault();   
 }
 
 function excluirCliente(id) {
    
     const modal = document.getElementById('modalExcluirCliente');
     modal.style.display = 'block';
+
+    idCliente = id;
 
     const fecharModal = document.getElementById('fecharModalCliente');
     fecharModal.addEventListener('click', function(){
@@ -192,13 +239,9 @@ function excluirCliente(id) {
     });
 }
 
-function confirmarExclusao() {
-    const idDoCliente = document.querySelector('.btn-danger[data-id]').getAttribute('data-id');
-    removerCliente(idDoCliente);
-}
+function removerCliente() {
 
-function removerCliente(idParaExclusao) {
-    fetch(`http://aguiadelivery.com.br:6060/api/Consumidor/${idParaExclusao}`, {
+    fetch('http://aguiadelivery.com.br:6060/api/Consumidor/'+idCliente, {
         method: 'DELETE'
     })
     .then(data => {
@@ -208,3 +251,7 @@ function removerCliente(idParaExclusao) {
 
     event.preventDefault();
 }
+
+
+
+

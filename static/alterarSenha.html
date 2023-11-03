@@ -35,26 +35,27 @@
 </div>
 <!--HEADER-->
 
-  <div class="d-lg-flex half">
-    <div class="bg order-1 order-md-2 mobile-hidden" style="background-image: url(https://wallpapercrafter.com/desktop/43381-panini-ham-cheese-salad-bread-baske.jpg);"></div>
-    <div class="contents order-2 order-md-2">
-
-      <div class="container custom-navbar">
-        <div class="row align-items-center justify-content-center align-items-center-mobile">
-          <div class="col-md-9">
-            <h3>Recuperar Senha <strong>Águia Delivery</strong></h3>
-            
-            <form>
-              <div class="form-group ">
-                <label for="username">Insira seu telefone celular ou email cadastrado:</label>
-                <input type="text" class="form-control" placeholder="Insira seus dados" id="username" onkeyup="checkTelefone(event)" required>
-                <div id="naoTelefone" class="alert alert-danger" style="display:none;">
-                  Dados incorretos. Por favor, tente novamente.
-               </div>
-              </div> 
-              <div id="mudarSenha" style="display:none;">
-                <div class="form-group">
-                  <label for="inputEmail4" id="labelSenha">Insira nova senha:</label>
+<!--FORMULARIO-->
+<div class="d-lg-flex half">
+  <div class="bg order-1 order-md-2 mobile-hidden" style="background-image: url(https://wallpapercrafter.com/desktop/43381-panini-ham-cheese-salad-bread-baske.jpg);">
+  </div>
+  <div class="contents order-2 order-md-2">
+    <div class="container custom-navbar">
+      <div class="row align-items-center justify-content-center align-items-center-mobile">
+        <div class="col-md-9">
+          <h3>Recuperar Senha <strong>Águia Delivery</strong></h3>
+          
+          <form>
+            <div class="form-group ">
+              <label for="username">Insira seu telefone celular ou email cadastrado:</label>
+              <input type="text" class="form-control" placeholder="Insira seus dados" id="username" onkeyup="checkTelefone(event)" required>
+              <div id="naoTelefone" class="alert alert-danger" style="display:none;">
+                Dados incorretos. Por favor, tente novamente.
+              </div>
+            </div> 
+            <div id="mudarSenha" style="display:none;">
+              <div class="form-group">
+                <label for="inputEmail4" id="labelSenha">Insira nova senha:</label>
                   <div class="input-group">
                       <input type="password" class="form-control" id="password" placeholder="*****" required>
                       <div class="input-group-append">
@@ -63,28 +64,29 @@
                           </span>
                       </div>
                   </div>
-                </div>
-                <div class="form-group">
-                    <label for="inputPassword4" id="labelConfirmar">Confirmar nova senha:</label>
-                    <div class="input-group">
-                        <input type="password" class="form-control" id="inputConfirmar" placeholder="*****" required>
-                        <div class="input-group-append">
-                            <span class="input-group-text toggle-password" onclick="exibeSenha('inputConfirmar')">
-                                <i class="bi bi-eye-slash"></i>
-                            </span>
-                        </div>
-                    </div>
-                </div>          
               </div>
-                           
-              <input type="submit" value="RECUPERAR" class="btn btn-block" style="background-color: #ffbe33;" onclick="recuperarSenha()">
-            </form>
-          </div>
+              <div class="form-group">
+                  <label for="inputPassword4" id="labelConfirmar">Confirmar nova senha:</label>
+                  <div class="input-group">
+                      <input type="password" class="form-control" id="inputConfirmar" placeholder="*****" required>
+                      <div class="input-group-append">
+                          <span class="input-group-text toggle-password" onclick="exibeSenha('inputConfirmar')">
+                              <i class="bi bi-eye-slash"></i>
+                          </span>
+                      </div>
+                  </div>
+              </div>          
+            </div>                          
+            <input type="submit" value="RECUPERAR" class="btn btn-block" style="background-color: #ffbe33;" onclick="recuperarSenha()">
+          </form>
         </div>
       </div>
     </div>
-  </div>   
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/login.js"></script>
+  </div>
+</div>   
+  <!--FORMULARIO-->
+  
+<script src="js/bootstrap.min.js"></script>
+<script src="js/login.js"></script>
   </body>
 </html>

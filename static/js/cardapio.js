@@ -120,11 +120,9 @@
 })(jQuery);
 
 
-
 function openModal() {
     window.location.href = "detalhesProduto.html";
 }
-
 
 function decrementQuantity() {
     
@@ -264,7 +262,6 @@ function carregarProdutos(){
         container.appendChild(divProduto);
     }
 }
-
 
 function carregarOpcoes(){
     const opcoes = [
