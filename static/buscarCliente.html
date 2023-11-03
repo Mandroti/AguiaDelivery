@@ -194,7 +194,7 @@
                
                         <div class="form-group">
                           <label for="inputAddress">Nome Completo</label>
-                          <input type="text" class="form-control" id="updateNome" placeholder="Insira seu Nome" required> 
+                          <input type="text" class="form-control" id="insertNome" placeholder="Insira seu Nome" required> 
                         </div>              
                         <div class="form-group">
                             <label for="inputEmail4" id="labelSenha">Senha</label>
@@ -207,32 +207,32 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">                    
                               <label for="inputEmail4">Contato</label>
-                              <input type="text" class="form-control" id="updateContato" placeholder="(00)00000-0000" required maxlength="15" onkeyup="applyPhoneMask(event)">
+                              <input type="text" class="form-control" id="insertContato" placeholder="(00)00000-0000" required maxlength="15" onkeyup="applyPhoneMask(event)">
                             </div>
                             <div class="form-group col-md-6">
                               <label for="inputPassword4">CEP</label>
-                              <input type="text" class="form-control" id="updateCep" name="cep" placeholder="00000-000" required maxlength="9" onkeyup="applyZipCodeMask(event)">
+                              <input type="text" class="form-control" id="insertCep" name="cep" placeholder="00000-000" required maxlength="9" onkeyup="applyZipCodeMask(event)">
                             </div>                    
                         </div>
                         <div class="form-group">
                             <label for="inputAddress">Logradouro</label>
-                            <input type="text" class="form-control" id="updateLog" name="endereco" placeholder="Seu Endereço" required>
+                            <input type="text" class="form-control" id="insertLog" name="endereco" placeholder="Seu Endereço" required>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-4">                    
                               <label for="inputEmail4">Bairro</label>
-                              <input type="text" class="form-control" id="updateBairro" name="bairro" placeholder="Seu Bairro" required>
+                              <input type="text" class="form-control" id="insertBairro" name="bairro" placeholder="Seu Bairro" required>
                             </div>
                             <div class="form-group col-md-3">
                               <label for="inputPassword4">Numero</label>
-                              <input type="text" class="form-control" id="updateNum" placeholder="000" name="numero" required>
+                              <input type="text" class="form-control" id="insertNum" placeholder="000" name="numero" required>
                             </div>
                             <div class="form-group col-md-5">
                               <label for="inputZip">Cidade</label>
-                              <input type="text" class="form-control" id="updateCit" placeholder="Sua Cidade" name="cidade" required>
+                              <input type="text" class="form-control" id="insertCit" placeholder="Sua Cidade" name="cidade" required>
                           </div>
                         </div>            
-                        <button type="submit" id="submit" class="btn btn-block" style="background-color: #ffbe33;" onclick="registraCliente()">ALTERAR DADOS DA CONTA</button>
+                        <button type="submit" id="submit" class="btn btn-block" style="background-color: #ffbe33;" onclick="criarCliente()">CRIAR CLIENTE</button>
                       </form>
                 </div>
             </div>

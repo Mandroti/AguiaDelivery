@@ -89,7 +89,7 @@ var clientes = document.getElementById('tabelaClientes');
 
 function buscarCliente()
 {
-    fetch(`http://aguiadelivery.com.br:6060/api/Consumidor/3`, {
+    fetch(`http://aguiadelivery.com.br:6060/api/Consumidor/0/a`, { //ESTA SEM FILTRO PARA USUARIOS EXCLUIDOS
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -252,6 +252,292 @@ function removerCliente() {
     event.preventDefault();
 }
 
+function adicionarCliente(){
+    const modal = document.getElementById('modalAdicionarCliente');
+    modal.style.display = 'block';
+    event.preventDefault();
+}
 
+function fecharModalCliente(){
+    document.getElementById('modalAdicionarCliente').style.display = 'none';
+}
+
+function criarCliente(){
+    var nome = document.getElementById('insertNome').value; 
+    var telefone = document.getElementById('insertContato').value;
+    telefone = telefone.replace(/\D/g,'');      
+    telefone = telefone.replace(/\D/g,'');    
+    var cep = document.getElementById('insertCep').value;
+    cep = cep.replace(/\D/g,'');       
+    var logradouro = document.getElementById('insertLog').value;      
+    var bairro = document.getElementById('insertBairro').value;      
+    var numero = document.getElementById('insertNum').value;      
+    var cidade_IBGE = "111";   
+    var uf = 'SP';     
+    var senha = "123";
+
+    const dados = {
+        nome: nome, telefone: telefone, logradouro: logradouro,
+        bairro: bairro, cep: cep, numero: numero, cidade_IBGE: cidade_IBGE, uf: uf, senha: senha
+    };       
+
+    fetch('http://aguiadelivery.com.br:6060/api/Consumidor/',{             
+        method: 'POST',
+        headers:{
+            'Content-Type': 'application/json',               
+        },
+        body: JSON.stringify(dados)           
+    })
+    .then(response => {
+        if (!response.ok) {
+          throw new Error('Erro ao cadastrar usuário');
+        }
+        else{
+            window.location.href = "buscarCliente.html"
+        }
+        return response.text();
+      })
+      .then(data => {
+        console.log('Usuário cadastrado com sucesso:', data);
+      })
+      .catch(error => console.error('Erro:', error));
+      event.preventDefault();  
+}
+
+
+
+//FETCH -- CATEGORIA
+var idCategoria =0;
+var categorias = document.getElementById('tabelaCategoria');
+
+function buscarCategoria()
+{
+    fetch(`http://aguiadelivery.com.br:6060/api/Categoria/0/a`, { //PRECISA DO ID DO ESTABELECIMENTO
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data)
+        var tabela = `<table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Opções</th>
+                            </tr>
+                        </thead>
+                        <tbody>`;
+
+        for (var i = 0; i < data.length; i++) {
+            var card = carregarCategoria(data[i]);
+            tabela += card;
+        }
+
+        tabela += `</tbody></table>`;
+
+        categorias.innerHTML = tabela;
+    })
+    .catch(error => console.error('Erro:', error));
+
+    event.preventDefault();
+}
+
+function carregarCategoria(dado){
+    var row = `
+        <tr>
+            <th scope="row">${dado.consumidorId}</th>
+            <td>${dado.nome}</td>
+            <td>
+                <div>
+                    <a class="btn table-action" href="#">
+                        <i class="action-icon fas fa-edit" onclick="editarCliente(${dado.consumidorId})"></i>
+                        <i class="action-icon fas fa-trash" onclick="excluirCliente(${dado.consumidorId})"></i>
+                    </a>                         
+                </div>
+            </td>
+        </tr>
+    `;
+
+    return row;
+}
+
+function adicionarCategoria(){
+    const modal = document.getElementById('modalAdicionarCategoria');
+    modal.style.display = 'block';
+    event.preventDefault();
+}
+
+function fecharModalCategoria(){
+    const modal = document.getElementById('modalAdicionarCategoria');
+    modal.style.display = 'none';
+}
+
+function criarCategoria(){
+
+    var nome = document.getElementById('insertNome').value; 
+    var imagem = document.getElementById('insertImagem').value;
+
+    const dados = {
+        nome: nome, imagem: imagem
+    };       
+
+    fetch('http://aguiadelivery.com.br:6060/api/Categoria/',{             
+        method: 'POST',
+        headers:{
+            'Content-Type': 'application/json',               
+        },
+        body: JSON.stringify(dados)           
+    })
+    .then(response => {
+        if (!response.ok) {
+          throw new Error('Erro ao cadastrar categoria');
+        }
+        else{
+            window.location.href = "buscarCategoria.html"
+        }
+        return response.text();
+      })
+      .then(data => {
+        console.log('Categoria cadastrada com sucesso:', data);
+      })
+      .catch(error => console.error('Erro:', error));
+      event.preventDefault();  
+}
+
+function excluirCategoria(id) {
+    idCategoria = id;
+    const modal = document.getElementById('modalExcluirCategoria');
+    modal.style.display = 'block';
+
+    const fecharModal = document.getElementById('fecharModalCategoria');
+    fecharModal.addEventListener('click', function(){
+        modal.style.display = 'none';
+    });
+
+    const fechar = document.getElementById('fecharModalCategoriaa');
+    fechar.addEventListener('click', function(){
+        modal.style.display = 'none';
+    });
+}
+
+function removerCategoria() {
+
+    fetch('http://aguiadelivery.com.br:6060/api/Categoria/'+idCategoria, {
+        method: 'DELETE'
+    })
+    .then(data => {
+        console.log('Categoria ID:', data);
+    })
+    .catch(error => console.error('Erro ao deletar o ID:', error));
+
+    event.preventDefault();
+}
+
+function editarCategoria(id){
+    idCategoria = id;
+    const modal = document.getElementById('modalEditarCategoria');
+    modal.style.display = 'block';
+    event.preventDefault();
+
+    const fecharModal = document.getElementById('fecharModalEditarCategoria');
+    fecharModal.addEventListener('click', function(){
+        modal.style.display = 'none';
+    });
+
+}
+
+function registraCategoria(){
+    var nome = document.getElementById('insertNome').value; 
+    var imagem = document.getElementById('insertImagem').value;   
+
+    const dados = {
+       nome: nome, imagem: imagem
+    };       
+
+    fetch('http://aguiadelivery.com.br:6060/api/Categoria/'+idCategoria, {             
+        method: 'PUT',
+        headers:{
+            'Content-Type': 'application/json',               
+        },
+        body: JSON.stringify(dados)           
+    })
+    .then(response => {
+        if (!response.ok) {
+          throw new Error('Erro ao atualizar categoria');
+        }
+        else{
+            window.location.href = "buscarCategoria.html"
+        }
+        return response.text();
+      })
+      .then(data => {
+        console.log('Categoria atualizado com sucesso:', data);
+      })
+      .catch(error => console.error('Erro:', error));
+      event.preventDefault();   
+}
+
+
+
+//FETCH -- IMAGEM
+var idImagem = 0;
+var imagens = document.getElementById('tabelaImagem');
+
+function buscarCategoria()
+{
+    fetch(`http://aguiadelivery.com.br:6060/api/`, { 
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data)
+        var tabela = `<table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Opções</th>
+                            </tr>
+                        </thead>
+                        <tbody>`;
+
+        for (var i = 0; i < data.length; i++) {
+            var card = carregarImagem(data[i]);
+            tabela += card;
+        }
+
+        tabela += `</tbody></table>`;
+
+        imagens.innerHTML = tabela;
+    })
+    .catch(error => console.error('Erro:', error));
+
+    event.preventDefault();
+}
+
+function carregarImagem(dado){
+    var row = `
+        <tr>
+            <th scope="row">${dado.consumidorId}</th>
+            <td>${dado.imagem}</td>
+            <td>
+                <div>
+                    <a class="btn table-action" href="#">
+                        <i class="action-icon fas fa-edit" onclick="editarCliente(${dado.consumidorId})"></i>
+                        <i class="action-icon fas fa-trash" onclick="excluirCliente(${dado.consumidorId})"></i>
+                    </a>                         
+                </div>
+            </td>
+        </tr>
+    `;
+
+    return row;
+}
 
 

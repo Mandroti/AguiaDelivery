@@ -268,58 +268,6 @@ function editarProduto(){
 
 //CONSULTAR CATEGORIA MODAL
 
-function adicionarCategoria(){
-    const modal = document.getElementById('modalAdicionarCategoria');
-    modal.style.display = 'block';
-    event.preventDefault();
-}
-
-function fecharModalCategoria(){
-    const modal = document.getElementById('modalAdicionarCategoria');
-    modal.style.display = 'none';
-}
-
-function excluirCategoria() {
-    const modal = document.getElementById('modalExcluirCategoria');
-    modal.style.display = 'block';
-
-    // Adicionando uma função para fechar o modal
-    const fecharModal = document.getElementById('fecharModalCategoria');
-    fecharModal.addEventListener('click', function(){
-        modal.style.display = 'none';
-    });
-
-    const fechar = document.getElementById('fecharModalCategoriaa');
-    fechar.addEventListener('click', function(){
-        modal.style.display = 'none';
-    });
-}
-
-function editarCategoria(){
-    const modal = document.getElementById('modalEditarCategoria');
-    modal.style.display = 'block';
-    event.preventDefault();
-
-    // Adicionando uma função para fechar o modal
-    const fecharModal = document.getElementById('fecharModalEditarCategoria');
-    fecharModal.addEventListener('click', function(){
-        modal.style.display = 'none';
-    });
-
-}
-
-//CONSULTAR CLIENTE MODAL
-function adicionarCliente(){
-    const modal = document.getElementById('modalAdicionarCliente');
-    modal.style.display = 'block';
-    event.preventDefault();
-}
-
-function fecharModalCliente(){
-    const modal = document.getElementById('modalAdicionarCliente');
-    modal.style.display = 'none';
-}
-
 
 //CONSULTAR IMAGEM MODAL
 function adicionarImagem(){

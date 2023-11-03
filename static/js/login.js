@@ -297,7 +297,7 @@ function registraCliente()
                 body: JSON.stringify(dados)           
             })
             .then(response => response.text())
-            .then(result => console.log(result))
+            .then(result =>{if(result.ok) window.location.href = "login.html"})
             .catch(error => console.error('Erro:', error));        
             event.preventDefault();
      
@@ -308,74 +308,3 @@ function registraCliente()
         }        
 }
 
-function buscarClienteId(id)
-{
-    fetch(`http://aguiadelivery.com.br:6060/api/Consumidor/${id}`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Cliente ID:', data);
-    })
-    .catch(error => console.error('Erro ao buscar por ID:', error));
-
-    event.preventDefault();   
-}
-
-function removerCliente(id)
-{
-    fetch(`http://aguiadelivery.com.br:6060/api/Consumidor/${id}`, {
-        method: 'DELETE'
-    })
-    .then(data => {
-        console.log('Cliente ID:', data);
-    })
-    .catch(error => console.error('Erro ao deletar o ID:', error));
-
-    event.preventDefault();   
-}
-
-function alterarClienteId()
-{
-    var nome = document.getElementById('inputNome').value;      
-    var telefone = document.getElementById('inputContato').value;
-    telefone = telefone.replace(/\D/g,'');       
-    var active = true;      
-    var logradouro = document.getElementById('inputLog').value;        
-    var bairro = document.getElementById('inputBairro').value;      
-    var cep = document.getElementById('inputCep').value;
-    cep = cep.replace(/\D/g,'');    
-    var numero = document.getElementById('inputNum').value;       
-    var cidade_IBGE = "111";        
-    var uf = document.getElementById('inputUf').value;          
-    var senha = document.getElementById('password').value;        
-    var confirmaSenha = document.getElementById('inputConfirmar').value;
-
-    const dados = {
-        nome: nome, telefone: telefone, active: active, logradouro: logradouro,
-        bairro: bairro, cep: cep, numero: numero, cidade_IBGE: cidade_IBGE, uf: uf,
-        senha:senha
-    };       
-
-    fetch('http://aguiadelivery.com.br:6060/api/Consumidor', {             
-        method: 'PUT',
-        headers:{
-            'Content-Type': 'application/json',               
-        },
-        body: JSON.stringify(dados)           
-    })
-    .then(response => {
-        if (!response.ok) {
-          throw new Error('Erro ao atualizar usuário');
-        }
-        return response.json();
-      })
-      .then(data => {
-        console.log('Usuário atualizado com sucesso:', data);
-      })
-      .catch(error => console.error('Erro:', error));
-      event.preventDefault();     
-}

@@ -141,50 +141,8 @@
 
           <br>
 
-          <div class="card" style="border: 1px solid transparent;">
-            <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Imagem</th>
-                    <th scope="col">Opções</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>img.png</td>
-                    <td>
-                        <div>
-                            <a class="btn table-action" href="#">
-                                <i class="action-icon fas fa-edit" onclick="editarImagem()"></i>
-                                <i class="action-icon fas fa-trash"  onclick="excluirImagem()"></i>
-                            </a>                         
-                          </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>img.png</td>
-                    <td><div>
-                        <a class="btn table-action" href="#">
-                            <i class="action-icon fas fa-edit" onclick="editarImagem()"></i>
-                            <i class="action-icon fas fa-trash" onclick="excluirImagem()"></i>
-                        </a>   
-                      </div></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>img.png</td>
-                    <td><div>
-                        <a class="btn table-action" href="#">
-                            <i class="action-icon fas fa-edit" onclick="editarImagem()"></i>
-                            <i class="action-icon fas fa-trash" onclick="excluirImagem()"></i>
-                        </a>   
-                      </div></td>
-                  </tr>
-                </tbody>
-              </table>
+          <div class="card" style="border: 1px solid transparent;" id="tabelaImagem">
+
           </div>
         </div>
       </section>
@@ -256,5 +214,5 @@
 
 </body>
 <script src="js/dashboard.js"></script>
-
+<script src="js/fetchDashboard.js"></script>
 </html>
