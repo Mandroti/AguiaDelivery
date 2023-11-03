@@ -266,8 +266,6 @@ function editarProduto(){
 
 }
 
-//CONSULTAR CATEGORIA MODAL
-
 
 //CONSULTAR IMAGEM MODAL
 function adicionarImagem(){
