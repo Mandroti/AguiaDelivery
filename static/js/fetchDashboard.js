@@ -305,7 +305,6 @@ function criarCliente(){
 }
 
 
-
 //FETCH -- CATEGORIA
 var idCategoria =0;
 var categorias = document.getElementById('tabelaCategoria');
@@ -481,8 +480,7 @@ function registraCategoria(){
 }
 
 
-
-//FETCH -- IMAGEM
+//FETCH -- COMPLEMENTOS
 var idImagem = 0;
 var imagens = document.getElementById('tabelaImagem');
 

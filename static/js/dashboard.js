@@ -268,34 +268,34 @@ function editarProduto(){
 
 
 //CONSULTAR IMAGEM MODAL
-function adicionarImagem(){
-    const modal = document.getElementById('modalAdicionarImagem');
+function adicionarComplemento(){
+    const modal = document.getElementById('modalAdicionarComplemento');
     modal.style.display = 'block';
     event.preventDefault();
 }
 
-function fecharModalImagem(){
-    const modal = document.getElementById('modalAdicionarImagem');
+function fecharModalComplemento(){
+    const modal = document.getElementById('modalAdicionarComplemento');
     modal.style.display = 'none';
 }
 
-function excluirImagem() {
-    const modal = document.getElementById('modalExcluirImagem');
+function excluirComplemento() {
+    const modal = document.getElementById('modalExcluirComplemento');
     modal.style.display = 'block';
 
     // Adicionando uma função para fechar o modal
-    const fecharModal = document.getElementById('fecharModalImagem');
+    const fecharModal = document.getElementById('fecharModalComplemento');
     fecharModal.addEventListener('click', function(){
         modal.style.display = 'none';
     });
 
-    const fechar = document.getElementById('fecharModalImagemm');
+    const fechar = document.getElementById('fecharModalComplementoo');
     fechar.addEventListener('click', function(){
         modal.style.display = 'none';
     });
 }
 
-function editarImagem(){
+function editarComplemento(){
     const modal = document.getElementById('modalEditarImagem');
     modal.style.display = 'block';
     event.preventDefault();
