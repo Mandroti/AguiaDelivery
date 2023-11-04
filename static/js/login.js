@@ -286,7 +286,6 @@ function registraCliente()
             senha:senha
         };       
         
-
         if(senha == confirmaSenha)
         {
             fetch('http://aguiadelivery.com.br:6060/api/Consumidor', {             
@@ -297,7 +296,7 @@ function registraCliente()
                 body: JSON.stringify(dados)           
             })
             .then(response => response.text())
-            .then(result =>{if(result.ok) window.location.href = "login.html"})
+            .then(result => {window.location.href = 'login.html';})
             .catch(error => console.error('Erro:', error));        
             event.preventDefault();
      

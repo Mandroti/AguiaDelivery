@@ -155,6 +155,7 @@ function editarCliente(id){
 
 function fecharModalCliente(){
     document.getElementById('modalEditarCliente').style.display = 'none';
+    document.getElementById('modalAdicionarCliente').style.display = 'none';
 }
 
 function carregarDadosCliente(id){
@@ -256,10 +257,6 @@ function adicionarCliente(){
     const modal = document.getElementById('modalAdicionarCliente');
     modal.style.display = 'block';
     event.preventDefault();
-}
-
-function fecharModalCliente(){
-    document.getElementById('modalAdicionarCliente').style.display = 'none';
 }
 
 function criarCliente(){

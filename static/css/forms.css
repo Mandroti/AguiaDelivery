@@ -1,11 +1,34 @@
-body {
+body, html {
   background-color: #f8f7f7; 
+  /* overflow-y: auto; */
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+.contents {
+  height: 100%;
   overflow-y: auto;
 }
+
+
+@media screen and (max-width: 767px) {
+  body, html {
+    height: auto;
+    overflow: visible;
+  }
+
+  .contents {
+    height: auto;
+    overflow-y: visible;
+  }
+}
+
 .custom-navbar {
   padding-top: 20px; /* Adicione a quantidade de espaço que deseja aqui */
   padding-bottom: 40px;
 }
+
 
 .navbar-brand {
   font-size: xx-large;
@@ -18,8 +41,6 @@ body {
       margin-left: 0; 
   }
 }
-
-
 
 /* Estilo para a versão mobile */
 @media (max-width: 768px) {
@@ -68,8 +89,8 @@ a {
   a:hover {
     text-decoration: none !important; }
 
-.content {
-  padding: 7rem 0; }
+/* .content {
+  padding: 7rem 0; } */
 
 h2 {
   font-size: 20px; }
