@@ -5,8 +5,6 @@ const body = document.querySelector('body'),
     modeSwitch = body.querySelector(".toggle-switch"),
     modeText = body.querySelector(".mode-text");
 
-
-
 toggle.addEventListener("click", () => {
     sidebar.classList.toggle("close");
 })
@@ -224,7 +222,6 @@ function proximaEtapa(){
 
 
 
-
 //CONSULTAR PRODUTO MODAL
 function adicionarProduto(){
     const modal = document.getElementById('modalAdicionarProduto');
@@ -266,44 +263,3 @@ function editarProduto(){
 
 }
 
-
-//CONSULTAR IMAGEM MODAL
-function adicionarComplemento(){
-    const modal = document.getElementById('modalAdicionarComplemento');
-    modal.style.display = 'block';
-    event.preventDefault();
-}
-
-function fecharModalComplemento(){
-    const modal = document.getElementById('modalAdicionarComplemento');
-    modal.style.display = 'none';
-}
-
-function excluirComplemento() {
-    const modal = document.getElementById('modalExcluirComplemento');
-    modal.style.display = 'block';
-
-    // Adicionando uma função para fechar o modal
-    const fecharModal = document.getElementById('fecharModalComplemento');
-    fecharModal.addEventListener('click', function(){
-        modal.style.display = 'none';
-    });
-
-    const fechar = document.getElementById('fecharModalComplementoo');
-    fechar.addEventListener('click', function(){
-        modal.style.display = 'none';
-    });
-}
-
-function editarComplemento(){
-    const modal = document.getElementById('modalEditarImagem');
-    modal.style.display = 'block';
-    event.preventDefault();
-
-    // Adicionando uma função para fechar o modal
-    const fecharModal = document.getElementById('fecharModalEditarImagem');
-    fecharModal.addEventListener('click', function(){
-        modal.style.display = 'none';
-    });
-
-}

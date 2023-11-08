@@ -35,8 +35,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.3.1/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/forms.css">
 
-    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
     <title>Dashboard - Águia Delivery</title>
 </head>
@@ -152,7 +151,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>           
           <br>
 
           <div class="card" style="border: 1px solid transparent;" id="tabelaClientes">
@@ -180,127 +179,145 @@
             </div>
         </div>      
     </section>
+    
     <section>
         <div class="modal" id="modalAdicionarCliente" style="display:none;">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Cadastrar Cliente</h5>
-                    <button type="button" class="close" id="fecharModalAdicionarCliente" style="background-color: transparent; border-color: transparent; font-size: 50px;" onclick="fecharModalCliente()">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form class="text-left">
-               
-                        <div class="form-group">
-                          <label for="inputAddress">Nome Completo</label>
-                          <input type="text" class="form-control" id="insertNome" placeholder="Insira seu Nome" required> 
-                        </div>              
-                        <div class="form-group">
-                            <label for="inputEmail4" id="labelSenha">Senha</label>
-                            <div class="input-group">
-                            <input type="password" class="form-control" id="password" placeholder="*****" disabled >
-                                
+            <div class="modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Cadastrar Cliente</h5>
+                        <button type="button" class="btn-close" id="fecharModalAdicionarCliente" aria-label="Close" onclick="fecharModalCliente()"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="text-start">
+                            <div class="mb-3">
+                                <label for="insertNome" class="form-label">Nome Completo</label>
+                                <input type="text" class="form-control" id="insertNome" placeholder="Insira seu Nome" required>
                             </div>
-                        </div>                          
-                      
-                        <div class="form-row">
-                            <div class="form-group col-md-6">                    
-                              <label for="inputEmail4">Contato</label>
-                              <input type="text" class="form-control" id="insertContato" placeholder="(00)00000-0000" required maxlength="15" onkeyup="applyPhoneMask(event)">
+                            <div class="mb-3">
+                                <label for="password" class="form-label" id="labelSenha">Senha</label>
+                                <div class="input-group">
+                                    <input type="password" class="form-control" id="password" placeholder="*****" disabled>
+                                </div>
                             </div>
-                            <div class="form-group col-md-6">
-                              <label for="inputPassword4">CEP</label>
-                              <input type="text" class="form-control" id="insertCep" name="cep" placeholder="00000-000" required maxlength="9" onkeyup="applyZipCodeMask(event)">
-                            </div>                    
-                        </div>
-                        <div class="form-group">
-                            <label for="inputAddress">Logradouro</label>
-                            <input type="text" class="form-control" id="insertLog" name="endereco" placeholder="Seu Endereço" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputEmail4">Bairro</label>
-                            <input type="text" class="form-control" id="insertBairro" name="bairro" placeholder="Seu Bairro" required>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-3">
-                              <label for="inputPassword4">Numero</label>
-                              <input type="text" class="form-control" id="insertNum" placeholder="000" name="numero" required>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="insertContato" class="form-label">Contato</label>
+                                        <input type="text" class="form-control" id="insertContato" placeholder="(00)00000-0000" required maxlength="15" onkeyup="applyPhoneMask(event)">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="insertCep" class="form-label">CEP</label>
+                                        <input type="text" class="form-control" id="insertCep" name="cep" placeholder="00000-000" required maxlength="9" onkeyup="applyZipCodeMask(event)">
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group col-md-6">
-                              <label for="inputZip">Cidade</label>
-                              <input type="text" class="form-control" id="insertCit" placeholder="Sua Cidade" name="cidade" required>
-                          </div>
-                          <div class="form-group col-md-3">                    
-                            <label for="inputEmail4">UF</label>
-                            <input type="text" class="form-control" id="insertUF" name="bairro" required>
-                          </div>
-                        </div>            
-                        <button type="submit" id="submit" class="btn btn-block" style="background-color: #ffbe33;" onclick="criarCliente()">CRIAR CLIENTE</button>
-                      </form>
+                            <div class="mb-3">
+                                <label for="insertLog" class="form-label">Logradouro</label>
+                                <input type="text" class="form-control" id="insertLog" name="endereco" placeholder="Seu Endereço" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="insertBairro" class="form-label">Bairro</label>
+                                <input type="text" class="form-control" id="insertBairro" name="bairro" placeholder="Seu Bairro" required>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="mb-3">
+                                        <label for="insertNum" class="form-label">Numero</label>
+                                        <input type="text" class="form-control" id="insertNum" placeholder="000" name="numero" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="insertCit" class="form-label">Cidade</label>
+                                        <input type="text" class="form-control" id="insertCit" placeholder="Sua Cidade" name="cidade" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="mb-3">
+                                        <label for="insertUF" class="form-label">UF</label>
+                                        <input type="text" class="form-control" id="insertUF" name="bairro" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" id="submit" class="btn btn-primary btn-block w-100" style="background-color: #ffbe33; border-color: transparent;" onclick="criarCliente()">CRIAR CLIENTE</button>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>      
+        </div>
     </section>
+    
     <section>
         <div class="modal" id="modalEditarCliente" style="display:none;">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Atualizar Cadastro do Cliente</h5>
-                    <button type="button" class="close" id="fecharCliente" style="background-color: transparent; border-color: transparent; font-size: 50px;" onclick="fecharModalCliente()">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form class="text-left">
-               
-                        <div class="form-group">
-                          <label for="inputAddress">Nome Completo</label>
-                          <input type="text" class="form-control" id="inputNome" placeholder="Insira seu Nome" required> 
-                        </div>              
-                        <div class="form-group">
-                            <label for="inputEmail4" id="labelSenha">Senha</label>
-                            <div class="input-group">
-                            <input type="password" class="form-control" id="inputSenha" placeholder="*****" disabled>
-                                
+            <div class="modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Atualizar Cadastro do Cliente</h5>
+                        <button type="button" class="btn-close" id="fecharCliente" aria-label="Close" onclick="fecharModalCliente()"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="text-start">
+                            <div class="mb-3">
+                                <label for="inputNome" class="form-label">Nome Completo</label>
+                                <input type="text" class="form-control" id="inputNome" placeholder="Insira seu Nome" required> 
                             </div>
-                        </div>                       
-                      
-                        <div class="form-row">
-                            <div class="form-group col-md-6">                    
-                              <label for="inputEmail4">Contato</label>
-                              <input type="text" class="form-control" id="inputContato" placeholder="(00)00000-0000" required maxlength="15" onkeyup="applyPhoneMask(event)">
+                            <div class="mb-3">
+                                <label for="inputSenha" class="form-label" id="labelSenha">Senha</label>
+                                <div class="input-group">
+                                    <input type="password" class="form-control" id="inputSenha" placeholder="*****" disabled>
+                                </div>
                             </div>
-                            <div class="form-group col-md-6">
-                              <label for="inputPassword4">CEP</label>
-                              <input type="text" class="form-control" id="inputCep" name="cep" placeholder="00000-000" required maxlength="9" onkeyup="applyZipCodeMask(event)">
-                            </div>                    
-                        </div>
-                        <div class="form-group">
-                            <label for="inputAddress">Logradouro</label>
-                            <input type="text" class="form-control" id="inputLog" name="endereco" placeholder="Seu Endereço" required>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-4">                    
-                              <label for="inputEmail4">Bairro</label>
-                              <input type="text" class="form-control" id="inputBairro" name="bairro" placeholder="Seu Bairro" required>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="inputContato" class="form-label">Contato</label>
+                                        <input type="text" class="form-control" id="inputContato" placeholder="(00)00000-0000" required maxlength="15" onkeyup="applyPhoneMask(event)">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="inputCep" class="form-label">CEP</label>
+                                        <input type="text" class="form-control" id="inputCep" name="cep" placeholder="00000-000" required maxlength="9" onkeyup="applyZipCodeMask(event)">
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group col-md-3">
-                              <label for="inputPassword4">Numero</label>
-                              <input type="text" class="form-control" id="inputNum" placeholder="000" name="numero" required>
+                            <div class="mb-3">
+                                <label for="inputLog" class="form-label">Logradouro</label>
+                                <input type="text" class="form-control" id="inputLog" name="endereco" placeholder="Seu Endereço" required>
                             </div>
-                            <div class="form-group col-md-5">
-                              <label for="inputZip">Cidade</label>
-                              <input type="text" class="form-control" id="inputCit" placeholder="Sua Cidade" name="cidade" required>
-                          </div>
-                        </div>            
-                        <button type="submit" id="submit" class="btn btn-block" style="background-color: #ffbe33;" onclick="registraCliente()">ALTERAR DADOS DA CONTA</button>
-                    </form>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label for="inputBairro" class="form-label">Bairro</label>
+                                        <input type="text" class="form-control" id="inputBairro" name="bairro" placeholder="Seu Bairro" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="mb-3">
+                                        <label for="inputNum" class="form-label">Numero</label>
+                                        <input type="text" class="form-control" id="inputNum" placeholder="000" name="numero" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="mb-3">
+                                        <label for="inputCit" class="form-label">Cidade</label>
+                                        <input type="text" class="form-control" id="inputCit" placeholder="Sua Cidade" name="cidade" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" id="submit" class="btn btn-primary btn-block w-100" style="background-color: #ffbe33; border-color: transparent;" onclick="registraCliente()">ALTERAR DADOS DA CONTA</button>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>      
+        </div>
     </section>
+    
 
+    
 </body>
 <script src="js/dashboard.js"></script>
 <script src="js/fetchDashboard.js"></script>

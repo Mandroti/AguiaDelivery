@@ -20,12 +20,12 @@
     <link rel="stylesheet" href="css/forms.css">
 
     
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
     <title>Dashboard - Águia Delivery</title>
 </head>
 
-<body>
+<body onload="buscarComplementos()">
     <nav class="sidebar close">
         <header>
             <div class="image-text">
@@ -141,7 +141,7 @@
 
           <br>
 
-          <div class="card" style="border: 1px solid transparent;" id="tabelaComplemento">
+          <div class="card" style="border: 1px solid transparent;" id="tabelaComplementos">
 
           </div>
         </div>
@@ -161,81 +161,79 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn " data-dismiss="modal" id="fecharModalComplementoo">Fechar</button>
-                    <button type="button" class="btn btn-danger" onclick="confirmarExclusao()">Confirmar Exclusão</button>
+                    <button type="button" class="btn btn-danger" onclick="removerComplemento()">Confirmar Exclusão</button>
                 </div>
             </div>
         </div>      
     </section>
     <section>
         <div class="modal" id="modalAdicionarComplemento" style="display:none;">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Cadastrar Complementos</h5>
-                    <button type="button" class="close" id="fecharModalAdicionarComplementos" style="background-color: transparent; border-color: transparent; font-size: 50px;" onclick="fecharModalComplemento()">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form class="text-left">                           
-                        <div class="form-row">
-                            <div class="form-group col-md-6">                    
-                                <label for="inputAddress">Complemento</label>
-                                <input type="text" class="form-control" id="inputNome" placeholder="Insira Nome do Complemento" required> 
-                            </div> 
-                            <div class="form-group col-md-6">                    
-                            <label for="inputEmail4">Valor</label>                      
-                            <input type="text" class="form-control" id="inputValor" placeholder="0.00" required>  
-                            </div>                    
-                        </div>                                 
-                        <div class="form-group">
-                            <label for="inputAddress">Descrição</label>
-                            <input type="text" class="form-control" id="inputObs" placeholder="Insira uma observação" required> 
-                        </div>     
-                        <p></p>
-                        <a href="#">
-                            <button type="submit" id="submit" class="btn btn-block" style="background-color: #ffbe33; text-decoration: none;">CADASTRAR PRODUTO</button>
-                        </a>        
-                        
-                    </form>
+            <div class="modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Cadastrar Complementos</h5>
+                        <button type="button" class="btn-close" id="fecharmod" aria-label="Close" onclick="fecharModalComplemento()"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="text-start">                           
+                            <div class="row">
+                                <div class="col-md-6">                     
+                                    <div class="mb-3">
+                                        <label for="inputNome" class="form-label">Complemento</label>
+                                        <input type="text" class="form-control" id="inputNome" placeholder="Nome" required> 
+                                    </div>
+                                </div>
+                                <div class="col-md-6">                    
+                                    <div class="mb-3">
+                                        <label for="inputValor" class="form-label">Valor</label>                      
+                                        <input type="text" class="form-control" id="inputValor" placeholder="0.00" required>  
+                                    </div>
+                                </div>
+                            </div>                                
+                            <a href="#">
+                                <button type="submit" id="submit" class="btn btn-primary btn-block w-100" style="border-color: transparent; background-color: #ffbe33; text-decoration: none;" onclick="criarComplemento()">CADASTRAR PRODUTO</button>
+                            </a>        
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>      
+        </div>
     </section>
     <section>
         <div class="modal" id="modalEditarComplemento" style="display:none;">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Atualizar Cadastro de Complemento</h5>
-                    <button type="button" class="close" id="fecharModalEditarComplemento" style="background-color: transparent; border-color: transparent; font-size: 50px;" onclick="fecharModalComplemento()">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form class="text-left">               
-                        <div class="form-group">
-                        <label for="inputAddress">Complemento</label>
-                        <input type="text" class="form-control" id="inputNome" placeholder="Insira Nome do Complemento" required> 
-                        </div>               
-                        <div class="form-row">
-                            <div class="form-group col-md-6">                    
-                            <label for="inputEmail4">Valor</label>                      
-                            <input type="text" class="form-control" id="inputValor" placeholder="0.00" required>  
-                            </div>                    
-                        </div>                                 
-                        <div class="form-group col-md-6">
-                            <label for="inputZip">Observação</label>
-                            <input type="text" class="form-control" id="inputObs" placeholder="Alguma Observação">
-                        </div>   
-                        <p></p>
-                        <a href="#">
-                            <button type="submit" id="submit" class="btn btn-block" style="background-color: #ffbe33; text-decoration: none;">CADASTRAR PRODUTO</button>
-                        </a>        
-                        
-                    </form>
+            <div class="modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Atualizar Cadastro de Complemento</h5>
+                        <button type="button" class="btn-close" id="fecharModalEditarComplemento" aria-label="Close" onclick="fecharModalComplemento()"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="text-start">  
+                            <div class="row">
+                                <div class="col-md-6">                     
+                                    <div class="mb-3">
+                                        <label for="inputNome" class="form-label">Complemento</label>
+                                        <input type="text" class="form-control" id="updateNome" placeholder="Nome" required> 
+                                    </div>
+                                </div>
+                                <div class="col-md-6">                    
+                                    <div class="mb-3">
+                                        <label for="inputValor" class="form-label">Valor</label>                      
+                                        <input type="text" class="form-control" id="updateValor" placeholder="0.00" required>  
+                                    </div>
+                                </div>
+                            </div>                                
+                            <a href="#">
+                                <button type="submit" id="submit" class="btn btn-primary btn-block w-100" style="border-color: transparent; background-color: #ffbe33; text-decoration: none;" onclick="registraComplemento()">CADASTRAR PRODUTO</button>
+                            </a>   
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>      
+        </div>
     </section>
+    
+    
 
 </body>
 <script src="js/dashboard.js"></script>

@@ -103,53 +103,49 @@ function exibeSenha(inputId) {
     }
 }
 
-
-
-
-
-
 function cadastrarEstabelecimento(){
     event.preventDefault();   
     window.location.href = "aguardandoEmail.html";
 }
 
 //LOGINS E RECUPERAÇÃO DE SENHA
-function meuLogin()
-{
-    const userName = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
+// function meuLogin()
+// {
+//     const userName = document.getElementById('username').value;
+//     const password = document.getElementById('password').value;
 
-    const dados = {
-        userName: userName,
-        password: password
-    };
+//     const dados = {
+//         userName: userName,
+//         password: password
+//     };
 
-    fetch('http://aguiadelivery.com.br:6060/api/Autoriza/Login', { 
-        method: 'POST',
-        headers:{
-            'Content-Type': 'application/json'
-        },        
-        body: JSON.stringify(dados)   
+//     fetch('http://aguiadelivery.com.br:6060/api/Autoriza/Login', { 
+//         method: 'POST',
+//         headers:{
+//             'Content-Type': 'application/json'
+//         },        
+//         body: JSON.stringify(dados)   
 
-    })
-    .then(response => {
-        if (!response.ok) {
-            document.getElementById('errorUsuario').style.display = 'block';
-        }
-        return response.json();
-    })
-    .then(result => {
-        localStorage.setItem("token", result.token);
-        localStorage.setItem("time", result.expiration);
-        alert(localStorage.getItem("token")); 
+//     })
+//     .then(response => {
+//         if (!response.ok) {
+//             document.getElementById('errorUsuario').style.display = 'block';
+//         }
+//         return response.json();
+//     })
+//     .then(result => {
+//         localStorage.setItem("token", result.token);
+//         localStorage.setItem("time", result.expiration);
+//         alert(localStorage.getItem("token")); 
 
-        if (new Date(localStorage.getItem("time")) > new Date()) { //sem verificar se é estabelecimento ou consumidor
-            window.location.href = "dashboard.html";
-        }
-    })
-    .catch(error => console.error('Erro:', error));     
-    event.preventDefault();
-}    
+//         if (new Date(localStorage.getItem("time")) > new Date()) { //sem verificar se é estabelecimento ou consumidor
+//             window.location.href = "dashboard.html";
+//         }
+//     })
+//     .catch(error => console.error('Erro:', error));     
+//     event.preventDefault();
+// }    
+
 
 function recuperarSenha()
 {
@@ -288,7 +284,7 @@ function registraCliente()
         
         if(senha == confirmaSenha)
         {
-            fetch('http://aguiadelivery.com.br:6060/api/Consumidor', {             
+            fetch('http://localhost:5252/api/Consumidor', {             
                 method: 'POST',
                 headers:{
                     'Content-Type': 'application/json',               
@@ -306,4 +302,3 @@ function registraCliente()
             document.getElementById('senhaDiferenteAlert').style.display = 'block';
         }        
 }
-
