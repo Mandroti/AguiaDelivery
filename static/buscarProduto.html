@@ -22,7 +22,9 @@
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
 
+
     <title>Dashboard - Águia Delivery</title>
+    <script src="config.js"></script>
 </head>
 
 
@@ -140,58 +142,8 @@
                 </div>
             </div>          
           <br>
-          <div class="card" style="border: 1px solid transparent;">
-            <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Valor</th>
-                    <th scope="col">Teste</th>
-                    <th scope="col">Opções</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>X-salada</td>
-                    <td>19,00</td>
-                    <td>Ativo</td>
-                    <td>
-                        <div>
-                            <a class="btn table-action" href="#">
-                                <i class="action-icon fas fa-edit" onclick="editarProduto()"></i>
-                                <i class="action-icon fas fa-trash" onclick="excluirProduto()"></i>
-                            </a>                         
-                          </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Batata Recheada</td>
-                    <td>32,90</td>
-                    <td>Ativo</td>
-                    <td><div>
-                        <a class="btn table-action" href="#">
-                            <i class="action-icon fas fa-edit" onclick="editarProduto()"></i>
-                            <i class="action-icon fas fa-trash" onclick="excluirProduto()"></i>
-                        </a>   
-                      </div></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Peixe na Telha</td>
-                    <td>79,00</td>
-                    <td>Desativado</td>
-                    <td><div>
-                        <a class="btn table-action" href="#">
-                            <i class="action-icon fas fa-edit" onclick="editarProduto()"></i>
-                            <i class="action-icon fas fa-trash" onclick="excluirProduto()"></i>
-                        </a>   
-                      </div></td>
-                  </tr>
-                </tbody>
-              </table>
+          <div class="card" style="border: 1px solid transparent;" id="tabelaProdutos">
+           
           </div>
         </div>
     </section>
@@ -215,73 +167,114 @@
             </div>
         </div>      
     </section>
-    <section>
-        <div class="modal" id="modalAdicionarProduto" style="display:none;">
-            <div class="modal-dialog-scrollable">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Cadastrar Produto</h5>
-                        <button type="button" class="btn-close" id="fecharModalAdicionarProduto" aria-label="Close" onclick="fecharModalProduto()"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form class="text-start">               
-                            <div class="mb-3">
-                                <label for="inputNome" class="form-label">Produto</label>
-                                <input type="text" class="form-control" id="inputNome" placeholder="Insira Nome do Produto" required> 
-                            </div>               
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label for="inputValor" class="form-label">Valor</label>                      
-                                        <input type="text" class="form-control" id="inputValor" placeholder="0.00" required>  
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label for="inputCategoria" class="form-label">Categoria</label>
-                                        <select class="form-control">
-                                            <option>Teste</option>
-                                            <option>Teste</option>
-                                            <option>Teste</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>         
-                            <div class="mb-3">
-                                <label for="inputDescricao" class="form-label">Descrição</label>
-                                <input type="text" class="form-control" id="inputDescricao" placeholder="Insira Descrição do Produto">
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label for="inputVariacoes" class="form-label">Variações</label>                      
-                                        <select class="form-control">
-                                            <option>Teste</option>
-                                            <option>Teste</option>
-                                            <option>Teste</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label for="inputObs" class="form-label">Observação</label>
-                                        <input type="text" class="form-control" id="inputObs" placeholder="Alguma Observação">
-                                    </div>
-                                </div>
-                            </div>    
-                            <div class="mb-3">
-                                <label for="inputImagem" class="form-label">Selecione uma imagem:</label>     
-                                <input type="file" class="form-control" id="inputImagem" accept="image/*">
-                            </div>
-                            <a href="#">
-                                <button type="submit" id="submit" class="btn btn-primary btn-block w-100" style="background-color: #ffbe33; border-color: transparent; text-decoration: none;">CADASTRAR PRODUTO</button>
-                            </a>        
-                        </form>
-                    </div>
-                </div>
+    
+    <div class="modal" id="modalAdicionarProduto" style="display:none;">
+        <div class="modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Cadastrar Produto</h5>
+              <button type="button" class="btn-close" id="fecharModalAdicionarProduto" aria-label="Close" onclick="fecharModalProduto()"></button>
             </div>
+            <div class="modal-body">
+              <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                  <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-basic" role="tab" aria-controls="nav-home" aria-selected="true">Básicos</a>
+                  <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-complements" role="tab" aria-controls="nav-profile" aria-selected="false">Complementos</a>
+                  <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-variacoes" role="tab" aria-controls="nav-contact" aria-selected="false">Variações</a>
+                </div>
+              </nav>
+              <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-basic" role="tabpanel" aria-labelledby="nav-home-tab">
+                    <form class="text-start">               
+                        <div class="mb-3">
+                            <label for="inputNome" class="form-label">Produto</label>
+                            <input type="text" class="form-control" id="inputNome" placeholder="Insira Nome do Produto" required> 
+                        </div>               
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="inputValor" class="form-label">Valor</label>                      
+                                    <input type="text" class="form-control" id="inputValor" placeholder="0.00" required>  
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="inputCategoria" class="form-label">Categoria</label>
+                                    <select class="form-control" id="inputCategoria" onclick="fetchCategoria()">
+                                        
+                                        
+                                    </select>
+                                </div>
+                            </div>
+                        </div>         
+                        <div class="mb-3">
+                            <label for="inputDescricao" class="form-label">Descrição</label>
+                            <input type="text" class="form-control" id="inputDescricao" placeholder="Insira Descrição do Produto">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="inputObs" class="form-label">Limite Complementos</label>
+                                    <input type="text" class="form-control" id="inputLimite" placeholder="0">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="inputObs" class="form-label">Observação</label>
+                                    <input type="text" class="form-control" id="inputObs" placeholder="Alguma Observação">
+                                </div>
+                            </div>
+                        </div>    
+                        <div class="mb-3">
+                            <label for="inputImagem" class="form-label">Selecione uma imagem:</label>     
+                            <input type="file" class="form-control" id="inputImagem" accept="image/*">
+                        </div>
+                    </form>
+                </div>
+
+                <div class="tab-pane fade" id="nav-complements" role="tabpanel" aria-labelledby="nav-profile-tab">
+                    <form class="text-start">  
+                        <div class="row">     
+                            <label style="margin-top: 10px; margin-bottom: -15px;">Complementos Disponíveis: </label>                       
+                                <div class="mb-3">
+                                    <label for="itens"></label>                      
+                                    <select id="itens" onchange="adicionarComplemento()" class="w-100">                                    
+                                        <option value="hamburguer">Hamburguer</option>
+                                        <option value="bacon">Bacon</option>
+                                        <option value="salada">Salada</option>
+                                    </select>
+                                </div>
+                         </div>                            
+                                         
+                        
+                        <div id="botoes"></div>        
+                    </form>
+                </div>
+
+                <div class="tab-pane fade" id="nav-variacoes" role="tabpanel" aria-labelledby="nav-contact-tab"> 
+                    <form class="text-start"> 
+                        <label for="nome" class="col-sm-2 col-form-label" style="margin-top: 10px;">Nome:</label> 
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="inputVariacao" placeholder="Digite um nome">
+                            </div>
+                            <div class="col-md-6">
+                                <button type="button" class="btn btn-light w-100" onclick="adicionarBotao()" >Adicionar</button>
+                            </div>
+                        </div>
+                    </form>         
+                    
+                    <div id="bts"></div> 
+                    <a href="#">
+                            <button type="submit" id="submit" class="btn btn-primary btn-block w-100" style="margin-top: 15px ; background-color: #ffbe33; border-color: transparent; text-decoration: none;">CADASTRAR PRODUTO</button>
+                        </a>        
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-    </section>
+      </div>
+      
     
     <section>
         <div class="modal" id="modalEditarProduto" style="display:none;">
@@ -353,5 +346,49 @@
     
 </body>
 <script src="js/dashboard.js"></script>
+<script src="js/fetchDashboard.js"></script>
+<!-- Adicione o jQuery (necessário para o Bootstrap) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 
+<!-- Adicione os scripts do Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+function adicionarComplemento() {
+    var select = document.getElementById("itens");
+    var selectedItem = select.options[select.selectedIndex].text;
+    var botoesDiv = document.getElementById("botoes");
+    var botao = document.createElement("button");
+    botao.textContent = selectedItem;
+    botao.classList.add("btn", "btn-test");
+
+    botao.addEventListener('click', function() {
+        this.parentNode.removeChild(this); 
+    });
+
+    botoesDiv.insertBefore(botao, botoesDiv.firstChild);
+}
+function adicionarBotao() {
+    var nomeInput = document.getElementById("inputVariacao"); // Corrigindo o ID do input
+    var nomeDigitado = nomeInput.value;
+
+    if (nomeDigitado) {
+        var botoesDiv = document.getElementById("bts");
+        var botao = document.createElement("button");
+        botao.textContent = nomeDigitado;
+        botao.classList.add("btn", "btn-test", "me-2", "mb-2");
+
+        // Adicionando o botão no início da lista
+        botoesDiv.insertBefore(botao, botoesDiv.firstChild);
+
+        nomeInput.value = ""; 
+
+        botao.addEventListener('click', function() {
+            this.parentNode.removeChild(this); // Remove o botão ao clicar nele
+        });
+    }
+}
+
+
+</script>
 </html>

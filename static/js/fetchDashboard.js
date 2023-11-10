@@ -1,3 +1,192 @@
+$(document).ready(function() {
+    $('#nav-tab a').on('click', function(e) {
+      e.preventDefault()
+      $(this).tab('show')
+    })
+  })
+  
+//FETCH -- PRODUTO
+function adicionarProduto(){
+    const modal = document.getElementById('modalAdicionarProduto');
+    modal.style.display = 'block';
+    event.preventDefault();
+}
+
+function fecharModalProduto(){
+    const modal = document.getElementById('modalAdicionarProduto');
+    modal.style.display = 'none';
+}
+
+function excluirProduto() {
+    const modal = document.getElementById('modalExcluirProduto');
+    modal.style.display = 'block';
+
+    // Adicionando uma função para fechar o modal
+    const fecharModal = document.getElementById('fecharModalProduto');
+    fecharModal.addEventListener('click', function(){
+        modal.style.display = 'none';
+    });
+
+    const fechar = document.getElementById('fecharModalProdutoo');
+    fechar.addEventListener('click', function(){
+        modal.style.display = 'none';
+    });
+}
+
+function editarProduto(){
+    const modal = document.getElementById('modalEditarProduto');
+    modal.style.display = 'block';
+    event.preventDefault();
+
+    // Adicionando uma função para fechar o modal
+    const fecharModal = document.getElementById('fecharModalEditarProduto');
+    fecharModal.addEventListener('click', function(){
+        modal.style.display = 'none';
+    });
+
+}
+
+function opcaoSelecionada(nome) {
+    document.getElementById('opcao').value = nome;
+}
+
+function popularCategorias(categorias) {
+    var selectCategoria = document.getElementById('inputCategoria');
+
+    selectCategoria.innerHTML = '`<option id="opcao">Selecione uma Opção</option>`';
+
+    categorias.forEach(function (categoria) {
+        selectCategoria.innerHTML += `<option value="${categoria.id}" onclick="opcaoSelecionada('${categoria.nome}')">${categoria.nome}</option>`;
+    });
+}
+
+function fetchCategoria() {
+    var id = localStorage.getItem("id");
+    var token = localStorage.getItem("token");
+    
+
+    fetch(apiUrl + `/api/Categoria/Estabelecimento/${id}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
+    })
+        .then(response => response.json())
+        .then(data => popularCategorias(data))
+        .catch(error => console.error('Erro:', error));
+}
+
+
+var produtos = document.getElementById('tabelaProdutos');
+
+function buscarProdutos()
+{
+    const token = localStorage.getItem("token");
+    const id = localStorage.getItem("id");
+    fetch(apiUrl+`/api/Produto/Estabelecimento/${id}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`  
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data)
+        var tabela = `<table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Valor</th>
+                                <th scope="col">Situação</th>
+                                <th scope="col">Opções</th>
+                            </tr>
+                        </thead>
+                        <tbody>`;
+
+        for (var i = 0; i < data.length; i++) {
+            var card = carregarProdutos(data[i]);
+            tabela += card;
+        }
+
+        tabela += `</tbody></table>`;
+
+        produtos.innerHTML = tabela;
+    })
+    .catch(error => console.error('Erro:', error));
+
+    event.preventDefault();
+}
+
+function carregarProdutos(dado){
+    var row = `
+        <tr>
+            <th scope="row">${dado.produtoId}</th>
+            <td>${dado.nome}</td>
+            <td>${dado.preco}</td>
+            <td>Ativo</td>
+            <td>
+                <div>
+                    <a class="btn table-action" href="#">
+                        <i class="action-icon fas fa-edit" onclick="editarProduto(${dado.produtoId})"></i>
+                        <i class="action-icon fas fa-trash" onclick="excluirProduto(${dado.produtoId})"></i>
+                    </a>                         
+                </div>
+            </td>
+        </tr>
+    `;
+
+    return row;
+}
+
+// function criarProduto(){
+
+//     const token = localStorage.getItem("token");
+
+//     var nome = document.getElementById('inputNome').value; 
+//     var valor = document.getElementById('inputValor').value;
+//     var categoria = document.getElementById('inputNome').value; 
+//     var descricao = document.getElementById('inputValor').value;
+//     var limite = document.getElementById('inputNome').value; 
+//     var observacao = document.getElementById('inputValor').value;
+//     var imagem = document.getElementById('inputNome').value; 
+//     var complemento = document.getElementById('inputValor').value;
+//     var variacao = document.getElementById('inputNome').value; 
+
+
+//     const dados = {
+//         nome: nome, precoVenda: valor
+//     };       
+
+//     fetch(apiUrl+'/api/Complemento/',{             
+//         method: 'POST',
+//         headers:{
+//             'Content-Type': 'application/json',    
+//             'Authorization': `Bearer ${token}`             
+//         },
+//         body: JSON.stringify(dados)           
+//     })
+//     .then(response => {
+//         if (!response.ok) {
+//           throw new Error('Erro ao cadastrar complemento');
+//         }
+//         else{
+//             window.location.href = "buscarComplemento.html"
+//         }
+//         return response.text();
+//       })
+//       .then(data => {
+//         console.log('Complemento cadastrado com sucesso:', data);
+//       })
+//       .catch(error => console.error('Erro:', error));
+//       event.preventDefault();  
+// }
+
+
+
+
 //LOGIN -- TOKEN
 function meuLogin()
 {
@@ -9,7 +198,7 @@ function meuLogin()
         password: password
     };
 
-    fetch('http://localhost:5252/api/Autoriza/Estabelecimento', { 
+    fetch(apiUrl+'/api/Autoriza/Estabelecimento', { 
         method: 'POST',
         headers:{
             'Content-Type': 'application/json'
@@ -39,7 +228,7 @@ function meuLogin()
 //FETCH -- PERFIL DO ESTABELECIMENTO
 function carregarDados(){
     const id = localStorage.getItem("id");
-    fetch(`http://localhost:5252/api/Estabelecimento/${id}`, {             
+    fetch(apiUrl+`/api/Estabelecimento/${id}`, {             
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -104,7 +293,7 @@ function gravarAlteracoes(){
      };
 
 
-    fetch(`http://localhost:5252/api/Estabelecimento/${id2}`, {             
+    fetch(apiUrl+`/api/Estabelecimento/${id2}`, {             
         method: 'PUT',
         headers:{
             'Content-Type': 'application/json',
@@ -127,14 +316,15 @@ function gravarAlteracoes(){
 
 //FETCH -- CLIENTE
 var idCliente = 0;
-var clientes = document.getElementById('tabelaClientes');
 
 function buscarCliente()
 {
-    fetch(`http://aguiadelivery.com.br:6060/api/Consumidor/0/a`, { //ESTA SEM FILTRO PARA USUARIOS EXCLUIDOS
+    const token = localStorage.getItem("token");
+    fetch(apiUrl+'/api/Consumidor/0/a', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`  
         }
     })
     .then(response => response.json())
@@ -159,7 +349,7 @@ function buscarCliente()
 
         tabela += `</tbody></table>`;
 
-        clientes.innerHTML = tabela;
+        document.getElementById('tabelaClientes').innerHTML = tabela;
     })
     .catch(error => console.error('Erro:', error));
 
@@ -200,15 +390,19 @@ function fecharModalCliente(){
     document.getElementById('modalAdicionarCliente').style.display = 'none';
 }
 
-function carregarDadosCliente(id){
-    fetch(`http://aguiadelivery.com.br:6060/api/Consumidor/${id}`, {             
+function carregarDadosCliente(id){    
+    const token = localStorage.getItem("token");
+
+    fetch(apiUrl+`/api/Consumidor/${id}`, {             
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`  
         }          
     })
     .then(response => response.json())
     .then(data => {
+        console.log(data)
         idCliente = data.consumidorId;
         document.getElementById('inputNome').value = data.nome; 
         document.getElementById('inputContato').value = data.telefone;
@@ -224,6 +418,8 @@ function carregarDadosCliente(id){
 }
 
 function registraCliente(){
+    const token = localStorage.getItem("token");
+    
     var nome = document.getElementById('inputNome').value; 
     var telefone = document.getElementById('inputContato').value;
     telefone = telefone.replace(/\D/g,'');       
@@ -241,10 +437,11 @@ function registraCliente(){
         bairro: bairro, cep: cep, numero: numero, cidade_IBGE: cidade_IBGE, uf: uf
     };       
 
-    fetch('http://aguiadelivery.com.br:6060/api/Consumidor/'+idCliente, {             
+    fetch(apiUrl+'/api/Consumidor/'+idCliente, {             
         method: 'PUT',
         headers:{
-            'Content-Type': 'application/json',               
+            'Content-Type': 'application/json',    
+            'Authorization': `Bearer ${token}`             
         },
         body: JSON.stringify(dados)           
     })
@@ -263,7 +460,7 @@ function registraCliente(){
       .catch(error => console.error('Erro:', error));
       event.preventDefault();   
 }
-
+ 
 function excluirCliente(id) {
    
     const modal = document.getElementById('modalExcluirCliente');
@@ -284,8 +481,12 @@ function excluirCliente(id) {
 
 function removerCliente() {
 
-    fetch('http://aguiadelivery.com.br:6060/api/Consumidor/'+idCliente, {
-        method: 'DELETE'
+    const token = localStorage.getItem("token");
+    fetch(apiUrl+'/api/Consumidor/'+idCliente, {
+        method: 'DELETE',
+        headers:{             
+            'Authorization': `Bearer ${token}`             
+        },
     })
     .then(response => {
         if (!response.ok) {
@@ -311,6 +512,7 @@ function adicionarCliente(){
 }
 
 function criarCliente(){
+    const token = localStorage.getItem("token");
     var nome = document.getElementById('insertNome').value; 
     var telefone = document.getElementById('insertContato').value;
     telefone = telefone.replace(/\D/g,'');      
@@ -329,10 +531,11 @@ function criarCliente(){
         bairro: bairro, cep: cep, numero: numero, cidade_IBGE: cidade_IBGE, uf: uf, senha: senha
     };       
 
-    fetch('http://aguiadelivery.com.br:6060/api/Consumidor/',{             
+    fetch(apiUrl+'/api/Consumidor/',{             
         method: 'POST',
         headers:{
-            'Content-Type': 'application/json',               
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`                         
         },
         body: JSON.stringify(dados)           
     })
@@ -355,12 +558,11 @@ function criarCliente(){
 
 //FETCH -- CATEGORIA
 var idCategoria = 0;
-var categorias = document.getElementById('tabelaCategoria');
 
 function buscarCat(){
     const id = localStorage.getItem("id");
     const token = localStorage.getItem("token");
-    fetch(`http://localhost:5252/api/Categoria/Estabelecimento/${id}`, { 
+    fetch(apiUrl+`/api/Categoria/Estabelecimento/${id}`, { 
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -386,7 +588,7 @@ function buscarCat(){
         }
 
         tabela += `</tbody></table>`;
-        categorias.innerHTML = tabela;
+        document.getElementById('tabelaCategoria').innerHTML = tabela;
     })
     .catch(error => console.error('Erro:', error));
 
@@ -434,7 +636,7 @@ function criarCategoria(){
         nome: nome, imagem: imagem
     };       
 
-    fetch('http://localhost:5252/api/Categoria/',{             
+    fetch(apiUrl+'/api/Categoria/',{             
         method: 'POST',
         headers:{
             'Content-Type': 'application/json',    
@@ -479,7 +681,7 @@ function excluirCategoria(id) {
 
 function removerCategoria() {
     const token = localStorage.getItem("token");
-    fetch('http://localhost:5252/api/Categoria/'+idCategoria, {
+    fetch(apiUrl+'/api/Categoria/'+idCategoria, {
         method: 'DELETE',
         headers: {
             'Authorization': `Bearer ${token}` 
@@ -518,7 +720,7 @@ function editarCategoria(id){
 }
 
 function carregarDadosCategoria(id){
-    fetch(`http://localhost:5252/api/Categoria/${id}`, {             
+    fetch(apiUrl+`/api/Categoria/${id}`, {             
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -545,7 +747,7 @@ function registraCategoria(){
         categoriaId: idCategoria, nome: nome, imagem: imagem
     };       
 
-    fetch('http://localhost:5252/api/Categoria/'+idCategoria,{             
+    fetch(apiUrl+'/api/Categoria/'+idCategoria,{             
         method: 'PUT',
         headers:{
             'Content-Type': 'application/json',    
@@ -573,7 +775,6 @@ function registraCategoria(){
 
 //FETCH -- COMPLEMENTOS
 var idComplemento = 0;
-var imagens = document.getElementById('tabelaComplementos');
 
 function adicionarComplemento(){
     const modal = document.getElementById('modalAdicionarComplemento');
@@ -621,7 +822,7 @@ function buscarComplementos()
 {
     const id = localStorage.getItem("id");
     const token = localStorage.getItem("token");
-    fetch(`http://localhost:5252/api/Complemento/Estabelecimento/${id}`, { 
+    fetch(apiUrl+`/api/Complemento/Estabelecimento/${id}`, { 
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -649,7 +850,7 @@ function buscarComplementos()
 
         tabela += `</tbody></table>`;
 
-        imagens.innerHTML = tabela;
+        document.getElementById('tabelaComplementos').innerHTML = tabela;
     })
     .catch(error => console.error('Erro:', error));
 
@@ -687,7 +888,7 @@ function criarComplemento(){
         nome: nome, precoVenda: valor
     };       
 
-    fetch('http://localhost:5252/api/Complemento/',{             
+    fetch(apiUrl+'/api/Complemento/',{             
         method: 'POST',
         headers:{
             'Content-Type': 'application/json',    
@@ -716,12 +917,11 @@ function registraComplemento(){
 
     var nome = document.getElementById('updateNome').value; 
     var valor = document.getElementById('updateValor').value;
-
     const dados = {
         complementoId: idComplemento, nome: nome, precoVenda: valor
     };       
 
-    fetch('http://localhost:5252/api/Complemento/'+idComplemento,{             
+    fetch(apiUrl+'/api/Complemento/'+idComplemento,{             
         method: 'PUT',
         headers:{
             'Content-Type': 'application/json',    
@@ -747,7 +947,7 @@ function registraComplemento(){
 
 function carregarDadosComplemento(id){
     const token = localStorage.getItem("token");
-    fetch(`http://localhost:5252/api/Complemento/${id}`, {             
+    fetch(apiUrl+`/api/Complemento/${id}`, {             
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -767,7 +967,7 @@ function carregarDadosComplemento(id){
 
 function removerComplemento() {
     const token = localStorage.getItem("token");
-    fetch('http://localhost:5252/api/Complemento/'+idComplemento, {
+    fetch(apiUrl+'/api/Complemento/'+idComplemento, {
         method: 'DELETE',
         headers: {
             'Authorization': `Bearer ${token}` 
