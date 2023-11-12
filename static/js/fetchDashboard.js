@@ -4,188 +4,6 @@ $(document).ready(function() {
       $(this).tab('show')
     })
   })
-  
-//FETCH -- PRODUTO
-function adicionarProduto(){
-    const modal = document.getElementById('modalAdicionarProduto');
-    modal.style.display = 'block';
-    event.preventDefault();
-}
-
-function fecharModalProduto(){
-    const modal = document.getElementById('modalAdicionarProduto');
-    modal.style.display = 'none';
-}
-
-function excluirProduto() {
-    const modal = document.getElementById('modalExcluirProduto');
-    modal.style.display = 'block';
-
-    // Adicionando uma função para fechar o modal
-    const fecharModal = document.getElementById('fecharModalProduto');
-    fecharModal.addEventListener('click', function(){
-        modal.style.display = 'none';
-    });
-
-    const fechar = document.getElementById('fecharModalProdutoo');
-    fechar.addEventListener('click', function(){
-        modal.style.display = 'none';
-    });
-}
-
-function editarProduto(){
-    const modal = document.getElementById('modalEditarProduto');
-    modal.style.display = 'block';
-    event.preventDefault();
-
-    // Adicionando uma função para fechar o modal
-    const fecharModal = document.getElementById('fecharModalEditarProduto');
-    fecharModal.addEventListener('click', function(){
-        modal.style.display = 'none';
-    });
-
-}
-
-function opcaoSelecionada(nome) {
-    document.getElementById('opcao').value = nome;
-}
-
-function popularCategorias(categorias) {
-    var selectCategoria = document.getElementById('inputCategoria');
-
-    selectCategoria.innerHTML = '`<option id="opcao">Selecione uma Opção</option>`';
-
-    categorias.forEach(function (categoria) {
-        selectCategoria.innerHTML += `<option value="${categoria.id}" onclick="opcaoSelecionada('${categoria.nome}')">${categoria.nome}</option>`;
-    });
-}
-
-function fetchCategoria() {
-    var id = localStorage.getItem("id");
-    var token = localStorage.getItem("token");
-    
-
-    fetch(apiUrl + `/api/Categoria/Estabelecimento/${id}`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-        }
-    })
-        .then(response => response.json())
-        .then(data => popularCategorias(data))
-        .catch(error => console.error('Erro:', error));
-}
-
-
-var produtos = document.getElementById('tabelaProdutos');
-
-function buscarProdutos()
-{
-    const token = localStorage.getItem("token");
-    const id = localStorage.getItem("id");
-    fetch(apiUrl+`/api/Produto/Estabelecimento/${id}`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`  
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log(data)
-        var tabela = `<table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Nome</th>
-                                <th scope="col">Valor</th>
-                                <th scope="col">Situação</th>
-                                <th scope="col">Opções</th>
-                            </tr>
-                        </thead>
-                        <tbody>`;
-
-        for (var i = 0; i < data.length; i++) {
-            var card = carregarProdutos(data[i]);
-            tabela += card;
-        }
-
-        tabela += `</tbody></table>`;
-
-        produtos.innerHTML = tabela;
-    })
-    .catch(error => console.error('Erro:', error));
-
-    event.preventDefault();
-}
-
-function carregarProdutos(dado){
-    var row = `
-        <tr>
-            <th scope="row">${dado.produtoId}</th>
-            <td>${dado.nome}</td>
-            <td>${dado.preco}</td>
-            <td>Ativo</td>
-            <td>
-                <div>
-                    <a class="btn table-action" href="#">
-                        <i class="action-icon fas fa-edit" onclick="editarProduto(${dado.produtoId})"></i>
-                        <i class="action-icon fas fa-trash" onclick="excluirProduto(${dado.produtoId})"></i>
-                    </a>                         
-                </div>
-            </td>
-        </tr>
-    `;
-
-    return row;
-}
-
-// function criarProduto(){
-
-//     const token = localStorage.getItem("token");
-
-//     var nome = document.getElementById('inputNome').value; 
-//     var valor = document.getElementById('inputValor').value;
-//     var categoria = document.getElementById('inputNome').value; 
-//     var descricao = document.getElementById('inputValor').value;
-//     var limite = document.getElementById('inputNome').value; 
-//     var observacao = document.getElementById('inputValor').value;
-//     var imagem = document.getElementById('inputNome').value; 
-//     var complemento = document.getElementById('inputValor').value;
-//     var variacao = document.getElementById('inputNome').value; 
-
-
-//     const dados = {
-//         nome: nome, precoVenda: valor
-//     };       
-
-//     fetch(apiUrl+'/api/Complemento/',{             
-//         method: 'POST',
-//         headers:{
-//             'Content-Type': 'application/json',    
-//             'Authorization': `Bearer ${token}`             
-//         },
-//         body: JSON.stringify(dados)           
-//     })
-//     .then(response => {
-//         if (!response.ok) {
-//           throw new Error('Erro ao cadastrar complemento');
-//         }
-//         else{
-//             window.location.href = "buscarComplemento.html"
-//         }
-//         return response.text();
-//       })
-//       .then(data => {
-//         console.log('Complemento cadastrado com sucesso:', data);
-//       })
-//       .catch(error => console.error('Erro:', error));
-//       event.preventDefault();  
-// }
-
-
-
 
 //LOGIN -- TOKEN
 function meuLogin()
@@ -577,6 +395,7 @@ function buscarCat(){
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Nome</th>
+                                <th scope="col">Tipo</th>
                                 <th scope="col">Opções</th>
                             </tr>
                         </thead>
@@ -600,6 +419,7 @@ function carregarCategoria(data){
         <tr>
             <th scope="row">${data.categoriaId}</th>
             <td>${data.nome}</td>
+            <td>${data.tipo}</td>
             <td>
                 <div>
                     <a class="btn table-action" href="#">
@@ -631,11 +451,33 @@ function criarCategoria(){
 
     var nome = document.getElementById('insertNome').value; 
     var imagem = document.getElementById('insertImagem').value;
+    var radioButtons = document.getElementsByName('inlineRadioOptions');
+    var categoriaSelecionada = '';
 
+    radioButtons.forEach(function (radio) {
+        if (radio.checked) {
+            categoriaSelecionada = radio.value;
+        }
+
+    });
+
+    if(categoriaSelecionada == 'pizza')
+    {
+        categoriaSelecionada = 1;
+    }else if(categoriaSelecionada == 'bebida'){
+        categoriaSelecionada = 2;
+    }else{
+        categoriaSelecionada = 0;
+    }
+   
     const dados = {
-        nome: nome, imagem: imagem
-    };       
+        nome: nome,
+        imagem: imagem,
+        tipo: categoriaSelecionada  
+    };
 
+   
+   
     fetch(apiUrl+'/api/Categoria/',{             
         method: 'POST',
         headers:{
@@ -666,7 +508,6 @@ function excluirCategoria(id) {
 
 
     idCategoria = id;
-    alert(idCategoria)
 
     const fecharModal = document.getElementById('fecharModalCategoria');
     fecharModal.addEventListener('click', function(){
@@ -742,10 +583,31 @@ function registraCategoria(){
     
     var nome = document.getElementById('updateNome').value; 
     var imagem = document.getElementById('updateImagem').value;
+    var radioButtons = document.getElementsByName('inlineRadioOptions');
+    var categoriaSelecionada = '';
 
+    radioButtons.forEach(function (radio) {
+        if (radio.checked) {
+            categoriaSelecionada = radio.value;
+        }
+
+    });
+
+    if(categoriaSelecionada == 'pizza')
+    {
+        categoriaSelecionada = 1;
+    }else if(categoriaSelecionada == 'bebida'){
+        categoriaSelecionada = 2;
+    }else{
+        categoriaSelecionada = 0;
+    }
+   
     const dados = {
-        categoriaId: idCategoria, nome: nome, imagem: imagem
-    };       
+        categoriaId: idCategoria,
+        nome: nome,
+        imagem: imagem,
+        tipo: categoriaSelecionada  
+    };
 
     fetch(apiUrl+'/api/Categoria/'+idCategoria,{             
         method: 'PUT',
@@ -818,11 +680,11 @@ function editarComplemento(id){
 
 }
 
-function buscarComplementos()
-{
+function buscarComplementos(){
+   
     const id = localStorage.getItem("id");
     const token = localStorage.getItem("token");
-    fetch(apiUrl+`/api/Complemento/Estabelecimento/${id}`, { 
+    fetch(apiUrl+`/api/Categoria/Estabelecimento/${id}`, { 
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -834,11 +696,8 @@ function buscarComplementos()
         console.log(data)
         var tabela = `<table class="table table-striped">
                         <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Nome</th>
-                                <th scope="col">Preço</th>
-                                <th scope="col">Opções</th>
+                            <tr>                                
+                                <th scope="col">Nome</th>                                
                             </tr>
                         </thead>
                         <tbody>`;
@@ -849,7 +708,6 @@ function buscarComplementos()
         }
 
         tabela += `</tbody></table>`;
-
         document.getElementById('tabelaComplementos').innerHTML = tabela;
     })
     .catch(error => console.error('Erro:', error));
@@ -857,12 +715,70 @@ function buscarComplementos()
     event.preventDefault();
 }
 
-function carregarComplemento(dado){
+function carregarComplemento(data){
+    var row = `
+        <tr>            
+            <td onclick="verCategoriaComplemento(${data.categoriaId})">${data.nome}</td>
+        </tr>
+    `;
+    return row;
+}
+
+function verCategoriaComplemento(id){
+   
+    document.getElementById('listarComplemento').style.display = 'block';
+
+    const token = localStorage.getItem("token");
+    fetch(apiUrl+`/api/Complemento?CategoriaId=${id}`, { 
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}` 
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data)
+        var tabela = `<table class="table table-striped">
+                        <thead>
+                            <tr>    
+                                <th scope="col">#</th>                            
+                                <th scope="col">Nome</th>
+                                <th scope="col">Valor</th>  
+                                <th scope="col">Opções</th>                               
+                            </tr>
+                        </thead>
+                        <tbody>`;
+
+        for (var i = 0; i < data.length; i++) {
+            var card = carregarComplementoCategoria(data[i]);
+            tabela += card;
+        }
+
+        tabela += `</tbody></table>`;
+        document.getElementById('tabelaComplementoCategoria').innerHTML = tabela;
+    })
+    .catch(error => console.error('Erro:', error));
+
+
+    const fecharCCButton = document.getElementById('fecharCC');
+
+   
+    fecharCCButton.addEventListener('click', function () {
+        document.getElementById('listarComplemento').style.display = 'none';
+    });
+
+   
+    event.preventDefault();
+}
+
+function carregarComplementoCategoria(dado){
     var row = `
         <tr>
             <th scope="row">${dado.complementoId}</th>
             <td>${dado.nome}</td>
             <td>${dado.precoVenda}</td>
+            <td>Ativo</td>
             <td>
                 <div>
                     <a class="btn table-action" href="#">
@@ -875,41 +791,6 @@ function carregarComplemento(dado){
     `;
 
     return row;
-}
-
-function criarComplemento(){
-
-    const token = localStorage.getItem("token");
-
-    var nome = document.getElementById('inputNome').value; 
-    var valor = document.getElementById('inputValor').value;
-
-    const dados = {
-        nome: nome, precoVenda: valor
-    };       
-
-    fetch(apiUrl+'/api/Complemento/',{             
-        method: 'POST',
-        headers:{
-            'Content-Type': 'application/json',    
-            'Authorization': `Bearer ${token}`             
-        },
-        body: JSON.stringify(dados)           
-    })
-    .then(response => {
-        if (!response.ok) {
-          throw new Error('Erro ao cadastrar complemento');
-        }
-        else{
-            window.location.href = "buscarComplemento.html"
-        }
-        return response.text();
-      })
-      .then(data => {
-        console.log('Complemento cadastrado com sucesso:', data);
-      })
-      .catch(error => console.error('Erro:', error));
-      event.preventDefault();  
 }
 
 function registraComplemento(){
@@ -942,7 +823,9 @@ function registraComplemento(){
         console.log('Complemento editado com sucesso:', data);
       })
       .catch(error => console.error('Erro:', error));
-      event.preventDefault();  
+
+
+      event.preventDefault();
 }
 
 function carregarDadosComplemento(id){
@@ -989,3 +872,395 @@ function removerComplemento() {
 
     event.preventDefault();
 }
+
+var categoriaIdSelecionado = 0;
+
+function pegaId(id){
+    categoriaIdSelecionado = id;
+   
+}
+
+function fetchCategoriaComplemento() {
+    const id = localStorage.getItem("id");
+    const token = localStorage.getItem("token");
+    
+    fetch(apiUrl + `/api/Categoria/Estabelecimento/${id}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        var selectCategoria = document.getElementById('inputCategoriaC');
+
+        selectCategoria.innerHTML = `<option value="0" disabled>Selecione uma Opção</option>`;
+
+        console.log(data)
+
+        data.forEach(function (categoria) {
+            selectCategoria.innerHTML += `<option value="${categoria.categoriaId}" onclick="pegaId(${categoria.categoriaId})">${categoria.nome}</option>`;
+        });
+
+              
+    })
+    .catch(error => console.error('Erro:', error));
+
+    event.preventDefault();
+}
+
+function criarComplemento(){
+
+    const token = localStorage.getItem("token");
+   
+    var nome = document.getElementById('inputNome').value; 
+    var valor = document.getElementById('inputValor').value;
+    var categoriaId = categoriaIdSelecionado;
+  
+    const dados = {
+        categoriaId: categoriaId, nome: nome, precoVenda: valor
+    };       
+    
+
+    fetch(apiUrl+'/api/Complemento',{             
+        method: 'POST',
+        headers:{
+            'Content-Type': 'application/json',    
+            'Authorization': `Bearer ${token}`             
+        },
+        body: JSON.stringify(dados)           
+    })
+    .then(response => {
+        if (!response.ok) {
+          throw new Error('Erro ao cadastrar complemento');
+        }
+        else{
+            window.location.href = "buscarComplemento.html"
+        }
+        return response.text();
+      })
+      .then(data => {
+        console.log('Complemento cadastrado com sucesso:', data);
+      })
+      .catch(error => console.error('Erro:', error));
+      event.preventDefault();  
+}
+
+
+
+
+//FETCH -- PRODUTO
+function adicionarProduto(){
+    const modal = document.getElementById('modalAdicionarProduto');
+    modal.style.display = 'block';
+    event.preventDefault();
+}
+
+function fecharModalProduto(){
+    const modal = document.getElementById('modalAdicionarProduto');
+    modal.style.display = 'none';
+}
+
+function excluirProduto() {
+    const modal = document.getElementById('modalExcluirProduto');
+    modal.style.display = 'block';
+
+    // Adicionando uma função para fechar o modal
+    const fecharModal = document.getElementById('fecharModalProduto');
+    fecharModal.addEventListener('click', function(){
+        modal.style.display = 'none';
+    });
+
+    const fechar = document.getElementById('fecharModalProdutoo');
+    fechar.addEventListener('click', function(){
+        modal.style.display = 'none';
+    });
+}
+
+function editarProduto(){
+    const modal = document.getElementById('modalEditarProduto');
+    modal.style.display = 'block';
+    event.preventDefault();
+
+    // Adicionando uma função para fechar o modal
+    const fecharModal = document.getElementById('fecharModalEditarProduto');
+    fecharModal.addEventListener('click', function(){
+        modal.style.display = 'none';
+    });
+
+}
+
+function fetchCategoria() {
+    var id = localStorage.getItem("id");
+    var token = localStorage.getItem("token");
+    
+
+    fetch(`http://localhost:5252/api/Categoria/Estabelecimento/${id}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
+    })
+        .then(response => response.json())
+        .then(data => {
+            var selectCategoria = document.getElementById('inputCategoria');
+
+            selectCategoria.innerHTML = `<option value="0" disabled>Selecione uma Opção</option>`;
+
+
+            data.forEach(function (data) {
+                selectCategoria.innerHTML += `<option value="${data.id}">${data.nome}</option>`;
+            });
+
+            
+        })
+        .catch(error => console.error('Erro:', error));
+}
+
+function buscarProdutos(){
+   
+    const id = localStorage.getItem("id");
+    const token = localStorage.getItem("token");
+    fetch(apiUrl+`/api/Categoria/Estabelecimento/${id}`, { 
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}` 
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data)
+        var tabela = `<table class="table table-striped">
+                        <thead>
+                            <tr>                                
+                                <th scope="col">Nome</th>                                
+                            </tr>
+                        </thead>
+                        <tbody>`;
+
+        for (var i = 0; i < data.length; i++) {
+            var card = carregarProdutos(data[i]);
+            tabela += card;
+        }
+
+        tabela += `</tbody></table>`;
+        document.getElementById('tabelaProdutos').innerHTML = tabela;
+    })
+    .catch(error => console.error('Erro:', error));
+
+    event.preventDefault();
+}
+
+function carregarProdutos(data){
+    var row = `
+        <tr>            
+            <td onclick="verProdutos(${data.categoriaId})">${data.nome}</td>
+        </tr>
+    `;
+    return row;
+}
+
+function verProdutos(categoria){
+
+    const id = localStorage.getItem("id");
+    const token = localStorage.getItem("token");
+    fetch(apiUrl+`/api/Produto/Estabelecimento/${id}?CategoriaId=${categoria}&Active=true`, { 
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}` 
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data)
+        var tabela = `<table class="table table-striped">
+                        <thead>
+                            <tr>    
+                                <th scope="col">#</th>                            
+                                <th scope="col">Nome</th>
+                                <th scope="col">Valor</th>  
+                                <th scope="col">Opções</th>                               
+                            </tr>
+                        </thead>
+                        <tbody>`;
+
+        for (var i = 0; i < data.length; i++) {
+            var card = carregarProd(data[i]);
+            tabela += card;
+        }
+
+        tabela += `</tbody></table>`;
+        document.getElementById('tabelaProdutos').innerHTML = tabela;
+    })
+    .catch(error => console.error('Erro:', error));
+
+
+    // const fecharCCButton = document.getElementById('fecharCC');
+
+   
+    // fecharCCButton.addEventListener('click', function () {
+    //     document.getElementById('listarProdutos').style.display = 'none';
+    // });
+
+   
+    event.preventDefault();
+}
+
+function carregarProd(dado){
+    var row = `
+        <tr>
+            <th scope="row">${dado.produtoId}</th>
+            <td>${dado.nome}</td>
+            <td>${dado.preco}</td>
+            <td>Ativo</td>
+            <td>
+                <div>
+                    <a class="btn table-action" href="#">
+                        <i class="action-icon fas fa-edit" onclick="editarComplemento(${dado.produtoId})"></i>
+                        <i class="action-icon fas fa-trash" onclick="excluirComplemento(${dado.produtoId})"></i>
+                    </a>                         
+                </div>
+            </td>
+        </tr>
+    `;
+
+    return row;
+}
+// function listarComplementos(){
+//     const id = localStorage.getItem("id");
+//     const token = localStorage.getItem("token");
+//     fetch(apiUrl+`/api/Complemento/Estabelecimento/${id}`, { 
+//         method: 'GET',
+//         headers: {
+//             'Content-Type': 'application/json',
+//             'Authorization': `Bearer ${token}` 
+//         }
+//     })
+//     .then(response => response.json())
+//     .then(data => {
+//         console.log(data)
+//         var tabela = 
+//                 `<div class="col-md-4">
+//                     <div>
+//                         <input type="checkbox" id="${data.id}">
+//                         <label for="${data.id}">${data.nome}</label>
+//                     </div>                                                      
+//                 </div>`;
+
+//         document.getElementById('listaComplementos').innerHTML = tabela;
+//     })
+//     .catch(error => console.error('Erro:', error));
+
+//     event.preventDefault();
+// }
+
+// var produtos = document.getElementById('tabelaProdutos');
+
+// function buscarProdutos()
+// {
+//     const token = localStorage.getItem("token");
+//     const id = localStorage.getItem("id");
+//     fetch(apiUrl+`/api/Produto/Estabelecimento/${id}`, {
+//         method: 'GET',
+//         headers: {
+//             'Content-Type': 'application/json',
+//             'Authorization': `Bearer ${token}`  
+//         }
+//     })
+//     .then(response => response.json())
+//     .then(data => {
+//         console.log(data)
+//         var tabela = `<table class="table table-striped">
+//                         <thead>
+//                             <tr>
+//                                 <th scope="col">#</th>
+//                                 <th scope="col">Nome</th>
+//                                 <th scope="col">Valor</th>
+//                                 <th scope="col">Situação</th>
+//                                 <th scope="col">Opções</th>
+//                             </tr>
+//                         </thead>
+//                         <tbody>`;
+
+//         for (var i = 0; i < data.length; i++) {
+//             var card = carregarProdutos(data[i]);
+//             tabela += card;
+//         }
+
+//         tabela += `</tbody></table>`;
+
+//         produtos.innerHTML = tabela;
+//     })
+//     .catch(error => console.error('Erro:', error));
+
+//     event.preventDefault();
+// }
+
+// function carregarProdutos(dado){
+//     var row = `
+//         <tr>
+//             <th scope="row">${dado.produtoId}</th>
+//             <td>${dado.nome}</td>
+//             <td>${dado.preco}</td>
+//             <td>Ativo</td>
+//             <td>
+//                 <div>
+//                     <a class="btn table-action" href="#">
+//                         <i class="action-icon fas fa-edit" onclick="editarProduto(${dado.produtoId})"></i>
+//                         <i class="action-icon fas fa-trash" onclick="excluirProduto(${dado.produtoId})"></i>
+//                     </a>                         
+//                 </div>
+//             </td>
+//         </tr>
+//     `;
+
+//     return row;
+// }
+
+// function criarProduto(){
+
+//     const token = localStorage.getItem("token");
+
+//     var nome = document.getElementById('inputNome').value; 
+//     var valor = document.getElementById('inputValor').value;
+//     var categoria = document.getElementById('inputNome').value; 
+//     var descricao = document.getElementById('inputValor').value;
+//     var limite = document.getElementById('inputNome').value; 
+//     var observacao = document.getElementById('inputValor').value;
+//     var imagem = document.getElementById('inputNome').value; 
+//     var complemento = document.getElementById('inputValor').value;
+//     var variacao = document.getElementById('inputNome').value; 
+
+
+//     const dados = {
+//         nome: nome, precoVenda: valor
+//     };       
+
+//     fetch(apiUrl+'/api/Complemento/',{             
+//         method: 'POST',
+//         headers:{
+//             'Content-Type': 'application/json',    
+//             'Authorization': `Bearer ${token}`             
+//         },
+//         body: JSON.stringify(dados)           
+//     })
+//     .then(response => {
+//         if (!response.ok) {
+//           throw new Error('Erro ao cadastrar complemento');
+//         }
+//         else{
+//             window.location.href = "buscarComplemento.html"
+//         }
+//         return response.text();
+//       })
+//       .then(data => {
+//         console.log('Complemento cadastrado com sucesso:', data);
+//       })
+//       .catch(error => console.error('Erro:', error));
+//       event.preventDefault();  
+// }
+

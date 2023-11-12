@@ -29,7 +29,7 @@
 
 
 
-<body>
+<body onload="buscarProdutos()">
     <nav class="sidebar close">
         <header>
             <div class="image-text">
@@ -149,6 +149,25 @@
     </section>
 
     <section>
+        <div class="modal" id="listarProdutos" style="display:none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Produtos da Categoria Selecionada</h5>
+                    <button type="button" class="close" id="fecharCC" style="background-color: transparent; border-color: transparent; font-size: 50px;" >
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="card" style="border: 1px solid transparent;" id="tabelaProdutos">
+
+                    </div>
+                </div>
+                
+            </div>
+        </div>      
+        </section>
+
+    <section>
         <div class="modal" id="modalExcluirProduto" style="display:none;">
             <div class="modal-content">
                 <div class="modal-header">
@@ -168,8 +187,8 @@
         </div>      
     </section>
     
-    <div class="modal" id="modalAdicionarProduto" style="display:none;">
-        <div class="modal-dialog-scrollable">
+    <div class="modal" id="modalAdicionarProduto"  style="display:none;">
+        <div class="modal-dialog-scrollable" >
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title">Cadastrar Produto</h5>
@@ -178,13 +197,15 @@
             <div class="modal-body">
               <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                  <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-basic" role="tab" aria-controls="nav-home" aria-selected="true">Básicos</a>
-                  <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-complements" role="tab" aria-controls="nav-profile" aria-selected="false">Complementos</a>
-                  <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-variacoes" role="tab" aria-controls="nav-contact" aria-selected="false">Variações</a>
+                  <a class="nav-item nav-link active" id="basic" data-toggle="tab" href="#nav-basic" role="tab" aria-controls="nav-home" aria-selected="true" style="font-size: 14px;">Básico</a>
+                  <a class="nav-item nav-link" id="complements" data-toggle="tab" href="#nav-complements" role="tab" aria-controls="nav-profile" aria-selected="false" style="font-size: 14px;">Complemento</a>
+                  <a class="nav-item nav-link" id="variacoes" data-toggle="tab" href="#nav-variacoes" role="tab" aria-controls="nav-contact" aria-selected="false" style="font-size: 14px;">Variação</a>
+                  <a class="nav-item nav-link" id="tamanho" data-toggle="tab" href="#nav-tamanho" role="tab" aria-controls="nav-profile" aria-selected="false" style="font-size: 14px; display: none;">Tamanho</a>
+                  <a class="nav-item nav-link" id="borda" data-toggle="tab" href="#nav-borda" role="tab" aria-controls="nav-contact" aria-selected="false" style="font-size: 14px; display: none;">Borda</a>
                 </div>
               </nav>
               <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="nav-basic" role="tabpanel" aria-labelledby="nav-home-tab">
+                <div class="tab-pane fade show active" id="nav-basic" role="tabpanel" aria-labelledby="basic">
                     <form class="text-start">               
                         <div class="mb-3">
                             <label for="inputNome" class="form-label">Produto</label>
@@ -200,7 +221,7 @@
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="inputCategoria" class="form-label">Categoria</label>
-                                    <select class="form-control" id="inputCategoria" onclick="fetchCategoria()">
+                                    <select class="form-control" id="inputCategoria" >
                                         
                                         
                                     </select>
@@ -209,22 +230,9 @@
                         </div>         
                         <div class="mb-3">
                             <label for="inputDescricao" class="form-label">Descrição</label>
-                            <input type="text" class="form-control" id="inputDescricao" placeholder="Insira Descrição do Produto">
+                            <textarea class="form-control" id="inputDescricao" placeholder="Insira Descrição do Produto"></textarea>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="inputObs" class="form-label">Limite Complementos</label>
-                                    <input type="text" class="form-control" id="inputLimite" placeholder="0">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="inputObs" class="form-label">Observação</label>
-                                    <input type="text" class="form-control" id="inputObs" placeholder="Alguma Observação">
-                                </div>
-                            </div>
-                        </div>    
+                           
                         <div class="mb-3">
                             <label for="inputImagem" class="form-label">Selecione uma imagem:</label>     
                             <input type="file" class="form-control" id="inputImagem" accept="image/*">
@@ -232,26 +240,26 @@
                     </form>
                 </div>
 
-                <div class="tab-pane fade" id="nav-complements" role="tabpanel" aria-labelledby="nav-profile-tab">
+                <div class="tab-pane fade" id="nav-complements" role="tabpanel" aria-labelledby="complements">
                     <form class="text-start">  
                         <div class="row">     
                             <label style="margin-top: 10px; margin-bottom: -15px;">Complementos Disponíveis: </label>                       
-                                <div class="mb-3">
-                                    <label for="itens"></label>                      
-                                    <select id="itens" onchange="adicionarComplemento()" class="w-100">                                    
-                                        <option value="hamburguer">Hamburguer</option>
-                                        <option value="bacon">Bacon</option>
-                                        <option value="salada">Salada</option>
-                                    </select>
-                                </div>
+                               
+                            <div id="listaComplementos" onload="listarComplementos()">
+                                <!-- <div class="col-md-4">
+                                    <div>
+                                        <input type="checkbox" id="huey">
+                                        <label for="huey">Hamburguer</label>
+                                    </div>                                                      
+                                </div> -->
+                            </div>
+
                          </div>                            
-                                         
-                        
-                        <div id="botoes"></div>        
+                              
                     </form>
                 </div>
 
-                <div class="tab-pane fade" id="nav-variacoes" role="tabpanel" aria-labelledby="nav-contact-tab"> 
+                <div class="tab-pane fade" id="nav-variacoes" role="tabpanel" aria-labelledby="variacoes"> 
                     <form class="text-start"> 
                         <label for="nome" class="col-sm-2 col-form-label" style="margin-top: 10px;">Nome:</label> 
                         <div class="row">
@@ -269,13 +277,52 @@
                             <button type="submit" id="submit" class="btn btn-primary btn-block w-100" style="margin-top: 15px ; background-color: #ffbe33; border-color: transparent; text-decoration: none;">CADASTRAR PRODUTO</button>
                         </a>        
                 </div>
+
+                <div class="tab-pane fade" id="nav-tamanho" role="tabpanel" aria-labelledby="tamanho"> 
+                    <form class="text-start"> 
+                        <label for="nome" class="col-sm-2 col-form-label" style="margin-top: 10px;">Nome:</label> 
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="inputVariacao" placeholder="Digite um nome">
+                            </div>
+                            <div class="col-md-6">
+                                <button type="button" class="btn btn-light w-100" onclick="adicionarBotao()" >Adicionar</button>
+                            </div>
+                        </div>
+                    </form>         
+                    
+                    <div id="bts"></div> 
+                    <a href="#">
+                            <button type="submit" id="submit" class="btn btn-primary btn-block w-100" style="margin-top: 15px ; background-color: #ffbe33; border-color: transparent; text-decoration: none;">CADASTRAR PRODUTO</button>
+                        </a>        
+                </div>
+
+                <div class="tab-pane fade" id="nav-borda" role="tabpanel" aria-labelledby="borda"> 
+                    <form class="text-start"> 
+                        <label for="nome" class="col-sm-2 col-form-label" style="margin-top: 10px;">Nome:</label> 
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="inputVariacao" placeholder="Digite um nome">
+                            </div>
+                            <div class="col-md-6">
+                                <button type="button" class="btn btn-light w-100" onclick="adicionarBotao()" >Adicionar</button>
+                            </div>
+                        </div>
+                    </form>         
+                    
+                    <div id="bts"></div> 
+                    <a href="#">
+                            <button type="submit" id="submit" class="btn btn-primary btn-block w-100" style="margin-top: 15px ; background-color: #ffbe33; border-color: transparent; text-decoration: none;">CADASTRAR PRODUTO</button>
+                        </a>        
+                </div>
+
+
               </div>
             </div>
           </div>
         </div>
       </div>
       
-    
     <section>
         <div class="modal" id="modalEditarProduto" style="display:none;">
             <div class="modal-dialog-scrollable">
@@ -354,20 +401,10 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
-function adicionarComplemento() {
-    var select = document.getElementById("itens");
-    var selectedItem = select.options[select.selectedIndex].text;
-    var botoesDiv = document.getElementById("botoes");
-    var botao = document.createElement("button");
-    botao.textContent = selectedItem;
-    botao.classList.add("btn", "btn-test");
 
-    botao.addEventListener('click', function() {
-        this.parentNode.removeChild(this); 
-    });
+fetchCategoria();
 
-    botoesDiv.insertBefore(botao, botoesDiv.firstChild);
-}
+
 function adicionarBotao() {
     var nomeInput = document.getElementById("inputVariacao"); // Corrigindo o ID do input
     var nomeDigitado = nomeInput.value;

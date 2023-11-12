@@ -121,7 +121,7 @@
                                 <div class="row align-items-center">
                                     <div class="col">
                                         <h5 class="card-title text-uppercase text-muted mb-0">Complementos</h5>
-                                    </div>
+                                    </div>                                    
                                     <div class="col-auto">
                                         <form class="row align-items-center">
                                             <div class="col">
@@ -147,6 +147,27 @@
           </div>
         </div>
       </section>
+
+      <section>
+        <div class="modal" id="listarComplemento" style="display:none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Complementos da Categoria Selecionada</h5>
+                    <button type="button" class="close" id="fecharCC" style="background-color: transparent; border-color: transparent; font-size: 50px;" >
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="card" style="border: 1px solid transparent;" id="tabelaComplementoCategoria">
+
+                    </div>
+                </div>
+                
+            </div>
+        </div>      
+        </section>
+
+
 
       <section>
         <div class="modal" id="modalExcluirComplemento" style="display:none;">
@@ -176,7 +197,16 @@
                         <button type="button" class="btn-close" id="fecharmod" aria-label="Close" onclick="fecharModalComplemento()"></button>
                     </div>
                     <div class="modal-body">
-                        <form class="text-start">                           
+                        <form class="text-start">  
+                            <div class="col-md-12">                     
+                                <div class="mb-3">
+                                    <label for="inputNome" class="form-label">Categoria</label>
+                                    <select class="form-control" id="inputCategoriaC">
+                                        
+                                        
+                                    </select>
+                                </div>
+                            </div>                         
                             <div class="row">
                                 <div class="col-md-6">                     
                                     <div class="mb-3">
@@ -210,6 +240,15 @@
                     </div>
                     <div class="modal-body">
                         <form class="text-start">  
+                            <div class="col-md-12">                     
+                                <div class="mb-3">
+                                    <label for="inputNome" class="form-label">Categoria</label>
+                                    <select class="form-control" id="updateCategoriaC">
+                                        
+                                        
+                                    </select>
+                                </div>
+                            </div>                         
                             <div class="row">
                                 <div class="col-md-6">                     
                                     <div class="mb-3">
@@ -225,8 +264,8 @@
                                 </div>
                             </div>                                
                             <a href="#">
-                                <button type="submit" id="submit" class="btn btn-primary btn-block w-100" style="border-color: transparent; background-color: #ffbe33; text-decoration: none;" onclick="registraComplemento()">CADASTRAR PRODUTO</button>
-                            </a>   
+                                <button type="submit" id="submit" class="btn btn-primary btn-block w-100" style="border-color: transparent; background-color: #ffbe33; text-decoration: none;" onclick="criarComplemento()">CADASTRAR PRODUTO</button>
+                            </a>        
                         </form>
                     </div>
                 </div>
@@ -239,4 +278,7 @@
 </body>
 <script src="js/dashboard.js"></script>
 <script src="js/fetchDashboard.js"></script>
+<script>
+    fetchCategoriaComplemento();
+</script>
 </html>

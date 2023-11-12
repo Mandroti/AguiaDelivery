@@ -183,9 +183,27 @@
                             </div>               
                            
                             <div class="mb-3">
+                                <label for="inputImagem" class="form-label">Selecione o Modelo: </label>   
+                                <br/>   
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="comum" value="comum">
+                                    <label class="form-check-label" for="comum">Comum</label>
+                                  </div>
+                                  <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="pizza" value="pizza">
+                                    <label class="form-check-label" for="pizza">Pizza</label>
+                                  </div>
+                                  <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="bebida" value="bebida" >
+                                    <label class="form-check-label" for="bebidas">Bebidas</label>
+                                  </div>
+                            </div>
+
+                            <div class="mb-3">
                                 <label for="insertImagem" class="form-label">Selecione uma imagem:</label>     
                                 <input type="file" class="form-control" id="insertImagem" accept="image/*">
                             </div>
+
                             
                             <a href="#">
                                 <button type="submit" id="submit" class="btn btn-primary btn-block w-100" style="background-color: #ffbe33; border-color: transparent; text-decoration: none;" onclick="criarCategoria()">CADASTRAR CATEGORIA</button>
@@ -212,12 +230,13 @@
                                 <label for="inputNome" class="form-label">Categoria</label>
                                 <input type="text" class="form-control" id="updateNome" placeholder="Insira Nome da Categoria" required> 
                             </div>               
-                           
+
+                            
+                            
                             <div class="mb-3">
                                 <label for="inputImagem" class="form-label">Selecione uma imagem:</label>     
                                 <input type="file" class="form-control" id="updateImagem" accept="image/*">
                             </div>
-                            
                             <a href="#">
                                 <button type="submit" id="submit" class="btn btn-primary btn-block w-100" style="background-color: #ffbe33; text-decoration: none; border-color: transparent;" onclick="registraCategoria()">ATUALIZAR CADASTRO DA CATEGORIA</button>
                             </a>        
