@@ -69,12 +69,12 @@
                             <span class="text nav-text" style="font-size: 15px;">Categorias</span>
                         </a>
                     </li>   
-                    <li class="nav-link">
+                    <!-- <li class="nav-link">
                         <a href="buscarCliente.html">
                             <i class='bx bx-user icon'></i>
                             <span class="text nav-text" style="font-size: 15px;">Clientes</span>
                         </a>
-                    </li> 
+                    </li>  -->
                     <li class="nav-link">
                         <a href="buscarComplemento.html">
                             <i class='bx bx-image icon'></i>
@@ -199,7 +199,7 @@
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                   <a class="nav-item nav-link active" id="basic" data-toggle="tab" href="#nav-basic" role="tab" aria-controls="nav-home" aria-selected="true" style="font-size: 14px;">Básico</a>
                   <a class="nav-item nav-link" id="complements" data-toggle="tab" href="#nav-complements" role="tab" aria-controls="nav-profile" aria-selected="false" style="font-size: 14px;">Complemento</a>
-                  <a class="nav-item nav-link" id="variacoes" data-toggle="tab" href="#nav-variacoes" role="tab" aria-controls="nav-contact" aria-selected="false" style="font-size: 14px;">Variação</a>
+                  <a class="nav-item nav-link" id="variacoes" data-toggle="tab" href="#nav-variacoes" role="tab" aria-controls="nav-contact" aria-selected="false" style="font-size: 14px;" >Variação</a>
                   <a class="nav-item nav-link" id="tamanho" data-toggle="tab" href="#nav-tamanho" role="tab" aria-controls="nav-profile" aria-selected="false" style="font-size: 14px; display: none;">Tamanho</a>
                   <a class="nav-item nav-link" id="borda" data-toggle="tab" href="#nav-borda" role="tab" aria-controls="nav-contact" aria-selected="false" style="font-size: 14px; display: none;">Borda</a>
                 </div>
@@ -221,7 +221,7 @@
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="inputCategoria" class="form-label">Categoria</label>
-                                    <select class="form-control" id="inputCategoria" >
+                                    <select class="form-control" id="inputCategoria">
                                         
                                         
                                     </select>
@@ -237,45 +237,62 @@
                             <label for="inputImagem" class="form-label">Selecione uma imagem:</label>     
                             <input type="file" class="form-control" id="inputImagem" accept="image/*">
                         </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+
+                            </div>
+                            <div class="col-md-6">
+                                <button type="button" class="btn btn-warning w-100" onclick="criarProduto()" >Adicionar</button>
+                            </div>
+                        </div>
                     </form>
                 </div>
 
                 <div class="tab-pane fade" id="nav-complements" role="tabpanel" aria-labelledby="complements">
                     <form class="text-start">  
                         <div class="row">     
-                            <label style="margin-top: 10px; margin-bottom: -15px;">Complementos Disponíveis: </label>                       
+                            <label style="margin-top: 10px;">Complementos Disponíveis: </label>                       
                                
-                            <div id="listaComplementos" onload="listarComplementos()">
-                                <!-- <div class="col-md-4">
-                                    <div>
-                                        <input type="checkbox" id="huey">
-                                        <label for="huey">Hamburguer</label>
-                                    </div>                                                      
-                                </div> -->
+                            <div id="listaComplementos">
+                                
                             </div>
 
-                         </div>                            
+                         </div>
+                         
+                         <div class="row">
+                            <div class="col-md-6">
+
+                            </div>
+                            <div class="col-md-6">
+                                <button type="button" class="btn btn-warning w-100" onclick="criarProduto()" >Adicionar</button>
+                            </div>
+                        </div>
                               
                     </form>
                 </div>
 
                 <div class="tab-pane fade" id="nav-variacoes" role="tabpanel" aria-labelledby="variacoes"> 
                     <form class="text-start"> 
-                        <label for="nome" class="col-sm-2 col-form-label" style="margin-top: 10px;">Nome:</label> 
+                        <label for="nome" class="col-sm-2 col-form-label" style="margin-top: 10px;">Título:</label> 
                         <div class="row">
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" id="inputVariacao" placeholder="Digite um nome">
+                            <div class="col-md-7">
+                                <input type="text" class="form-control" id="inputTitulo" placeholder="Digite um nome">
                             </div>
-                            <div class="col-md-6">
-                                <button type="button" class="btn btn-light w-100" onclick="adicionarBotao()" >Adicionar</button>
+                            <div class="col-md-5">
+                                <button type="button" class="btn btn-warning w-100" onclick="criaVariacao()" >Adicionar</button>
                             </div>
                         </div>
-                    </form>         
-                    
-                    <div id="bts"></div> 
-                    <a href="#">
-                            <button type="submit" id="submit" class="btn btn-primary btn-block w-100" style="margin-top: 15px ; background-color: #ffbe33; border-color: transparent; text-decoration: none;">CADASTRAR PRODUTO</button>
-                        </a>        
+
+                        <div class="row" style="margin-top: 15px;">
+                           
+                            <div class="card" style="border: 1px solid transparent;" id="variacao">
+                                
+                                                            
+                            </div>
+                        </div>
+                        
+                    </form>            
                 </div>
 
                 <div class="tab-pane fade" id="nav-tamanho" role="tabpanel" aria-labelledby="tamanho"> 
@@ -299,21 +316,18 @@
 
                 <div class="tab-pane fade" id="nav-borda" role="tabpanel" aria-labelledby="borda"> 
                     <form class="text-start"> 
-                        <label for="nome" class="col-sm-2 col-form-label" style="margin-top: 10px;">Nome:</label> 
+                        <label for="nome" class="col-sm-2 col-form-label" style="margin-top: 10px;">Título:</label> 
                         <div class="row">
                             <div class="col-md-6">
-                                <input type="text" class="form-control" id="inputVariacao" placeholder="Digite um nome">
+                                <input type="text" class="form-control" id="inputVariacao" placeholder="Nome">
                             </div>
                             <div class="col-md-6">
-                                <button type="button" class="btn btn-light w-100" onclick="adicionarBotao()" >Adicionar</button>
+                                <button type="button" class="btn btn-light w-100" onclick="adicionarVariacal()" >Adicionar</button>
                             </div>
                         </div>
                     </form>         
                     
-                    <div id="bts"></div> 
-                    <a href="#">
-                            <button type="submit" id="submit" class="btn btn-primary btn-block w-100" style="margin-top: 15px ; background-color: #ffbe33; border-color: transparent; text-decoration: none;">CADASTRAR PRODUTO</button>
-                        </a>        
+                           
                 </div>
 
 
@@ -403,29 +417,6 @@
 <script>
 
 fetchCategoria();
-
-
-function adicionarBotao() {
-    var nomeInput = document.getElementById("inputVariacao"); // Corrigindo o ID do input
-    var nomeDigitado = nomeInput.value;
-
-    if (nomeDigitado) {
-        var botoesDiv = document.getElementById("bts");
-        var botao = document.createElement("button");
-        botao.textContent = nomeDigitado;
-        botao.classList.add("btn", "btn-test", "me-2", "mb-2");
-
-        // Adicionando o botão no início da lista
-        botoesDiv.insertBefore(botao, botoesDiv.firstChild);
-
-        nomeInput.value = ""; 
-
-        botao.addEventListener('click', function() {
-            this.parentNode.removeChild(this); // Remove o botão ao clicar nele
-        });
-    }
-}
-
 
 </script>
 </html>
