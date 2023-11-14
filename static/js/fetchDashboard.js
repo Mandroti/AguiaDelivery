@@ -184,7 +184,7 @@ function carregarClientes(dado){
             <td>
                 <div>
                     <a class="btn table-action" href="#">
-                        <i class="action-icon fas fa-edit" onclick="editarCliente(${dado.consumidorId})"></i>
+                        <i class="action-icon fas fa-edit" onclick="editarCliente(${dado.consumidorId})" style="margin-right: 12px;></i>
                         <i class="action-icon fas fa-trash" onclick="excluirCliente(${dado.consumidorId})"></i>
                     </a>                         
                 </div>
@@ -394,8 +394,7 @@ function buscarCat(){
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Nome</th>
-                                <th scope="col">Tipo</th>
+                                <th scope="col">Nome</th>                                
                                 <th scope="col">Opções</th>
                             </tr>
                         </thead>
@@ -419,11 +418,10 @@ function carregarCategoria(data){
         <tr>
             <th scope="row">${data.categoriaId}</th>
             <td>${data.nome}</td>
-            <td>${data.tipo}</td>
             <td>
                 <div>
                     <a class="btn table-action" href="#">
-                        <i class="action-icon fas fa-edit" onclick="editarCategoria(${data.categoriaId})"></i>
+                        <i class="action-icon fas fa-edit" onclick="editarCategoria(${data.categoriaId})" style="margin-right: 12px;"></i>
                         <i class="action-icon fas fa-trash" onclick="excluirCategoria(${data.categoriaId})"></i>
                     </a>                         
                 </div>
@@ -445,62 +443,65 @@ function fecharModalCategoria(){
     modal.style.display = 'none';
 }
 
-function criarCategoria(){
-
-    const token = localStorage.getItem("token");
-
-    var nome = document.getElementById('insertNome').value; 
-    var imagem = document.getElementById('insertImagem').value;
-    var radioButtons = document.getElementsByName('inlineRadioOptions');
-    var categoriaSelecionada = '';
-
+function criarCategoria() {
+    const token = localStorage.getItem('token');
+  
+    const nome = document.getElementById('insertNome').value;
+    const fileInput = document.getElementById('insertImagem');
+    const radioButtons = document.getElementsByName('inlineRadioOptions');
+    let categoriaSelecionada = '';
+  
     radioButtons.forEach(function (radio) {
-        if (radio.checked) {
-            categoriaSelecionada = radio.value;
-        }
-
+      if (radio.checked) {
+        categoriaSelecionada = radio.value;
+      }
     });
-
-    if(categoriaSelecionada == 'pizza')
-    {
-        categoriaSelecionada = 1;
-    }else if(categoriaSelecionada == 'bebida'){
-        categoriaSelecionada = 2;
-    }else{
-        categoriaSelecionada = 0;
+  
+    if (categoriaSelecionada === 'pizza') {
+      categoriaSelecionada = 1;
+    } else if (categoriaSelecionada === 'bebida') {
+      categoriaSelecionada = 2;
+    } else {
+      categoriaSelecionada = 0;
     }
-   
-    const dados = {
+  
+    const file = fileInput.files[0];
+    const reader = new FileReader();
+  
+    reader.onload = function () {
+      const base64Image = reader.result.split(',')[1];
+  
+      const dados = {
         nome: nome,
-        imagem: imagem,
-        tipo: categoriaSelecionada  
-    };
-
-   
-   
-    fetch(apiUrl+'/api/Categoria/',{             
+        imagem: base64Image,
+        tipo: categoriaSelecionada,
+      };
+  
+      fetch(apiUrl + '/api/Categoria/', {
         method: 'POST',
-        headers:{
-            'Content-Type': 'application/json',    
-            'Authorization': `Bearer ${token}`             
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         },
-        body: JSON.stringify(dados)           
-    })
-    .then(response => {
-        if (!response.ok) {
-          throw new Error('Erro ao cadastrar categoria');
-        }
-        else{
-            window.location.href = "buscarCategoria.html"
-        }
-        return response.text();
+        body: JSON.stringify(dados),
       })
-      .then(data => {
-        console.log('Categoria cadastrada com sucesso:', data);
-      })
-      .catch(error => console.error('Erro:', error));
-      event.preventDefault();  
-}
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Erro ao cadastrar categoria');
+          } else {
+            //window.location.href = 'buscarCategoria.html';
+          }
+          return response.text();
+        })
+        .then(data => {
+          console.log('Categoria cadastrada com sucesso:', data);
+        })
+        .catch(error => console.error('Erro:', error));
+    };
+  
+    reader.readAsDataURL(file);
+    event.preventDefault();
+}  
 
 function excluirCategoria(id) {
     const modal = document.getElementById('modalExcluirCategoria');
@@ -778,11 +779,11 @@ function carregarComplementoCategoria(dado){
             <th scope="row">${dado.complementoId}</th>
             <td>${dado.nome}</td>
             <td>${dado.precoVenda}</td>
-            <td>Ativo</td>
+           
             <td>
                 <div>
                     <a class="btn table-action" href="#">
-                        <i class="action-icon fas fa-edit" onclick="editarComplemento(${dado.complementoId})"></i>
+                        <i class="action-icon fas fa-edit" onclick="editarComplemento(${dado.complementoId})" style="margin-right: 3px;"></i>
                         <i class="action-icon fas fa-trash" onclick="excluirComplemento(${dado.complementoId})"></i>
                     </a>                         
                 </div>
@@ -1125,7 +1126,7 @@ function carregarProd(dado){
             <td>
                 <div>
                     <a class="btn table-action" href="#">
-                        <i class="action-icon fas fa-edit" onclick="editarComplemento(${dado.produtoId})"></i>
+                        <i class="action-icon fas fa-edit" onclick="editarComplemento(${dado.produtoId})" style="margin-right: 12px;></i>
                         <i class="action-icon fas fa-trash" onclick="excluirComplemento(${dado.produtoId})"></i>
                     </a>                         
                 </div>

@@ -219,7 +219,16 @@ function registraEstabelecimento()
                 body: JSON.stringify(dados)           
             })
             .then(response => response.text())
-            .then(result => console.log(result))
+            .then(result => {
+                console.log(result);
+                if (!response.ok) {
+                  throw new Error('Erro ao cadastrar usuário');
+                }
+                else{
+                    window.location.href = "login.html"
+                }
+                return response.text();                
+              })
             .catch(error => console.log('error', error));     
             event.preventDefault();   
         }
