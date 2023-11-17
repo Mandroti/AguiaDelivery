@@ -124,7 +124,12 @@
                                     <div class="col-auto">
                                         <form class="row align-items-center">
                                             <div class="col">
-                                                <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Buscar" style="font-size: 14px;">
+                                                <div class="input-group">
+                                                    <input id="nomeCategoria" class="form-control form-control-lg form-control-borderless" type="search" placeholder="Buscar" style="font-size: 14px;">
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-outline-secondary" type="button" style="border-color: transparent;" onclick="buscarCategoria()"><i class="action-icon fas fa-search"></i></button>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="col-auto">
                                                 <button class="btn btn-lg btn-success" type="button" style="font-size: 14px;" onclick="adicionarProduto()">Adicionar</button>
@@ -291,7 +296,7 @@
                     </form>            
                 </div>
 
-                <div class="tab-pane fade" id="nav-tamanho" role="tabpanel" aria-labelledby="tamanho"> 
+                <!-- <div class="tab-pane fade" id="nav-tamanho" role="tabpanel" aria-labelledby="tamanho"> 
                     <form class="text-start"> 
                         <label for="nome" class="col-sm-2 col-form-label" style="margin-top: 10px;">Nome:</label> 
                         <div class="row">
@@ -324,7 +329,7 @@
                     </form>         
                     
                            
-                </div>
+                </div> -->
 
 
               </div>
@@ -403,7 +408,7 @@
     
 </body>
 <script src="js/dashboard.js"></script>
-<script src="js/fetchDashboard.js"></script>
+<script src="js/produto.js"></script>
 <!-- Adicione o jQuery (necessário para o Bootstrap) -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 
@@ -415,4 +420,4 @@
 fetchCategoria();
 
 </script>
-</html>
+</html>  

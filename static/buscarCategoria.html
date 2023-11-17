@@ -121,7 +121,12 @@
                                     <div class="col-auto">
                                         <form class="row align-items-center">
                                             <div class="col">
-                                                <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Buscar" style="font-size: 14px;">
+                                                <div class="input-group">
+                                                    <input id="nomeCategoria" class="form-control form-control-lg form-control-borderless" type="search" placeholder="Buscar" style="font-size: 14px;">
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-outline-secondary" type="button" style="border-color: transparent;" onclick="buscarCategoria()"><i class="action-icon fas fa-search"></i></button>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="col-auto">
                                                 <button class="btn btn-lg btn-success" type="submit" style="font-size: 14px;" onclick="adicionarCategoria()">Adicionar</button>
@@ -172,7 +177,7 @@
                         <button type="button" class="btn-close" id="fecharModalAdicionarCategoria" aria-label="Close" onclick="fecharModalCategoria()"></button>
                     </div>
                     <div class="modal-body">
-                        <form class="text-start">               
+                        <!-- <form class="text-start">               
                             <div class="mb-3">
                                 <label for="insertNome" class="form-label">Categoria</label>
                                 <input type="text" class="form-control" id="insertNome" placeholder="Insira Nome da Categoria" required> 
@@ -205,7 +210,90 @@
                                 <button type="submit" id="submit" class="btn btn-primary btn-block w-100" style="background-color: #ffbe33; border-color: transparent; text-decoration: none;" onclick="criarCategoria()">CADASTRAR CATEGORIA</button>
                             </a>        
                             
-                        </form>
+                        </form> -->
+                        <nav>
+                            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                              <a class="nav-item nav-link active" id="basic" data-toggle="tab" href="#nav-basic" role="tab" aria-controls="nav-home" aria-selected="true" style="font-size: 14px;">Básico</a>
+                              <a class="nav-item nav-link" id="size" data-toggle="tab" href="#nav-size" role="tab" aria-controls="nav-profile" aria-selected="false" style="font-size: 14px; display: none;">Tamanho</a>
+                              <a class="nav-item nav-link" id="borda" data-toggle="tab" href="#nav-borda" role="tab" aria-controls="nav-contact" aria-selected="false" style="font-size: 14px; display: none;">Borda</a>
+                            </div>
+                        </nav>  
+                        <div class="tab-content" id="nav-tabContent">
+                            <div class="tab-pane fade show active" id="nav-basic" role="tabpanel" aria-labelledby="basic">
+                                 <form class="text-start">               
+                                    <div class="mb-3">
+                                        <label for="insertNome" class="form-label">Categoria</label>
+                                        <input type="text" class="form-control" id="insertNome" placeholder="Insira Nome da Categoria" required> 
+                                    </div>               
+                                
+                                    <div class="mb-3" id="categoriaDiv">
+                                        <label for="inputImagem" class="form-label">Selecione o Modelo: </label>   
+                                        <br/>   
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="comum" value="comum">
+                                            <label class="form-check-label" for="comum">Comum</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="pizza" value="pizza">
+                                            <label class="form-check-label" for="pizza">Pizza</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="bebida" value="bebida" >
+                                            <label class="form-check-label" for="bebidas">Bebidas</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="insertImagem" class="form-label">Selecione uma imagem:</label>     
+                                        <input type="file" class="form-control" id="insertImagem" accept="image/*">
+                                    </div>
+
+                                    
+                                    <a href="#">
+                                        <button type="submit" id="submit" class="btn btn-primary btn-block w-100" style="background-color: #ffbe33; border-color: transparent; text-decoration: none;" onclick="criarCategoria()">CADASTRAR CATEGORIA</button>
+                                    </a>       
+                                </form>
+                            </div>
+                            <div class="tab-pane fade" id="nav-size" role="tabpanel" aria-labelledby="size">                                 
+                                <form class="text-start"> 
+                                    <label for="nome" class="col-sm-2 col-form-label" style="margin-top: 10px;">Título:</label> 
+                                    <div class="row">
+                                        <div class="col-md-7">
+                                            <input type="text" class="form-control" id="inputTitulo" placeholder="Digite um nome">
+                                        </div>
+                                        <div class="col-md-5">
+                                            <button type="button" class="btn btn-warning w-100" onclick="pegaCategoria()" >Adicionar</button>
+                                        </div>
+                                    </div>
+            
+                                    <div class="row" style="margin-top: 15px;">
+                                        
+                                        <div class="card" style="border: 1px solid transparent;" id="variacao">
+                                            
+
+                                                                        
+                                        </div>
+                                    </div>
+                                    
+                                </form>          
+                            </div>            
+                            <div class="tab-pane fade" id="nav-borda" role="tabpanel" aria-labelledby="borda"> 
+                                <form class="text-start"> 
+                                    <label for="nome" class="col-sm-2 col-form-label" style="margin-top: 10px;">Título:</label> 
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control" id="inputVariacao" placeholder="Nome">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <button type="button" class="btn btn-light w-100" onclick="adicionarVariacal()" >Adicionar</button>
+                                        </div>
+                                    </div>
+                                </form>         
+                                
+                                       
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -244,11 +332,55 @@
         </div>
     </section>
     
+    <section>
+        <div class="modal" id="modalVariacao" style="display:none;">
+            <div class="modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Adicionar Variação no Grupo</h5>
+                        <button type="button" class="btn-close" id="fecharModalVariacaoGrupo" aria-label="Close" onclick="fecharModalVariacao()"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <form class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="inputNome1" class="form-label">Nome</label>
+                                        <input type="text" class="form-control" id="insertVariacaoNome" placeholder="Insira a Variacao" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="inputNome2" class="form-label">Valor</label>
+                                        <input type="text" class="form-control" id="insertVariacaoValor" placeholder="Insira o Valor" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    
+                                </div>
+                                <div class="col-6">
+                                    <a href="#">
+                                        <button type="submit" id="submit" class="btn btn-primary btn-block w-100" style="background-color: #ffbe33; text-decoration: none; border-color: transparent;" onclick="adicionaVariacaoGrupo()">CADASTRAR</button>
+                                    </a>
+                                </div>
+                            </form>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     
 
 </body>
 <script src="js/login.js"></script>
-<script src="js/dashboard.js"></script>
-<script src="js/fetchDashboard.js"></script>
+<script src="js/categoria.js "></script>
+<!-- Adicione o jQuery (necessário para o Bootstrap) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+<!-- Adicione os scripts do Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </html>

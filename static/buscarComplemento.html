@@ -121,7 +121,12 @@
                                     <div class="col-auto">
                                         <form class="row align-items-center">
                                             <div class="col">
-                                                <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Buscar" style="font-size: 14px;">
+                                                <div class="input-group">
+                                                    <input id="nomeCategoria" class="form-control form-control-lg form-control-borderless" type="search" placeholder="Buscar" style="font-size: 14px;">
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-outline-secondary" type="button" style="border-color: transparent;" onclick="buscarCategoria()"><i class="action-icon fas fa-search"></i></button>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="col-auto">
                                                 <button class="btn btn-lg btn-success" type="submit" style="font-size: 14px;" onclick="adicionarComplemento()">Adicionar</button>
@@ -273,7 +278,7 @@
 
 </body>
 <script src="js/dashboard.js"></script>
-<script src="js/fetchDashboard.js"></script>
+<script src="js/complemento.js"></script>
 <script>
     fetchCategoriaComplemento();
 </script>
