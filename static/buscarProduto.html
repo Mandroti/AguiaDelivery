@@ -159,7 +159,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="card" style="border: 1px solid transparent;" id="tabelaProdutos">
+                    <div class="card" style="border: 1px solid transparent; max-height: calc(100vh - 180px); overflow-y: auto;"  id="tabelaProdutos">
 
                     </div>
                 </div>
@@ -200,9 +200,9 @@
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                   <a class="nav-item nav-link active" id="basic" data-toggle="tab" href="#nav-basic" role="tab" aria-controls="nav-home" aria-selected="true" style="font-size: 14px;">Básico</a>
                   <a class="nav-item nav-link" id="complements" data-toggle="tab" href="#nav-complements" role="tab" aria-controls="nav-profile" aria-selected="false" style="font-size: 14px;">Complemento</a>
-                  <a class="nav-item nav-link" id="variacoes" data-toggle="tab" href="#nav-variacoes" role="tab" aria-controls="nav-contact" aria-selected="false" style="font-size: 14px;" >Variação</a>
+                  <!-- <a class="nav-item nav-link" id="variacoes" data-toggle="tab" href="#nav-variacoes" role="tab" aria-controls="nav-contact" aria-selected="false" style="font-size: 14px;" >Variação</a>
                   <a class="nav-item nav-link" id="tamanho" data-toggle="tab" href="#nav-tamanho" role="tab" aria-controls="nav-profile" aria-selected="false" style="font-size: 14px; display: none;">Tamanho</a>
-                  <a class="nav-item nav-link" id="borda" data-toggle="tab" href="#nav-borda" role="tab" aria-controls="nav-contact" aria-selected="false" style="font-size: 14px; display: none;">Borda</a>
+                  <a class="nav-item nav-link" id="borda" data-toggle="tab" href="#nav-borda" role="tab" aria-controls="nav-contact" aria-selected="false" style="font-size: 14px; display: none;">Borda</a> -->
                 </div>
               </nav>
               <div class="tab-content" id="nav-tabContent">
@@ -228,6 +228,9 @@
                                     </select>
                                 </div>
                             </div>
+                        </div>      
+                        <div class="row" id="tamanhoProduto">
+                           
                         </div>         
                         <div class="mb-3">
                             <label for="inputDescricao" class="form-label">Descrição</label>
@@ -273,7 +276,7 @@
                     </form>
                 </div>
 
-                <div class="tab-pane fade" id="nav-variacoes" role="tabpanel" aria-labelledby="variacoes"> 
+                <!-- <div class="tab-pane fade" id="nav-variacoes" role="tabpanel" aria-labelledby="variacoes"> 
                     <form class="text-start"> 
                         <label for="nome" class="col-sm-2 col-form-label" style="margin-top: 10px;">Título:</label> 
                         <div class="row">
@@ -294,7 +297,7 @@
                         </div>
                         
                     </form>            
-                </div>
+                </div> -->
 
                 <!-- <div class="tab-pane fade" id="nav-tamanho" role="tabpanel" aria-labelledby="tamanho"> 
                     <form class="text-start"> 

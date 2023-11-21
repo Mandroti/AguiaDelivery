@@ -112,11 +112,12 @@ function criarCategoria() {
         throw new Error('Erro ao cadastrar categoria');
       } else {
         
-        if (categoriaSelecionada === 'pizza'){
+        if (categoriaSelecionada === 1){
             console.log(response);
         }            
         else{
-           // window.location.href = 'buscarCategoria.html';
+        
+           window.location.href = 'buscarCategoria.html';
         }
       }
       return response.text();
@@ -330,6 +331,7 @@ function pegaCategoria(){
         for (var i = 0; i < data.length; i++) {
             if (data[i].nome === nomeCategoria) {
                 categoriaSelecionada = data[i].categoriaId;
+                alert(categoriaSelecionada)
                 criaVariacao();
             }
         }      
@@ -426,84 +428,191 @@ function fecharModalVariacao(){
     document.getElementById('modalVariacao').style.display = 'none';
 }
 
-function adicionaVariacao() {
-    const token = localStorage.getItem("token");
-    fetch(apiUrl + '/api/Variacao/Grupo?CategoriaId='+categoriaSelecionada, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            document.getElementById('variacao').innerHTML = ''; 
+// function adicionaVariacao() {
+//     const token = localStorage.getItem("token");
+//     fetch(apiUrl + '/api/Variacao/Grupo?CategoriaId=' + categoriaSelecionada, {
+//         method: 'GET',
+//         headers: {
+//             'Content-Type': 'application/json',
+//             'Authorization': `Bearer ${token}`
+//         }
+//     })
+//     .then(response => response.json())
+//     .then(data => {
+//         console.log(data);
+//         document.getElementById('variacao').innerHTML = '';
 
-            // Dentro de adicionaVariacao()
-            for (let i = 0; i < data.length; i++) {
-                let tabela = `<div class="input-group mb-3"  style="margin-top: 10px;">
-                                <label type="text" class="form-control">${data[i].titulo}</label>
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-success" type="button" onclick="abremodal(${data[i].grupoId})">+</button>
-                                </div>
-                            </div>`;
+//         // Array para armazenar todas as promises
+//         const promises = [];
 
-                carregarVariacao(data[i]).then(rows => {
-                    tabela += `<table class="table table-striped">       
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">Nome</th>                                
-                                            <th scope="col">Opções</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        ${rows}
-                                    </tbody>
-                                </table>`;
+//         for (let i = 0; i < data.length; i++) {
+//             let tabela = `<div class="input-group mb-3" style="margin-top: 10px;">
+//                             <label type="text" class="form-control">${data[i].titulo}</label>
+//                             <div class="input-group-append">
+//                                 <button class="btn btn-outline-success" type="button" onclick="abremodal(${data[i].grupoId})">+</button>
+//                             </div>
+//                         </div>`;
 
-                    const newDiv = document.createElement('div');
-                    newDiv.innerHTML = tabela;
+            
+//             const promise = carregarVariacao(data[i]).then(rows => {
+//                 tabela += `<table class="table table-striped">       
+//                                 <thead>
+//                                     <tr>
+//                                         <th scope="col">#</th>
+//                                         <th scope="col">Nome</th>                                
+//                                         <th scope="col">Opções</th>
+//                                     </tr>
+//                                 </thead>
+//                                 <tbody>
+//                                     ${rows}
+//                                 </tbody>
+//                             </table>`;
 
-                    document.getElementById('variacao').appendChild(newDiv);
-                });
-            }
-        })
-        .catch(error => console.error('Erro:', error));
-}
+//                 const newDiv = document.createElement('div');
+//                 newDiv.innerHTML = tabela;
+
+//                 document.getElementById('variacao').appendChild(newDiv);
+//             });
+
+//             promises.push(promise);
+//         }
+
+//         // Aguardando todas as promises serem resolvidas antes de prosseguir
+//         return Promise.all(promises);
+//     })
+//     .catch(error => console.error('Erro:', error));
+// }
+
+
+// function carregarVariacao(dado) {
+//     const token = localStorage.getItem("token");
+//     return fetch(apiUrl + '/api/Variacao?GrupoId=' + grupo, {
+//         method: 'GET',
+//         headers: {
+//             'Content-Type': 'application/json',
+//             'Authorization': `Bearer ${token}`
+//         }
+//     })
+//     .then(response => {
+//         if (!response.ok) {
+//             throw new Error('Erro ao carregar as variações');
+//         }
+//         return response.json();
+//     })
+//     .then(variacoes => {
+//         console.log(variacoes);
+
+//         let rows = '';
+//         for (let i = 0; i < variacoes.length; i++) {
+//             const variacao = variacoes[i];
+//             rows += `<tr>
+//                         <th scope="row">${variacao.variacaoId}</th>
+//                         <td>${variacao.name}</td>
+//                         <td>
+//                             <div>
+//                                 <a class="btn table-action" href="#">
+//                                     <i class="action-icon fas fa-trash"></i>
+//                                 </a>
+//                             </div>
+//                         </td>
+//                     </tr>`;
+//         }
+//         return rows;
+//     })
+//     .catch(error => {
+//         console.error('Erro:', error);
+//         return '';
+//     });
+// }
 
 function carregarVariacao(dado) {
     const token = localStorage.getItem("token");
-    return fetch(apiUrl + '/api/Variacao', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            }
-        })
-        .then(response => response.json())
-        .then(variacoes => {
-            console.log(variacoes);
-            let rows = '';
-            for (let i = 0; i < dado.variacoes.length; i++) {
-                const variacao = dado.variacoes[i];
-                rows += `<tr>
-                            <th scope="row">${variacao.variacaoId}</th>
-                            <td>${variacao.name}</td>
-                            <td>
-                                <div>
-                                    <a class="btn table-action" href="#">
-                                        <i class="action-icon fas fa-trash"></i>
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>`;
-            }
-            return rows;
-        })
-        .catch(error => {
-            console.error('Erro:', error);
-            return ''; // ou pode retornar uma mensagem de erro
-        });
+    return fetch(apiUrl + '/api/Variacao?GrupoId=' + dado.grupoId, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Erro ao carregar as variações');
+        }
+        return response.json();
+    })
+    .then(variacoes => {
+        console.log(variacoes);
+
+        let rows = '';
+        for (let i = 0; i < variacoes.length; i++) {
+            const variacao = variacoes[i];
+            rows += `<tr>
+                        <th scope="row">${variacao.variacaoId}</th>
+                        <td>${variacao.name}</td>
+                        <td>
+                            <div>
+                                <a class="btn table-action" href="#">
+                                    <i class="action-icon fas fa-trash"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>`;
+        }
+
+        const tabela = `<table class="table table-striped">       
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Nome</th>                                
+                                    <th scope="col">Opções</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${rows}
+                            </tbody>
+                        </table>`;
+
+        return tabela;
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+        return '';
+    });
+}
+
+function adicionaVariacao() {
+    const token = localStorage.getItem("token");
+    fetch(apiUrl + '/api/Variacao/Grupo?CategoriaId=' + categoriaSelecionada, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        document.getElementById('variacao').innerHTML = '';
+
+        const promises = [];
+
+        for (let i = 0; i < data.length; i++) {
+            const promise = carregarVariacao(data[i]).then(tableHTML => {
+                const newDiv = document.createElement('div');
+                newDiv.innerHTML = `<div class="input-group mb-3" style="margin-top: 10px;">
+                                        <label type="text" class="form-control">${data[i].titulo}</label>
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-success" type="button" onclick="abremodal(${data[i].grupoId})">+</button>
+                                        </div>
+                                    </div>${tableHTML}`;
+
+                document.getElementById('variacao').appendChild(newDiv);
+            });
+
+            promises.push(promise);
+        }
+
+        return Promise.all(promises);
+    })
+    .catch(error => console.error('Erro:', error));
 }

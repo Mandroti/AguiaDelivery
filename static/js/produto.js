@@ -39,16 +39,56 @@ function editarProduto(){
 
 }
 
-var categoriaSelecionada = 0;
+// var categoriaSelecionada = 0;
+// function pegarCat(categoria){
+//     alert(nome)
+//     categoriaSelecionada = categoria;
+//     listarComplementos();
+// }
+
+// function fetchCategoria() {
+//     var id = localStorage.getItem("id");
+//     var token = localStorage.getItem("token");
+    
+
+//     fetch(`http://localhost:5252/api/Categoria/Estabelecimento/${id}`, {
+//         method: 'GET',
+//         headers: {
+//             'Content-Type': 'application/json',
+//             'Authorization': `Bearer ${token}`
+//         }
+//     })
+//         .then(response => response.json())
+//         .then(data => {
+//             var selectCategoria = document.getElementById('inputCategoria');
+
+//             selectCategoria.innerHTML = `<option value="0" disabled>Selecione uma Opção</option>`;
+
+
+//             data.forEach(function (data) {
+//                 selectCategoria.innerHTML += `<option value="${data.categoriaId}" onclick="pegarCat(${data.categoriaId})">${data.nome}</option>`;
+//             });
+          
+//         })
+//         .catch(error => console.error('Erro:', error));
+// }
+
+
+var categoriaSelecionada = 0; // Objeto vazio para armazenar a categoria selecionada
+
 function pegarCat(categoria){
-    categoriaSelecionada = categoria;
+    categoriaSelecionada = categoria.categoriaId;
+    if(categoria.nome === 'Pizza'){
+        alert('entrou')
+        carregaTamanho();
+    }
+    document.getElementById('tamanhoProduto').style.display = 'none';
     listarComplementos();
 }
 
 function fetchCategoria() {
     var id = localStorage.getItem("id");
     var token = localStorage.getItem("token");
-    
 
     fetch(`http://localhost:5252/api/Categoria/Estabelecimento/${id}`, {
         method: 'GET',
@@ -57,21 +97,27 @@ function fetchCategoria() {
             'Authorization': `Bearer ${token}`
         }
     })
-        .then(response => response.json())
-        .then(data => {
-            var selectCategoria = document.getElementById('inputCategoria');
+    .then(response => response.json())
+    .then(data => {
+        var selectCategoria = document.getElementById('inputCategoria');
 
-            selectCategoria.innerHTML = `<option value="0" disabled>Selecione uma Opção</option>`;
+        selectCategoria.innerHTML = `<option value="0" disabled>Selecione uma Opção</option>`;
 
+        data.forEach(function (categoria) {
+            var option = document.createElement('option');
+            option.value = categoria.categoriaId;
+            option.textContent = categoria.nome;
 
-            data.forEach(function (data) {
-                selectCategoria.innerHTML += `<option value="${data.categoriaId}" onclick="pegarCat(${data.categoriaId})">${data.nome}</option>`;
+            option.addEventListener('click', function() {
+                pegarCat(categoria);
             });
 
-            
-        })
-        .catch(error => console.error('Erro:', error));
+            selectCategoria.appendChild(option);
+        });
+    })
+    .catch(error => console.error('Erro:', error));
 }
+
 
 function buscarProdutos(){
    
@@ -86,7 +132,7 @@ function buscarProdutos(){
     })
     .then(response => response.json())
     .then(data => {
-        console.log(data)
+       // console.log(data)
         var tabela = `<table class="table table-striped">
                         <thead>
                             <tr>                                
@@ -130,7 +176,7 @@ function verProdutos(categoria){
     })
     .then(response => response.json())
     .then(data => {
-        console.log(data)
+        //console.log(data)
         var tabela = `<table class="table table-striped">
                         <thead>
                             <tr>    
@@ -195,7 +241,7 @@ function listarComplementos(){
     })
     .then(response => response.json())
     .then(data => {
-        console.log(data)
+       // console.log(data)
         document.getElementById('listaComplementos').innerHTML = '';
 
         for (let i = 0; i < data.length; i++) {
@@ -401,12 +447,56 @@ function buscarCategoria(){
 
 function carregarCategoria(data){
     var row = `
-        <tr>
-           
-            <td onclick="verProdutos(${data.categoriaId})">${data.nome}</td>
-            
+        <tr>           
+            <td onclick="verProdutos(${data.categoriaId})">${data.nome}</td>            
         </tr>
     `;
 
     return row;
+}
+
+function carregaTamanho() {
+    const token = localStorage.getItem("token");
+    alert(categoriaSelecionada);
+
+    fetch(apiUrl + '/api/Variacao/Grupo?CategoriaId=' + categoriaSelecionada, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+
+        fetch(apiUrl+'/api/Variacao?GrupoId=68', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        })
+        .then(response => response.json())
+        .then(dado => {
+            console.log(dado);
+
+            document.getElementById('tamanhoProduto').style.display = 'block';
+
+            var tabela = '<div class="row">';
+            for (let i = 0; i < dado.length; i++) {
+                tabela +=
+                    `<div class="col-md-4">
+                        <label for="${dado[i].variacaoId}" class="form-label">${dado[i].name}</label>
+                        <input type="text" class="form-control" id="${dado[i].variacaoId}" placeholder="0.00" required>  
+                    </div>`;
+            }
+            tabela += '</div>';
+
+            document.getElementById('tamanhoProduto').innerHTML = tabela;
+        })
+        .catch(error => console.error(error));
+
+    })
+    .catch(error => console.error(error));
 }
