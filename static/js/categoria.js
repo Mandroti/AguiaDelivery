@@ -181,6 +181,7 @@ function editarCategoria(id){
 
     carregarDadosCategoria(id);
     idCategoria = id;
+    carregaTamanho();
     
 
     const fecharModal = document.getElementById('fecharModalEditarCategoria');
@@ -386,10 +387,10 @@ function adicionaVariacaoGrupo(){
     const token = localStorage.getItem("token");
    
     var nome = document.getElementById('insertVariacaoNome').value; 
-    var valor = document.getElementById('insertVariacaoValor').value; 
+    // var valor = document.getElementById('insertVariacaoValor').value; 
       
     const dados = {
-        name: nome, preco: valor, active: true, grupoId: grupo
+        name: nome, preco: 0, active: true, grupoId: grupo
     };           
 
     fetch(apiUrl+'/api/Variacao',{             
@@ -615,4 +616,50 @@ function adicionaVariacao() {
         return Promise.all(promises);
     })
     .catch(error => console.error('Erro:', error));
+}
+
+
+function carregaTamanho() {
+    const token = localStorage.getItem("token");
+    
+
+    fetch(apiUrl + '/api/Variacao/Grupo?CategoriaId=' + idCategoria, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+
+        fetch(apiUrl+'/api/Variacao?GrupoId=68', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        })
+        .then(response => response.json())
+        .then(dado => {
+            console.log(dado);
+
+            document.getElementById('tamanhoProduto').style.display = 'block';
+
+            var tabela = '<div class="row">';
+            for (let i = 0; i < dado.length; i++) {
+                tabela +=
+                    `<div class="col-md-4">                        
+                        <input type="text" class="form-control" id="${dado[i].variacaoId}" placeholder="${dado[i].name}" disabled>  
+                    </div>`;
+            }
+            tabela += '</div>';
+
+            document.getElementById('tamanhoProduto').innerHTML = tabela;
+        })
+        .catch(error => console.error(error));
+
+    })
+    .catch(error => console.error(error));
 }
