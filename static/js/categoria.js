@@ -17,8 +17,9 @@ function buscarCat(){
         var tabela = `<table class="table table-striped">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Nome</th>                                
+                                <th scope="col">Imagem</th>
+                                <th scope="col">Nome</th>   
+                                <th scope="col">Status</th>                              
                                 <th scope="col">Opções</th>
                             </tr>
                         </thead>
@@ -42,6 +43,7 @@ function carregarCategoria(data){
         <tr>
             <th scope="row">${data.categoriaId}</th>
             <td>${data.nome}</td>
+            <td>${data.active}</td>
             <td>
                 <div>
                     <a class="btn table-action" href="#">
@@ -97,6 +99,7 @@ function criarCategoria() {
       nome: nome,
       imagem: imagem,
       tipo: categoriaSelecionada,
+      active: true
     };
   
     fetch(apiUrl + '/api/Categoria', {
@@ -294,8 +297,9 @@ function buscarCategoria(){
         var tabela = `<table class="table table-striped">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Nome</th>                                
+                                <th scope="col">Imagem</th>
+                                <th scope="col">Nome</th>   
+                                <th scope="col">Status</th>                              
                                 <th scope="col">Opções</th>
                             </tr>
                         </thead>
@@ -343,151 +347,95 @@ function pegaCategoria(){
 }
 
 
-function criaVariacao(){
-    const token = localStorage.getItem("token");
-   
-    var titulo = document.getElementById('inputTitulo').value; 
-    var categoriaId = categoriaSelecionada;
-      
-    const dados = {
-        titulo: titulo, categoriaId: categoriaId, active: true
-    };           
-
-    fetch(apiUrl+'/api/Variacao/Grupo',{             
-        method: 'POST',
-        headers:{
-            'Content-Type': 'application/json',    
-            'Authorization': `Bearer ${token}`             
-        },
-        body: JSON.stringify(dados)           
-    })
-    .then(response => {
-        console.log(response.status); 
-        if (!response.ok) {
-          throw new Error('Erro ao cadastrar produto');
-        }
-        else{
-           
-            console.log(response)
-            adicionaVariacao();
-        }
-        return response.text();
-      })
-      .then(data => {
-        console.log('Produto cadastrado com sucesso:', data);
-      })
-      .catch(error => console.error('Erro:', error));
-      event.preventDefault();  
-}
-
-var grupo = 0;
-
-function adicionaVariacaoGrupo(){
-
-    const token = localStorage.getItem("token");
-   
-    var nome = document.getElementById('insertVariacaoNome').value; 
-    // var valor = document.getElementById('insertVariacaoValor').value; 
-      
-    const dados = {
-        name: nome, preco: 0, active: true, grupoId: grupo
-    };           
-
-    fetch(apiUrl+'/api/Variacao',{             
-        method: 'POST',
-        headers:{
-            'Content-Type': 'application/json',    
-            'Authorization': `Bearer ${token}`             
-        },
-        body: JSON.stringify(dados)           
-    })
-    .then(response => {
-        console.log(response.status); 
-        if (!response.ok) {
-          throw new Error('Erro ao cadastrar variacao');
-        }
-        else{           
-            console.log(response);    
-            fecharModalVariacao();      
-            adicionaVariacao();
-        }
-        return response.text();
-      })
-      .then(data => {
-        console.log('Variacao cadastrado com sucesso:', data);
-      })
-      .catch(error => console.error('Erro:', error));
-      event.preventDefault();  
-}
-
-function abremodal(grupoId){
-    document.getElementById('modalVariacao').style.display = 'block';
-    grupo = grupoId;
-}
-
-function fecharModalVariacao(){
-    document.getElementById('modalVariacao').style.display = 'none';
-}
-
-// function adicionaVariacao() {
+// function criaVariacao(){
 //     const token = localStorage.getItem("token");
-//     fetch(apiUrl + '/api/Variacao/Grupo?CategoriaId=' + categoriaSelecionada, {
-//         method: 'GET',
-//         headers: {
-//             'Content-Type': 'application/json',
-//             'Authorization': `Bearer ${token}`
-//         }
+   
+//     var titulo = document.getElementById('inputTitulo').value; 
+//     var categoriaId = categoriaSelecionada;
+      
+//     const dados = {
+//         titulo: titulo, categoriaId: categoriaId, active: true
+//     };           
+
+//     fetch(apiUrl+'/api/Variacao/Grupo',{             
+//         method: 'POST',
+//         headers:{
+//             'Content-Type': 'application/json',    
+//             'Authorization': `Bearer ${token}`             
+//         },
+//         body: JSON.stringify(dados)           
 //     })
-//     .then(response => response.json())
-//     .then(data => {
-//         console.log(data);
-//         document.getElementById('variacao').innerHTML = '';
-
-//         // Array para armazenar todas as promises
-//         const promises = [];
-
-//         for (let i = 0; i < data.length; i++) {
-//             let tabela = `<div class="input-group mb-3" style="margin-top: 10px;">
-//                             <label type="text" class="form-control">${data[i].titulo}</label>
-//                             <div class="input-group-append">
-//                                 <button class="btn btn-outline-success" type="button" onclick="abremodal(${data[i].grupoId})">+</button>
-//                             </div>
-//                         </div>`;
-
-            
-//             const promise = carregarVariacao(data[i]).then(rows => {
-//                 tabela += `<table class="table table-striped">       
-//                                 <thead>
-//                                     <tr>
-//                                         <th scope="col">#</th>
-//                                         <th scope="col">Nome</th>                                
-//                                         <th scope="col">Opções</th>
-//                                     </tr>
-//                                 </thead>
-//                                 <tbody>
-//                                     ${rows}
-//                                 </tbody>
-//                             </table>`;
-
-//                 const newDiv = document.createElement('div');
-//                 newDiv.innerHTML = tabela;
-
-//                 document.getElementById('variacao').appendChild(newDiv);
-//             });
-
-//             promises.push(promise);
+//     .then(response => {
+//         console.log(response.status); 
+//         if (!response.ok) {
+//           throw new Error('Erro ao cadastrar produto');
 //         }
-
-//         // Aguardando todas as promises serem resolvidas antes de prosseguir
-//         return Promise.all(promises);
-//     })
-//     .catch(error => console.error('Erro:', error));
+//         else{
+           
+//             console.log(response)
+//             adicionaVariacao();
+//         }
+//         return response.text();
+//       })
+//       .then(data => {
+//         console.log('Produto cadastrado com sucesso:', data);
+//       })
+//       .catch(error => console.error('Erro:', error));
+//       event.preventDefault();  
 // }
 
+// var grupo = 0;
+
+// function adicionaVariacaoGrupo(){
+
+//     const token = localStorage.getItem("token");
+   
+//     var nome = document.getElementById('insertVariacaoNome').value; 
+//     // var valor = document.getElementById('insertVariacaoValor').value; 
+      
+//     const dados = {
+//         name: nome, preco: 0, active: true, grupoId: grupo
+//     };           
+
+//     fetch(apiUrl+'/api/Variacao',{             
+//         method: 'POST',
+//         headers:{
+//             'Content-Type': 'application/json',    
+//             'Authorization': `Bearer ${token}`             
+//         },
+//         body: JSON.stringify(dados)           
+//     })
+//     .then(response => {
+//         console.log(response.status); 
+//         if (!response.ok) {
+//           throw new Error('Erro ao cadastrar variacao');
+//         }
+//         else{           
+//             console.log(response);    
+//             fecharModalVariacao();      
+//             adicionaVariacao();
+//         }
+//         return response.text();
+//       })
+//       .then(data => {
+//         console.log('Variacao cadastrado com sucesso:', data);
+//       })
+//       .catch(error => console.error('Erro:', error));
+//       event.preventDefault();  
+// }
+
+// function abremodal(grupoId){
+//     document.getElementById('modalVariacao').style.display = 'block';
+//     grupo = grupoId;
+// }
+
+// function fecharModalVariacao(){
+//     document.getElementById('modalVariacao').style.display = 'none';
+// }
 
 // function carregarVariacao(dado) {
 //     const token = localStorage.getItem("token");
-//     return fetch(apiUrl + '/api/Variacao?GrupoId=' + grupo, {
+//     return fetch(apiUrl + '/api/Variacao?GrupoId=' + dado.grupoId, {
 //         method: 'GET',
 //         headers: {
 //             'Content-Type': 'application/json',
@@ -518,7 +466,21 @@ function fecharModalVariacao(){
 //                         </td>
 //                     </tr>`;
 //         }
-//         return rows;
+
+//         const tabela = `<table class="table table-striped">       
+//                             <thead>
+//                                 <tr>
+//                                     <th scope="col">#</th>
+//                                     <th scope="col">Nome</th>                                
+//                                     <th scope="col">Opções</th>
+//                                 </tr>
+//                             </thead>
+//                             <tbody>
+//                                 ${rows}
+//                             </tbody>
+//                         </table>`;
+
+//         return tabela;
 //     })
 //     .catch(error => {
 //         console.error('Erro:', error);
@@ -526,140 +488,85 @@ function fecharModalVariacao(){
 //     });
 // }
 
-function carregarVariacao(dado) {
-    const token = localStorage.getItem("token");
-    return fetch(apiUrl + '/api/Variacao?GrupoId=' + dado.grupoId, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-        }
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Erro ao carregar as variações');
-        }
-        return response.json();
-    })
-    .then(variacoes => {
-        console.log(variacoes);
+// function adicionaVariacao() {
+//     const token = localStorage.getItem("token");
+//     fetch(apiUrl + '/api/Variacao/Grupo?CategoriaId=' + categoriaSelecionada, {
+//         method: 'GET',
+//         headers: {
+//             'Content-Type': 'application/json',
+//             'Authorization': `Bearer ${token}`
+//         }
+//     })
+//     .then(response => response.json())
+//     .then(data => {
+//         console.log(data);
+//         document.getElementById('variacao').innerHTML = '';
 
-        let rows = '';
-        for (let i = 0; i < variacoes.length; i++) {
-            const variacao = variacoes[i];
-            rows += `<tr>
-                        <th scope="row">${variacao.variacaoId}</th>
-                        <td>${variacao.name}</td>
-                        <td>
-                            <div>
-                                <a class="btn table-action" href="#">
-                                    <i class="action-icon fas fa-trash"></i>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>`;
-        }
+//         const promises = [];
 
-        const tabela = `<table class="table table-striped">       
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Nome</th>                                
-                                    <th scope="col">Opções</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                ${rows}
-                            </tbody>
-                        </table>`;
+//         for (let i = 0; i < data.length; i++) {
+//             const promise = carregarVariacao(data[i]).then(tableHTML => {
+//                 const newDiv = document.createElement('div');
+//                 newDiv.innerHTML = `<div class="input-group mb-3" style="margin-top: 10px;">
+//                                         <label type="text" class="form-control">${data[i].titulo}</label>
+//                                         <div class="input-group-append">
+//                                             <button class="btn btn-outline-success" type="button" onclick="abremodal(${data[i].grupoId})">+</button>
+//                                         </div>
+//                                     </div>${tableHTML}`;
 
-        return tabela;
-    })
-    .catch(error => {
-        console.error('Erro:', error);
-        return '';
-    });
-}
+//                 document.getElementById('variacao').appendChild(newDiv);
+//             });
 
-function adicionaVariacao() {
-    const token = localStorage.getItem("token");
-    fetch(apiUrl + '/api/Variacao/Grupo?CategoriaId=' + categoriaSelecionada, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
-        document.getElementById('variacao').innerHTML = '';
+//             promises.push(promise);
+//         }
 
-        const promises = [];
-
-        for (let i = 0; i < data.length; i++) {
-            const promise = carregarVariacao(data[i]).then(tableHTML => {
-                const newDiv = document.createElement('div');
-                newDiv.innerHTML = `<div class="input-group mb-3" style="margin-top: 10px;">
-                                        <label type="text" class="form-control">${data[i].titulo}</label>
-                                        <div class="input-group-append">
-                                            <button class="btn btn-outline-success" type="button" onclick="abremodal(${data[i].grupoId})">+</button>
-                                        </div>
-                                    </div>${tableHTML}`;
-
-                document.getElementById('variacao').appendChild(newDiv);
-            });
-
-            promises.push(promise);
-        }
-
-        return Promise.all(promises);
-    })
-    .catch(error => console.error('Erro:', error));
-}
+//         return Promise.all(promises);
+//     })
+//     .catch(error => console.error('Erro:', error));
+// }
 
 
-function carregaTamanho() {
-    const token = localStorage.getItem("token");
+// function carregaTamanho() {
+//     const token = localStorage.getItem("token");
     
 
-    fetch(apiUrl + '/api/Variacao/Grupo?CategoriaId=' + idCategoria, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
+//     fetch(apiUrl + '/api/Variacao/Grupo?CategoriaId=' + idCategoria, {
+//         method: 'GET',
+//         headers: {
+//             'Content-Type': 'application/json',
+//             'Authorization': `Bearer ${token}`
+//         }
+//     })
+//     .then(response => response.json())
+//     .then(data => {
+//         console.log(data);
 
-        fetch(apiUrl+'/api/Variacao?GrupoId=68', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            }
-        })
-        .then(response => response.json())
-        .then(dado => {
-            console.log(dado);
+//         fetch(apiUrl+'/api/Variacao?GrupoId=68', {
+//             method: 'GET',
+//             headers: {
+//                 'Content-Type': 'application/json',
+//                 'Authorization': `Bearer ${token}`
+//             }
+//         })
+//         .then(response => response.json())
+//         .then(dado => {
+//             console.log(dado);
 
-            document.getElementById('tamanhoProduto').style.display = 'block';
+//             document.getElementById('tamanhoProduto').style.display = 'block';
 
-            var tabela = '<div class="row">';
-            for (let i = 0; i < dado.length; i++) {
-                tabela +=
-                    `<div class="col-md-4">                        
-                        <input type="text" class="form-control" id="${dado[i].variacaoId}" placeholder="${dado[i].name}" disabled>  
-                    </div>`;
-            }
-            tabela += '</div>';
+//             var tabela = '<div class="row">';
+//             for (let i = 0; i < dado.length; i++) {
+//                 tabela +=
+//                     `<div class="col-md-4">                        
+//                         <input type="text" class="form-control" id="${dado[i].variacaoId}" placeholder="${dado[i].name}" disabled>  
+//                     </div>`;
+//             }
+//             tabela += '</div>';
 
-            document.getElementById('tamanhoProduto').innerHTML = tabela;
-        })
-        .catch(error => console.error(error));
+//             document.getElementById('tamanhoProduto').innerHTML = tabela;
+//         })
+//         .catch(error => console.error(error));
 
-    })
-    .catch(error => console.error(error));
-}
+//     })
+//     .catch(error => console.error(error));
+// }

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/home.css">
+
+
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="manifest" href="/manifest.json">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="shortcut icon" type="imagem/x-icon" href="/images/browse.jpg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.3.1/css/all.min.css" rel="stylesheet"> -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/home.css">
+
+
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="manifest" href="/manifest.json">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="shortcut icon" type="imagem/x-icon" href="/images/browse.jpg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.3.1/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/forms.css">
+
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+    <title>Dashboard - Águia Delivery</title>
+    <script src="config.js"></script>
+</head>
+
+<body onload="buscarCliente()">
+    <nav class="sidebar close">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <img src="images/chef.png" alt="logo" style="width: 30px;">
+                </span>
+                <div class="text logo-text">                    
+                    <span class="profession">Águia Delivery</span>
+                </div>
+            </div>
+            <i class='bx bx-chevron-right toggle' style="background-color: #ffbe33"></i>
+        </header>
+    
+        <div class="menu-bar">
+            <div class="menu">
+                <ul class="menu-links recuo">
+                  <li class="search-box" style="display: none;">
+                  </li>
+                    <li class="nav-link">
+                        <a href="dashboard.html">
+                            <i class='bx bx-home-alt icon'></i>
+                            <span class="text nav-text" style="font-size: 15px;">Início</span>
+                        </a>
+                    </li>       
+                    <hr>
+                    <li class="nav-item">
+                        <i class='bx bx-dots-horizontal icon'></i>
+                        <span style="color: rgb(177, 176, 176);">Realizar Consultas</span>
+                    </li>
+                    <li class="nav-link">
+                        <a href="buscarEstabelecimento.html">
+                            <i class='bx bx-money icon'></i>
+                            <span class="text nav-text" style="font-size: 15px;">Estabelecimentos</span>
+                        </a>
+                    </li>                 
+                    <li class="nav-link">
+                        <a href="buscarCliente.html">
+                            <i class='bx bx-user icon'></i>
+                            <span class="text nav-text" style="font-size: 15px;">Clientes</span>
+                        </a>
+                    </li>
+      
+                   
+                    
+                    <!-- <hr>
+                    <li class="nav-item">
+                        <i class='bx bx-dots-horizontal icon'></i>
+                        <span style="color: rgb(177, 176, 176);">Dados Cadastrais</span>
+                        
+                    </li>
+                    <li class="nav-link">
+                        <a href="perfilEstabelecimento.html">
+                            <i class='bx bx-store icon'></i>
+                            <span class="text nav-text" style="font-size: 15px;">Editar Perfil</span>
+                        </a>
+                    </li>                                 -->
+                </ul>
+            </div>         
+      
+            <div class="bottom-content">
+                <ul class="menu-links recuo">
+                    <li>
+                        <a href="index.html">
+                            <i class='bx bx-log-out icon'></i>
+                            <span class="text nav-text" style="font-size: 15px;">Sair</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+
+    <section class="home">
+        <div class="main-content">
+          <div class="container-fluid">
+            <div class="mb-5 text-blue saudacao">
+              <h2 id="saudacao"></h2>
+            </div>
+      
+            <div class="header-body">
+                <div class="row">
+                    <div class="col-xl-12 col-lg-9">
+                        <div class="card card-stats mb-4 mb-xl-0 border-0">
+                            <div class="card-body" style="background-color: whitesmoke;">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h5 class="card-title text-uppercase text-muted mb-0">ESTABELECIMENTOS</h5>
+                                    </div>
+                                    <div class="col-auto">
+                                        <form class="row align-items-center">
+                                            <div class="col">
+                                                <div class="input-group">
+                                                    <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Buscar" style="font-size: 14px;">
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-outline-secondary" type="button" style="border-color: transparent;" onclick="buscarEstabelecimento()"><i class="action-icon fas fa-search"></i></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <!-- <button class="btn btn-lg btn-success" type="submit" style="font-size: 14px;" onclick="adicionarEstabelecimento()">Adicionar</button> -->
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>           
+          <br>
+
+          <div class="card" style="border: 1px solid transparent; max-height: calc(100vh - 180px); overflow-y: auto;"  id="tabelaEstabelecimento">
+            
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="modal" id="modalExcluirEstabelecimento" style="display:none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Excluir Estabeleciemnto</h5>
+                    <button type="button" class="close" id="fecharModalEstabelecimento" style="background-color: transparent; border-color: transparent; font-size: 50px;" >
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Tem certeza de que deseja excluir este estabelecimento?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn " data-dismiss="modal" id="fecharModalEstabelecimentoo">Fechar</button>
+                    <button type="button" class="btn btn-danger" onclick="removerEstabelecimento()" data-id="id">Confirmar Exclusão</button>
+                </div>
+            </div>
+        </div>      
+    </section>
+    
+    <section>
+        <div class="modal" id="modalEditarCliente" style="display:none;">
+            <div class="modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Atualizar Cadastro do Estabelecimento</h5>
+                        <button type="button" class="btn-close" id="fecharCliente" aria-label="Close" onclick="fecharModalEstabelecimento()"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <h6><strong>Informações da Conta</strong></h6>
+                            <p></p>
+                            <div class="form-group mb-2">
+                              <label for="formGroupExampleInput">Nome do Estabelecimento</label>
+                              <input type="text" class="form-control" id="inputEstabelecimento" placeholder="Nome do Estabelecimento">
+                            </div>
+                            <div class="form-group mb-2">
+                              <label for="formGroupExampleInput2">Nome Fantasia</label>
+                              <input type="text" class="form-control" id="inputFantasia" placeholder="Nome Fantasia">
+                            </div>
+                            <div class="row form-group mb-2">
+                                <div class="col">
+                                  <label for="formGroupExampleInput">CNPJ</label>
+                                  <input type="text" class="form-control" id="inputCnpj" placeholder="00.000.000/0000-00">
+                                </div>
+                                <div class="col">
+                                  <label for="formGroupExampleInput">Email Principal</label>
+                                  <input type="text" class="form-control" id="inputEmail" placeholder="Estabelecimento@gmail.com">
+                                </div>
+                            </div>
+                            <div class="row form-group mb-2">
+                                <div class="col">
+                                  <label for="formGroupExampleInput">Telefone</label>
+                                  <input type="text" class="form-control" id="inputTelefone" placeholder="(00)00000-0000" maxlength="15" onkeyup="applyPhoneMask(event)">
+                                </div>
+                                <div class="col">
+                                  <label for="formGroupExampleInput">Celular</label>
+                                  <input type="text" class="form-control" id="inputCelular" placeholder="(00)00000-0000" maxlength="15" onkeyup="applyPhoneMask(event)">
+                                </div>
+                            </div>
+                            <div class="form-group d-flex flex-column form-group mb-2">
+                                <label for="formGroupExampleInput">Logo do Estabelecimento</label>
+                                <input type="file" id="inputImagem" accept="image/*">
+                            </div>
+                            
+                            <p></p>
+                            <h6><strong>Informações de Endereço</strong></h6>
+                            <p></p>
+                            <div class="form-group mb-2">
+                                <label for="formGroupExampleInput">Logradouro</label>
+                                <input type="text" class="form-control" id="inputLog" placeholder="Endereço">
+                            </div>
+                            <div class="row form-group mb-2">
+                                <div class="col">
+                                  <label for="formGroupExampleInput">Bairro</label>
+                                  <input type="text" class="form-control" id="inputBairro"  placeholder="Bairro">
+                                </div>
+                                <div class="col">
+                                  <label for="formGroupExampleInput">CEP</label>
+                                  <input type="text" class="form-control" id="inputCep" placeholder="00000-000" maxlength="9" onkeyup="applyZipCodeMask(event)">
+                                </div>
+                            </div>
+                            <div class="row form-group mb-2">
+                                <div class="col">
+                                  <label for="formGroupExampleInput">Numero</label>
+                                  <input type="text" class="form-control" id="inputNumero" placeholder="000">
+                                </div>
+                                <div class="col">
+                                    <label for="formGroupExampleInput">Estado</label>
+                                    <input type="text" class="form-control" id="inputEstado" placeholder="Estado">
+                                </div>
+                                <div class="col">
+                                    <label for="formGroupExampleInput">Cidade</label>
+                                    <input type="text" class="form-control" id="inputCidade" placeholder="Cidade">
+                                  </div>
+                            </div>
+                            <p></p>
+                            <h6><strong>Informações de Funcionamento</strong></h6>
+                            <p></p>
+                            <div class="row form-group mb-2">
+                                <div class="col">
+                                  <label for="formGroupExampleInput">Horário Inicial de Funcionamento</label>
+                                  <input type="datetime" class="form-control" id="inputIcFunc" placeholder="00:00">
+                                </div>
+                                <div class="col">
+                                  <label for="formGroupExampleInput">Horário Final de Funcionamento</label>
+                                  <input type="datetime" class="form-control" id="inputFiFunc" placeholder="00:00">
+                                </div>
+                            </div>
+                            <div class="form-group form-group mb-2">
+                                <label for="formGroupExampleInput">Descrição</label>
+                                <input type="text" class="form-control" id="inputDesc" placeholder="Descrição">
+                              </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+    
+</body>
+<script src="js/dashboard.js"></script>
+<script src="js/estabelecimento.js"></script>
+<script src="js/mask.js"></script>
+</html>

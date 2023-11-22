@@ -58,6 +58,8 @@
         <div class="menu-bar">
             <div class="menu">
                 <ul class="menu-links recuo">
+                  <li class="search-box" style="display: none;">
+                  </li>
                     <li class="nav-link">
                         <a href="dashboard.html">
                             <i class='bx bx-home-alt icon'></i>
@@ -70,45 +72,35 @@
                         <span style="color: rgb(177, 176, 176);">Realizar Consultas</span>
                     </li>
                     <li class="nav-link">
-                        <a href="buscarProduto.html">
-                            <i class='bx bx-shopping-bag icon'></i>
-                            <span class="text nav-text" style="font-size: 15px;">Produtos</span>
+                        <a href="buscarEstabelecimento.html">
+                            <i class='bx bx-money icon'></i>
+                            <span class="text nav-text" style="font-size: 15px;">Estabelecimentos</span>
                         </a>
-                    </li>   
+                    </li>                 
                     <li class="nav-link">
-                        <a href="buscarCategoria.html">
-                            <i class='bx bx-category icon'></i>
-                            <span class="text nav-text" style="font-size: 15px;">Categorias</span>
+                        <a href="buscarCliente.html">
+                            <i class='bx bx-user icon'></i>
+                            <span class="text nav-text" style="font-size: 15px;">Clientes</span>
                         </a>
-                    </li>   
-    
-                    <li class="nav-link">
-                        <a href="buscarProduto.html">
-                            <i class='bx bx-shopping-bag icon'></i>
-                            <span class="text nav-text" style="font-size: 15px;">Produtos</span>
-                        </a>
-                    </li>   
+                    </li>
+      
                    
-                    <li class="nav-link">
-                        <a href="buscarComplemento.html">
-                            <i class='bx bxs-component icon'></i>
-                            <span class="text nav-text" style="font-size: 15px;">Complementos</span>
-                        </a>
-                      </li> 
-                    <hr>
+                    
+                    <!-- <hr>
                     <li class="nav-item">
                         <i class='bx bx-dots-horizontal icon'></i>
                         <span style="color: rgb(177, 176, 176);">Dados Cadastrais</span>
+                        
                     </li>
                     <li class="nav-link">
                         <a href="perfilEstabelecimento.html">
                             <i class='bx bx-store icon'></i>
                             <span class="text nav-text" style="font-size: 15px;">Editar Perfil</span>
                         </a>
-                    </li>                                
+                    </li>                                 -->
                 </ul>
             </div>         
-    
+      
             <div class="bottom-content">
                 <ul class="menu-links recuo">
                     <li>
@@ -143,14 +135,14 @@
                                         <form class="row align-items-center">
                                             <div class="col">
                                                 <div class="input-group">
-                                                    <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Buscar" style="font-size: 14px;">
+                                                    <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Buscar" style="font-size: 14px;" id="nomeCliente">
                                                     <div class="input-group-append">
-                                                        <button class="btn btn-outline-secondary" type="button" style="border-color: transparent;" onclick="buscarCategoria()"><i class="action-icon fas fa-search"></i></button>
+                                                        <button class="btn btn-outline-secondary" type="button" style="border-color: transparent;" onclick="buscarClientes()"><i class="action-icon fas fa-search"></i></button>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-auto">
-                                                <button class="btn btn-lg btn-success" type="submit" style="font-size: 14px;" onclick="adicionarCliente()">Adicionar</button>
+                                                <!-- <button class="btn btn-lg btn-success" type="submit" style="font-size: 14px;" onclick="adicionarCliente()">Adicionar</button> -->
                                             </div>
                                         </form>
                                     </div>

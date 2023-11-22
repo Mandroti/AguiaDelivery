@@ -1,79 +1,79 @@
-//FETCH -- CLIENTE
-var idCliente = 0;
+// //FETCH -- ESTABELECIMENTO
+// var idCliente = 0;
 
-function buscarCliente()
-{
-    const token = localStorage.getItem("token");
-    fetch(apiUrl+'/api/Consumidor/?TipoFiltro=0&Filtro=""', {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`  
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log(data)
-        var tabela = `<table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Nome</th>
-                                <th scope="col">Telefone</th>
-                                <th scope="col">Situação</th>
-                                <th scope="col">Excluir</th>
-                            </tr>
-                        </thead>
-                        <tbody>`;
+// function buscarEstabelecimento()
+// {
+//     const token = localStorage.getItem("token");
+//     fetch(apiUrl+'/api/Estabelecimento', {
+//         method: 'GET',
+//         headers: {
+//             'Content-Type': 'application/json',
+//             'Authorization': `Bearer ${token}`  
+//         }
+//     })
+//     .then(response => response.json())
+//     .then(data => {
+//         console.log(data)
+//         var tabela = `<table class="table table-striped">
+//                         <thead>
+//                             <tr>
+//                                 <th scope="col">Logo</th>
+//                                 <th scope="col">Nome</th>
+//                                 <th scope="col">Telefone</th>
+//                                 <th scope="col">Situaçãao</th>
+//                                 <th scope="col">Excluir</th>
+//                             </tr>
+//                         </thead>
+//                         <tbody>`;
 
-        for (var i = 0; i < data.length; i++) {
-            var card = carregarClientes(data[i]);
-            tabela += card;
-        }
+//         for (var i = 0; i < data.length; i++) {
+//             var card = carregarEstabelecimentos(data[i]);
+//             tabela += card;
+//         }
 
-        tabela += `</tbody></table>`;
+//         tabela += `</tbody></table>`;
 
-        document.getElementById('tabelaClientes').innerHTML = tabela;
-    })
-    .catch(error => console.error('Erro:', error));
+//         document.getElementById('tabelaEstabelecimentos').innerHTML = tabela;
+//     })
+//     .catch(error => console.error('Erro:', error));
 
-    event.preventDefault();
-}
+//     event.preventDefault();
+// }
 
-function carregarClientes(dado){
-    var row = `
-        <tr>
-            <th scope="row">${dado.consumidorId}</th>
-            <td>${dado.nome}</td>
-            <td>${dado.telefone}</td>
-            <td>${dado.active}</td>
-            <td>
-                <div>
-                    <a class="btn table-action" href="#">
-                        <i class="action-icon fas fa-trash" onclick="excluirCliente(${dado.consumidorId})"></i>
-                    </a>                         
-                </div>
-            </td>
-        </tr>
-    `;
+// function carregarEstabelecimentos(dado){
+//     var row = `
+//         <tr>
+//             <th scope="row">${dado.estabelecimentoId}</th>
+//             <td>${dado.nome}</td>
+//             <td>${dado.telefone}</td>
+//             <td>${dado.active}</td>
+//             <td>
+//                 <div>
+//                     <a class="btn table-action" href="#">
+//                         <i class="action-icon fas fa-trash" onclick="excluirCliente(${dado.estabelecimentoId})"></i>
+//                     </a>                         
+//                 </div>
+//             </td>
+//         </tr>
+//     `;
 
-    return row;
-}
+//     return row;
+// }
 
-function editarCliente(id){
-    const modal = document.getElementById('modalEditarCliente');
-    modal.style.display = 'block';
-    carregarDadosCliente(id);
-    event.preventDefault();
+// function modalEditarEstabelecimento(id){
+//     const modal = document.getElementById('modalEditarEstabelecimento');
+//     modal.style.display = 'block';
+//     carregarDadosEstabelecimento(id);
+//     event.preventDefault();
 
-}
+// }
 
-function fecharModalCliente(){
-    document.getElementById('modalEditarCliente').style.display = 'none';
-    document.getElementById('modalAdicionarCliente').style.display = 'none';
-}
+// function fecharModalEstabelecimento(){
+//     document.getElementById('modalEditarEstabelecimento').style.display = 'none';
+//     document.getElementById('modalAdicionarEstabelecimento').style.display = 'none';
+// }
 
-function carregarDadosCliente(id){    
+function carregarDadosEstabelecimento(id){    
     const token = localStorage.getItem("token");
 
     fetch(apiUrl+`/api/Consumidor/${id}`, {             
