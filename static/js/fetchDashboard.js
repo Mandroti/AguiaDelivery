@@ -37,6 +37,19 @@ function carregarDados(){
     .catch(error => console.error('Erro:', error));
 }
 
+var imageBase64 = "";
+
+function encodeImageFileAsURL(element) {
+    var file = element.files[0];
+    var reader = new FileReader();
+    reader.onloadend = function() {
+   
+      imageBase64 = reader.result;
+      
+    }
+    reader.readAsDataURL(file);
+}
+
 function gravarAlteracoes(){
     const id2 = localStorage.getItem("id");
     const token = localStorage.getItem("token");
@@ -61,9 +74,10 @@ function gravarAlteracoes(){
     var cidade_IBGE = document.getElementById('inputCidade').value;       
     var uf = document.getElementById('inputEstado').value;                 
     var observacao = document.getElementById('inputDesc').value;        
-    var logo = "";  
+    var logo = imageBase64;  
     var active = true; 
     
+    alert(logo)
 
      const dados = {
          estabelecimentoId: id, nome: nome, cnpj_Cpf: cnpj_Cpf, ie_Rg: ie_Rg, nomeFantasia: nomeFantasia,
@@ -93,4 +107,3 @@ function gravarAlteracoes(){
       .catch(error => console.error('Erro:', error));
       event.preventDefault();   
 }
-

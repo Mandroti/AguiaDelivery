@@ -1,4 +1,17 @@
 //FETCH -- PRODUTO
+var imageBase64 = "";
+
+function encodeImageFileAsURL(element) {
+    var file = element.files[0];
+    var reader = new FileReader();
+    reader.onloadend = function() {
+      alert(reader.result); 
+      imageBase64 = reader.result;
+      alert(imageBase64)
+    }
+    reader.readAsDataURL(file);
+}
+
 function adicionarProduto(){
     const modal = document.getElementById('modalAdicionarProduto');
     modal.style.display = 'block';
@@ -10,7 +23,9 @@ function fecharModalProduto(){
     modal.style.display = 'none';
 }
 
-function excluirProduto() {
+function excluirProduto(id) {
+
+    idProduto = id;
     const modal = document.getElementById('modalExcluirProduto');
     modal.style.display = 'block';
 
@@ -26,11 +41,17 @@ function excluirProduto() {
     });
 }
 
-function editarProduto(){
+var idProduto = 0;
+
+function editarProduto(id){
     const modal = document.getElementById('modalEditarProduto');
     modal.style.display = 'block';
     event.preventDefault();
 
+    carregarDadosProduto(id);
+    idProduto = id;
+    alert(idProduto)
+    
     // Adicionando uma função para fechar o modal
     const fecharModal = document.getElementById('fecharModalEditarProduto');
     fecharModal.addEventListener('click', function(){
@@ -38,6 +59,115 @@ function editarProduto(){
     });
 
 }
+
+
+function registrarProduto(){
+    const token = localStorage.getItem("token");
+    const id = localStorage.getItem("id");
+
+
+    var nome = document.getElementById('upNome').value; 
+    var valor = document.getElementById('upValor').value;
+    var categoria = categoriaSelecionada;    
+    var descricao = document.getElementById('upDescricao').value;
+    var imagem = imageBase64;   
+
+
+    const dados = {
+        produtoId: idProduto, estabelecimentoId:id, nome: nome, descricao: descricao, imagem: imagem, 
+        preco: valor, active: true, categoriaId: categoria
+    };       
+
+    fetch(apiUrl+'/api/Produto/'+idProduto,{             
+        method: 'PUT',
+        headers:{
+            'Content-Type': 'application/json',    
+            'Authorization': `Bearer ${token}`             
+        },
+        body: JSON.stringify(dados)           
+    })
+    .then(response => {
+        if (!response.ok) {
+          throw new Error('Erro ao editar produto');
+        }
+        else{
+            // window.location.href = "buscarProduto.html"
+            console.log(response)
+        }
+        return response.text();
+      })
+      .then(data => {
+        console.log('Produto editado com sucesso:', data);
+      })
+      .catch(error => console.error('Erro:', error));
+      event.preventDefault();  
+}
+
+// function fetchCategoriaEditar(){
+//     var id = localStorage.getItem("id");
+//     var token = localStorage.getItem("token");
+
+//     fetch(`http://localhost:5252/api/Categoria/Estabelecimento/${id}`, {
+//         method: 'GET',
+//         headers: {
+//             'Content-Type': 'application/json',
+//             'Authorization': `Bearer ${token}`
+//         }
+//     })
+//     .then(response => response.json())
+//     .then(data => {
+//         var selectCategoria = document.getElementById('upCategoria');
+
+//         selectCategoria.innerHTML = `<option value="0" disabled>Selecione uma Opção</option>`;
+
+//         data.forEach(function (categoria) {
+//             var option = document.createElement('option');
+//             option.value = categoria.categoriaId;
+//             option.textContent = categoria.nome;
+
+           
+        
+//             selectCategoria.appendChild(option);
+//         });
+
+//         var selectCategoria = document.getElementById('inputCategoria');
+
+//         selectCategoria.innerHTML = `<option value="0" disabled>Selecione uma Opção</option>`;
+
+//         data.forEach(function (categoria) {
+//             var option = document.createElement('option');
+//             option.value = categoria.categoriaId;
+//             option.textContent = categoria.nome;
+
+           
+        
+//             selectCategoria.appendChild(option);
+//         });
+//     })
+//     .catch(error => console.error('Erro:', error));
+// }
+
+function carregarDadosProduto(id){
+    fetch(apiUrl+`/api/Produto/${id}`, {             
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }          
+    })
+    .then(response => response.json())
+    .then(data => {
+        fetchCategoria();
+        document.getElementById('upNome').value = data.nome;
+        document.getElementById('upValor').value = data.preco;
+        //document.getElementById('upCategoria').value = data.categoriaId;
+        document.getElementById('upDescricao').value = data.descricao;
+        //document.getElementById('upImagem').value = data.imagem; 
+    })
+    .catch(error => console.error('Erro:', error));
+
+    event.preventDefault();
+}
+
 
 // var categoriaSelecionada = 0;
 // function pegarCat(categoria){
@@ -78,12 +208,13 @@ var categoriaSelecionada = 0; // Objeto vazio para armazenar a categoria selecio
 
 function pegarCat(categoria){
     categoriaSelecionada = categoria.categoriaId;
-    if(categoria.nome === 'Pizza'){
-        alert('entrou')
-        carregaTamanho();
-    }
-    document.getElementById('tamanhoProduto').style.display = 'none';
-    listarComplementos();
+    alert(categoriaSelecionada)
+    // if(categoria.nome === 'Pizza'){
+    //     alert('entrou')
+    //     carregaTamanho();
+    // }
+    // document.getElementById('tamanhoProduto').style.display = 'none';
+    // listarComplementos();
 }
 
 function fetchCategoria() {
@@ -109,11 +240,30 @@ function fetchCategoria() {
             option.textContent = categoria.nome;
 
             option.addEventListener('click', function() {
+                
                 pegarCat(categoria);
             });
 
             selectCategoria.appendChild(option);
         });
+
+        var selectCategoria = document.getElementById('upCategoria');
+
+        selectCategoria.innerHTML = `<option value="0" disabled>Selecione uma Opção</option>`;
+
+        data.forEach(function (categoria) {
+            var option = document.createElement('option');
+            option.value = categoria.categoriaId;
+            option.textContent = categoria.nome;
+
+            option.addEventListener('click', function() {
+                
+                pegarCat(categoria);
+            });
+
+            selectCategoria.appendChild(option);
+        });
+
     })
     .catch(error => console.error('Erro:', error));
 }
@@ -136,7 +286,7 @@ function buscarProdutos(){
         var tabela = `<table class="table table-striped">
                         <thead>
                             <tr>                                
-                                <th scope="col">Nome</th>                                
+                                <th scope="col">Nome Categorias</th>                                
                             </tr>
                         </thead>
                         <tbody>`;
@@ -157,8 +307,14 @@ function buscarProdutos(){
 function carregarProdutos(data){
     var row = `
         <tr>            
-            <td onclick="verProdutos(${data.categoriaId})">${data.nome}</td>
+            <td onclick="verProdutos(${data.categoriaId})" style="font-size: large">${data.nome}</td>
         </tr>
+        <tr>            
+            <td>
+                </hr>
+            </td>
+        </tr>
+       
     `;
     return row;
 }
@@ -183,7 +339,8 @@ function verProdutos(categoria){
                                 <th scope="col">#</th>                            
                                 <th scope="col">Nome</th>
                                 <th scope="col">Valor</th>  
-                                <th scope="col">Opções</th>                               
+                                <th scope="col">Opções</th> 
+                                                           
                             </tr>
                         </thead>
                         <tbody>`;
@@ -219,11 +376,12 @@ function carregarProd(dado){
             <td>
                 <div>
                     <a class="btn table-action" href="#">
-                        <i class="action-icon fas fa-edit" onclick="editarComplemento(${dado.produtoId})" style="margin-right: 12px;></i>
-                        <i class="action-icon fas fa-trash" onclick="excluirComplemento(${dado.produtoId})"></i>
+                        <i class="action-icon fas fa-edit" onclick="editarProduto(${dado.produtoId})" style="margin-right: 12px;"></i>
+                        <i class="action-icon fas fa-trash" onclick="excluirProduto(${dado.produtoId})"></i>
                     </a>                         
                 </div>
             </td>
+            
         </tr>
     `;
 
@@ -273,7 +431,7 @@ function criarProduto(){
     var valor = document.getElementById('inputValor').value;
     var categoria = categoriaSelecionada;
     var descricao = document.getElementById('inputDescricao').value;
-    var imagem = document.getElementById('inputImagem').value;    
+    var imagem =imageBase64;  
 
 
     const dados = {
@@ -499,4 +657,30 @@ function carregaTamanho() {
 
     })
     .catch(error => console.error(error));
+}
+
+
+function confirmarExclusao(){
+    const token = localStorage.getItem("token");
+    fetch(apiUrl+'/api/Produto/'+idProduto, {
+        method: 'DELETE',
+        headers: {
+            'Authorization': `Bearer ${token}` 
+        }
+    })
+    .then(response => {
+            if (!response.ok) {
+              throw new Error('Erro ao excluir produto');
+            }
+            else{
+                window.location.href = "buscarProduto.html"
+            }
+            return response.text();
+    })
+    .then(data => {
+        console.log('Produto ID:', data);
+    })
+    .catch(error => console.error('Erro ao deletar o ID:', error));
+
+    event.preventDefault();
 }

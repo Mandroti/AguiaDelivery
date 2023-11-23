@@ -136,10 +136,49 @@ function meuLogin()
     .then(result => {
         localStorage.setItem("token", result.token);
         localStorage.setItem("time", result.expiration);
+        localStorage.setItem("id", result.id);
         alert(localStorage.getItem("token")); 
 
         if (new Date(localStorage.getItem("time")) > new Date()) { //sem verificar se é estabelecimento ou consumidor
             window.location.href = "cardapioCliente.html";
+        }
+    })
+    .catch(error => console.error('Erro:', error));     
+    event.preventDefault();
+}    
+
+function meuEstabelecimento()
+{
+    const userName = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    const dados = {
+        userName: userName,
+        password: password
+    };
+
+    fetch('http://localhost:5252/api/Autoriza/Estabelecimento', { 
+        method: 'POST',
+        headers:{
+            'Content-Type': 'application/json'
+        },        
+        body: JSON.stringify(dados)   
+
+    })
+    .then(response => {
+        if (!response.ok) {
+            document.getElementById('errorUsuario').style.display = 'block';
+        }
+        return response.json();
+    })
+    .then(result => {
+        localStorage.setItem("token", result.token);
+        localStorage.setItem("time", result.expiration);
+        localStorage.setItem("id", result.id);
+        alert(localStorage.getItem("id")); 
+
+        if (new Date(localStorage.getItem("time")) > new Date()) { 
+            window.location.href = "dashboard.html";
         }
     })
     .catch(error => console.error('Erro:', error));     

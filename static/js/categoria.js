@@ -67,15 +67,29 @@ function adicionarCategoria(){
 function fecharModalCategoria(){
     const modal = document.getElementById('modalAdicionarCategoria');
     modal.style.display = 'none';
+    document.getElementById('modalEditarCategoria').style.display = 'none';
+   
 }
 
 var nomeCategoria = '';
+var imageBase64 = "";
+
+function encodeImageFileAsURL(element) {
+    var file = element.files[0];
+    var reader = new FileReader();
+    reader.onloadend = function() {
+      alert(reader.result); 
+      imageBase64 = reader.result;
+      alert(imageBase64)
+    }
+    reader.readAsDataURL(file);
+}
 
 function criarCategoria() {
   
     const token = localStorage.getItem('token');
     const nome = document.getElementById('insertNome').value;
-    const imagem = document.getElementById('insertImagem').value; 
+    const imagem = imageBase64;
     const radioButtons = document.getElementsByName('inlineRadioOptions');
     let categoriaSelecionada = '';
     nomeCategoria = document.getElementById('insertNome').value;
@@ -114,14 +128,14 @@ function criarCategoria() {
       if (!response.ok) {
         throw new Error('Erro ao cadastrar categoria');
       } else {
+        window.location.href = 'buscarCategoria.html';
+        // if (categoriaSelecionada === 1){
+        //     console.log(response);
+        // }            
+        // else{
         
-        if (categoriaSelecionada === 1){
-            console.log(response);
-        }            
-        else{
-        
-           window.location.href = 'buscarCategoria.html';
-        }
+        //    window.location.href = 'buscarCategoria.html';
+        // }
       }
       return response.text();
     })
@@ -187,7 +201,7 @@ function editarCategoria(id){
     carregaTamanho();
     
 
-    const fecharModal = document.getElementById('fecharModalEditarCategoria');
+    const fecharModal = document.getElementById('modalEditarCategoria');
     fecharModal.addEventListener('click', function(){
         modal.style.display = 'none';
     });
@@ -213,26 +227,27 @@ function carregarDadosCategoria(id){
 const categoriaDiv = document.getElementById('categoriaDiv');
 const radios = categoriaDiv.querySelectorAll('input[name="inlineRadioOptions"]');
 
-radios.forEach(radio => {
-  radio.addEventListener('change', function() {
-    const categoriaSelecionada = this.value;
-    // Verifique a categoria selecionada e faça ações com base nela
-    if (categoriaSelecionada === 'pizza') {
-      document.getElementById('size').style.display = 'block';
-      document.getElementById('borda').style.display = 'block';
-    } else {
-      document.getElementById('size').style.display = 'none';
-      document.getElementById('borda').style.display = 'none';
-    }
-  });
-});
+// radios.forEach(radio => {
+//   radio.addEventListener('change', function() {
+//     const categoriaSelecionada = this.value;
+//     // Verifique a categoria selecionada e faça ações com base nela
+//     if (categoriaSelecionada === 'pizza') {
+//       document.getElementById('size').style.display = 'block';
+//       document.getElementById('borda').style.display = 'block';
+//     } else {
+//       document.getElementById('size').style.display = 'none';
+//       document.getElementById('borda').style.display = 'none';
+//     }
+//   });
+// });
 
 function registraCategoria(){
 
     const token = localStorage.getItem("token");
     
     var nome = document.getElementById('updateNome').value; 
-    var imagem = document.getElementById('updateImagem').value;
+    var imagem = imageBase64;
+    
     var radioButtons = document.getElementsByName('inlineRadioOptions');
     var categoriaSelecionada = '';
 
@@ -254,7 +269,8 @@ function registraCategoria(){
         categoriaId: idCategoria,
         nome: nome,
         imagem: imagem,
-        tipo: categoriaSelecionada  
+        tipo: categoriaSelecionada,
+        active: true
     };
 
     fetch(apiUrl+'/api/Categoria/'+idCategoria,{             

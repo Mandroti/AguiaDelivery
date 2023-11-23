@@ -41,7 +41,7 @@
     <script src="config.js"></script>
 </head>
 
-<body onload="buscarCliente()">
+<body onload="buscarEstabelecimento()">
     <nav class="sidebar close">
         <header>
             <div class="image-text">
@@ -135,9 +135,9 @@
                                         <form class="row align-items-center">
                                             <div class="col">
                                                 <div class="input-group">
-                                                    <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Buscar" style="font-size: 14px;">
+                                                    <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Buscar" style="font-size: 14px;" id="nomeEstabelecimento">
                                                     <div class="input-group-append">
-                                                        <button class="btn btn-outline-secondary" type="button" style="border-color: transparent;" onclick="buscarEstabelecimento()"><i class="action-icon fas fa-search"></i></button>
+                                                        <button class="btn btn-outline-secondary" type="button" style="border-color: transparent;" onclick="buscarEstabelecimentos()"><i class="action-icon fas fa-search"></i></button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -164,7 +164,7 @@
         <div class="modal" id="modalExcluirEstabelecimento" style="display:none;">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Excluir Estabeleciemnto</h5>
+                    <h5 class="modal-title">Excluir Estabelecimento</h5>
                     <button type="button" class="close" id="fecharModalEstabelecimento" style="background-color: transparent; border-color: transparent; font-size: 50px;" >
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -179,109 +179,7 @@
             </div>
         </div>      
     </section>
-    
-    <section>
-        <div class="modal" id="modalEditarCliente" style="display:none;">
-            <div class="modal-dialog-scrollable">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Atualizar Cadastro do Estabelecimento</h5>
-                        <button type="button" class="btn-close" id="fecharCliente" aria-label="Close" onclick="fecharModalEstabelecimento()"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <h6><strong>Informações da Conta</strong></h6>
-                            <p></p>
-                            <div class="form-group mb-2">
-                              <label for="formGroupExampleInput">Nome do Estabelecimento</label>
-                              <input type="text" class="form-control" id="inputEstabelecimento" placeholder="Nome do Estabelecimento">
-                            </div>
-                            <div class="form-group mb-2">
-                              <label for="formGroupExampleInput2">Nome Fantasia</label>
-                              <input type="text" class="form-control" id="inputFantasia" placeholder="Nome Fantasia">
-                            </div>
-                            <div class="row form-group mb-2">
-                                <div class="col">
-                                  <label for="formGroupExampleInput">CNPJ</label>
-                                  <input type="text" class="form-control" id="inputCnpj" placeholder="00.000.000/0000-00">
-                                </div>
-                                <div class="col">
-                                  <label for="formGroupExampleInput">Email Principal</label>
-                                  <input type="text" class="form-control" id="inputEmail" placeholder="Estabelecimento@gmail.com">
-                                </div>
-                            </div>
-                            <div class="row form-group mb-2">
-                                <div class="col">
-                                  <label for="formGroupExampleInput">Telefone</label>
-                                  <input type="text" class="form-control" id="inputTelefone" placeholder="(00)00000-0000" maxlength="15" onkeyup="applyPhoneMask(event)">
-                                </div>
-                                <div class="col">
-                                  <label for="formGroupExampleInput">Celular</label>
-                                  <input type="text" class="form-control" id="inputCelular" placeholder="(00)00000-0000" maxlength="15" onkeyup="applyPhoneMask(event)">
-                                </div>
-                            </div>
-                            <div class="form-group d-flex flex-column form-group mb-2">
-                                <label for="formGroupExampleInput">Logo do Estabelecimento</label>
-                                <input type="file" id="inputImagem" accept="image/*">
-                            </div>
-                            
-                            <p></p>
-                            <h6><strong>Informações de Endereço</strong></h6>
-                            <p></p>
-                            <div class="form-group mb-2">
-                                <label for="formGroupExampleInput">Logradouro</label>
-                                <input type="text" class="form-control" id="inputLog" placeholder="Endereço">
-                            </div>
-                            <div class="row form-group mb-2">
-                                <div class="col">
-                                  <label for="formGroupExampleInput">Bairro</label>
-                                  <input type="text" class="form-control" id="inputBairro"  placeholder="Bairro">
-                                </div>
-                                <div class="col">
-                                  <label for="formGroupExampleInput">CEP</label>
-                                  <input type="text" class="form-control" id="inputCep" placeholder="00000-000" maxlength="9" onkeyup="applyZipCodeMask(event)">
-                                </div>
-                            </div>
-                            <div class="row form-group mb-2">
-                                <div class="col">
-                                  <label for="formGroupExampleInput">Numero</label>
-                                  <input type="text" class="form-control" id="inputNumero" placeholder="000">
-                                </div>
-                                <div class="col">
-                                    <label for="formGroupExampleInput">Estado</label>
-                                    <input type="text" class="form-control" id="inputEstado" placeholder="Estado">
-                                </div>
-                                <div class="col">
-                                    <label for="formGroupExampleInput">Cidade</label>
-                                    <input type="text" class="form-control" id="inputCidade" placeholder="Cidade">
-                                  </div>
-                            </div>
-                            <p></p>
-                            <h6><strong>Informações de Funcionamento</strong></h6>
-                            <p></p>
-                            <div class="row form-group mb-2">
-                                <div class="col">
-                                  <label for="formGroupExampleInput">Horário Inicial de Funcionamento</label>
-                                  <input type="datetime" class="form-control" id="inputIcFunc" placeholder="00:00">
-                                </div>
-                                <div class="col">
-                                  <label for="formGroupExampleInput">Horário Final de Funcionamento</label>
-                                  <input type="datetime" class="form-control" id="inputFiFunc" placeholder="00:00">
-                                </div>
-                            </div>
-                            <div class="form-group form-group mb-2">
-                                <label for="formGroupExampleInput">Descrição</label>
-                                <input type="text" class="form-control" id="inputDesc" placeholder="Descrição">
-                              </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
 
-    
 </body>
 <script src="js/dashboard.js"></script>
 <script src="js/estabelecimento.js"></script>

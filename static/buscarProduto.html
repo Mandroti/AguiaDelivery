@@ -239,7 +239,7 @@
                            
                         <div class="mb-3">
                             <label for="inputImagem" class="form-label">Selecione uma imagem:</label>     
-                            <input type="file" class="form-control" id="inputImagem" accept="image/*">
+                            <input type="file" class="form-control" id="inputImagem" accept="image/*" onchange="encodeImageFileAsURL(this)">
                         </div>
 
                         <div class="row">
@@ -353,54 +353,37 @@
                         <form class="text-start">               
                             <div class="mb-3">
                                 <label for="inputNome" class="form-label">Produto</label>
-                                <input type="text" class="form-control" id="inputNome" placeholder="Insira Nome do Produto" required> 
+                                <input type="text" class="form-control" id="upNome" placeholder="Insira Nome do Produto" required> 
                             </div>               
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="inputValor" class="form-label">Valor</label>                      
-                                        <input type="text" class="form-control" id="inputValor" placeholder="0.00" required>  
+                                        <input type="text" class="form-control" id="upValor" placeholder="0.00" required>  
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="inputCategoria" class="form-label">Categoria</label>
-                                        <select class="form-control">
-                                            <option>Teste</option>
-                                            <option>Teste</option>
-                                            <option>Teste</option>
+                                        <select class="form-control" id="upCategoria">
+                                        
+                                        
                                         </select>
                                     </div>
                                 </div>
                             </div>         
                             <div class="mb-3">
                                 <label for="inputDescricao" class="form-label">Descrição</label>
-                                <input type="text" class="form-control" id="inputDescricao" placeholder="Insira Descrição do Produto">
+                                <input type="text" class="form-control" id="upDescricao" placeholder="Insira Descrição do Produto">
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label for="inputVariacoes" class="form-label">Variações</label>                      
-                                        <select class="form-control">
-                                            <option>Teste</option>
-                                            <option>Teste</option>
-                                            <option>Teste</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label for="inputObs" class="form-label">Observação</label>
-                                        <input type="text" class="form-control" id="inputObs" placeholder="Alguma Observação">
-                                    </div>
-                                </div>
-                            </div>    
+                            
                             <div class="mb-3">
-                                <label for="inputImagem" class="form-label">Selecione uma imagem:</label>     
-                                <input type="file" class="form-control" id="inputImagem" accept="image/*">
+                                <label for="upImagem" class="form-label">Selecione uma imagem:</label>     
+                                <input type="file" class="form-control" id="upImagem" accept="image/*" onchange="encodeImageFileAsURL(this)">
                             </div>
-                            <a href="cadastraImagem.html">
-                                <button type="submit" id="submit" class="btn btn-primary btn-block w-100" style="border-color: transparent; background-color: #ffbe33; text-decoration: none;">ALTERAR PRODUTO</button>
+    
+                            <a>
+                                <button type="submit" id="submit" class="btn btn-primary btn-block w-100" style="border-color: transparent; background-color: #ffbe33; text-decoration: none;" onclick="registrarProduto()">ALTERAR PRODUTO</button>
                             </a>        
                         </form>
                     </div>

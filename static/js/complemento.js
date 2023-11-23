@@ -161,8 +161,10 @@ function registraComplemento(){
 
     var nome = document.getElementById('updateNome').value; 
     var valor = document.getElementById('updateValor').value;
+    fetchCategoriaComplemento();
+    var updateCategoriaC = categoriaIdSelecionado;
     const dados = {
-        complementoId: idComplemento, nome: nome, precoVenda: valor
+        complementoId: idComplemento, nome: nome, precoVenda: valor, categoriaId: updateCategoriaC
     };       
 
     fetch(apiUrl+'/api/Complemento/'+idComplemento,{             
@@ -265,7 +267,15 @@ function fetchCategoriaComplemento() {
         data.forEach(function (categoria) {
             selectCategoria.innerHTML += `<option value="${categoria.categoriaId}" onclick="pegaId(${categoria.categoriaId})">${categoria.nome}</option>`;
         });
+        var selectCategoria = document.getElementById('updateCategoriaC');
 
+        selectCategoria.innerHTML = `<option value="0" disabled>Selecione uma Opção</option>`;
+
+        console.log(data)
+
+        data.forEach(function (categoria) {
+            selectCategoria.innerHTML += `<option value="${categoria.categoriaId}" onclick="pegaId(${categoria.categoriaId})">${categoria.nome}</option>`;
+        });
               
     })
     .catch(error => console.error('Erro:', error));

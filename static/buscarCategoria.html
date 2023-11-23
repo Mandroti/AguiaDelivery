@@ -245,7 +245,7 @@
 
                                     <div class="mb-3">
                                         <label for="insertImagem" class="form-label">Selecione uma imagem:</label>     
-                                        <input type="file" class="form-control" id="insertImagem" accept="image/*">
+                                        <input type="file" class="form-control" id="insertImagem" accept="image/*" onchange="encodeImageFileAsURL(this)">
                                     </div>
 
                                     
@@ -306,7 +306,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Atualizar Cadastro da Categoria</h5>
-                        <button type="button" class="btn-close" id="fecharModalEditarCategoria" aria-label="Close" onclick="fecharModalProduto()"></button>
+                        <button type="button" class="btn-close" id="fecharModalEditarCategoria" aria-label="Close" onclick="fecharModalCategoria()"></button>
                     </div>
                     <div class="modal-body">
                         <form class="text-start">               
@@ -321,7 +321,7 @@
                             
                             <div class="mb-3">
                                 <label for="inputImagem" class="form-label">Selecione uma imagem:</label>     
-                                <input type="file" class="form-control" id="updateImagem" accept="image/*">
+                                <input type="file" class="form-control" id="updateImagem" accept="image/*" onchange="encodeImageFileAsURL(this)">
                             </div>
                             <a href="#">
                                 <button type="submit" id="submit" class="btn btn-primary btn-block w-100" style="background-color: #ffbe33; text-decoration: none; border-color: transparent;" onclick="registraCategoria()">ATUALIZAR CADASTRO DA CATEGORIA</button>
