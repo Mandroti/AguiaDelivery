@@ -5,9 +5,11 @@ function encodeImageFileAsURL(element) {
     var file = element.files[0];
     var reader = new FileReader();
     reader.onloadend = function() {
-      alert(reader.result); 
+      
+        
       imageBase64 = reader.result;
-      alert(imageBase64)
+      
+      
     }
     reader.readAsDataURL(file);
 }
@@ -50,7 +52,7 @@ function editarProduto(id){
 
     carregarDadosProduto(id);
     idProduto = id;
-    alert(idProduto)
+   
     
     // Adicionando uma função para fechar o modal
     const fecharModal = document.getElementById('fecharModalEditarProduto');
@@ -147,6 +149,10 @@ function registrarProduto(){
 //     .catch(error => console.error('Erro:', error));
 // }
 
+function voltar(){
+    window.location.href = "buscarProduto.html"
+}
+
 function carregarDadosProduto(id){
     fetch(apiUrl+`/api/Produto/${id}`, {             
         method: 'GET',
@@ -208,7 +214,7 @@ var categoriaSelecionada = 0; // Objeto vazio para armazenar a categoria selecio
 
 function pegarCat(categoria){
     categoriaSelecionada = categoria.categoriaId;
-    alert(categoriaSelecionada)
+ 
     // if(categoria.nome === 'Pizza'){
     //     alert('entrou')
     //     carregaTamanho();
@@ -452,7 +458,7 @@ function criarProduto(){
           throw new Error('Erro ao cadastrar produto');
         }
         else{
-            // window.location.href = "buscarProduto.html"
+            window.location.href = "buscarProduto.html"
             console.log(response)
         }
         return response.text();
@@ -615,8 +621,7 @@ function carregarCategoria(data){
 
 function carregaTamanho() {
     const token = localStorage.getItem("token");
-    alert(categoriaSelecionada);
-
+   
     fetch(apiUrl + '/api/Variacao/Grupo?CategoriaId=' + categoriaSelecionada, {
         method: 'GET',
         headers: {
@@ -683,4 +688,62 @@ function confirmarExclusao(){
     .catch(error => console.error('Erro ao deletar o ID:', error));
 
     event.preventDefault();
+}
+
+
+function buscarProduto(){ 
+    var nome = document.getElementById('nomeProduto').value;
+    const token = localStorage.getItem("token");
+    fetch(apiUrl+'/api/Produto/PorNome?Nome='+ nome, { 
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}` 
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data)
+        var tabela = `<table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Imagem</th>
+                                <th scope="col">Nome</th>   
+                                <th scope="col">Status</th>                              
+                                <th scope="col">Opções</th>
+                            </tr>
+                        </thead>
+                        <tbody>`;
+
+        for (var i = 0; i < data.length; i++) {
+            var card = carregarProduto(data[i]);
+            tabela += card;
+        }
+
+        tabela += `</tbody></table>`;
+        document.getElementById('tabelaProdutos').innerHTML = tabela;
+    })
+    .catch(error => console.error('Erro:', error));
+
+    event.preventDefault();
+}
+
+function carregarProduto(data){
+    var row = `
+        <tr>
+            <th scope="row">${data.produtoId}</th>
+            <td>${data.nome}</td>
+            <td>${data.active}</td>
+            <td>
+                <div>
+                    <a class="btn table-action" href="#">
+                        <i class="action-icon fas fa-edit" onclick="editarProduto(${data.produtoIdId})" style="margin-right: 12px;"></i>
+                        <i class="action-icon fas fa-trash" onclick="excluirProduto(${data.produtoIdId})"></i>
+                    </a>                         
+                </div>
+            </td>
+        </tr>
+    `;
+
+    return row;
 }

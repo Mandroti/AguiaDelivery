@@ -80,8 +80,14 @@ function buscarComplementos(){
 
 function carregarComplemento(data){
     var row = `
+        
         <tr>            
-            <td onclick="verCategoriaComplemento(${data.categoriaId})">${data.nome}</td>
+            <td onclick="verCategoriaComplemento(${data.categoriaId})" style="font-size: large">${data.nome}</td>
+        </tr>
+        <tr>            
+            <td>
+                </hr>
+            </td>
         </tr>
     `;
     return row;
@@ -358,11 +364,16 @@ function buscarCategoria(){
 
 function carregarCategoria(data){
     var row = `
-        <tr>
-           
-            <td onclick="verCategoriaComplemento(${data.categoriaId})">${data.nome}</td>
-            
+       
+        <tr>            
+            <td onclick="verCategoriaComplemento(${data.categoriaId})" style="font-size: large">${data.nome}</td>
         </tr>
+        <tr>            
+            <td>
+                </hr>
+            </td>
+        </tr>
+
     `;
 
     return row;

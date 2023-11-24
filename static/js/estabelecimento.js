@@ -245,7 +245,7 @@ function buscarEstabelecimentos(){
     var nome = document.getElementById('nomeEstabelecimento').value;
 
     const token = localStorage.getItem("token");
-    fetch(apiUrl+'/api/Estabelecimento' + nome, { 
+    fetch(apiUrl+'/api/Estabelecimento/PorNome?Nome=' + nome, { 
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
